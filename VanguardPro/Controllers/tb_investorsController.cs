@@ -17,7 +17,7 @@ namespace VanguardPro.Controllers
         // GET: tb_investors
         public ActionResult Index()
         {
-            var tb_investors = db.tb_investors.Include(t => t.tb_profit).Include(t => t.tb_user);
+            var tb_investors = db.tb_investors.Include(t => t.tb_user);
             return View(tb_investors.ToList());
         }
 
@@ -39,8 +39,7 @@ namespace VanguardPro.Controllers
         // GET: tb_investors/Create
         public ActionResult Create()
         {
-            ViewBag.i_pid = new SelectList(db.tb_profit, "p_id", "p_id");
-            ViewBag.i_id = new SelectList(db.tb_user, "u_id", "u_username");
+            ViewBag.i_uid = new SelectList(db.tb_user, "u_id", "u_username");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "i_id,i_uid,i_pid,i_lot,i_lotperc")] tb_investors tb_investors)
+        public ActionResult Create([Bind(Include = "i_id,i_uid,i_lot,i_lotperc")] tb_investors tb_investors)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +57,7 @@ namespace VanguardPro.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.i_pid = new SelectList(db.tb_profit, "p_id", "p_id", tb_investors.i_pid);
-            ViewBag.i_id = new SelectList(db.tb_user, "u_id", "u_username", tb_investors.i_id);
+            ViewBag.i_uid = new SelectList(db.tb_user, "u_id", "u_username", tb_investors.i_uid);
             return View(tb_investors);
         }
 
@@ -75,8 +73,7 @@ namespace VanguardPro.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.i_pid = new SelectList(db.tb_profit, "p_id", "p_id", tb_investors.i_pid);
-            ViewBag.i_id = new SelectList(db.tb_user, "u_id", "u_username", tb_investors.i_id);
+            ViewBag.i_uid = new SelectList(db.tb_user, "u_id", "u_username", tb_investors.i_uid);
             return View(tb_investors);
         }
 
@@ -85,7 +82,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "i_id,i_uid,i_pid,i_lot,i_lotperc")] tb_investors tb_investors)
+        public ActionResult Edit([Bind(Include = "i_id,i_uid,i_lot,i_lotperc")] tb_investors tb_investors)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +90,7 @@ namespace VanguardPro.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.i_pid = new SelectList(db.tb_profit, "p_id", "p_id", tb_investors.i_pid);
-            ViewBag.i_id = new SelectList(db.tb_user, "u_id", "u_username", tb_investors.i_id);
+            ViewBag.i_uid = new SelectList(db.tb_user, "u_id", "u_username", tb_investors.i_uid);
             return View(tb_investors);
         }
 

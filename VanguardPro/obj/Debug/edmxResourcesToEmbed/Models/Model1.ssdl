@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="db_vanguardproModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="tb_attendance">
     <Key>
       <PropertyRef Name="atd_id" />
@@ -46,7 +36,6 @@
     </Key>
     <Property Name="i_id" Type="int" Nullable="false" />
     <Property Name="i_uid" Type="int" Nullable="false" />
-    <Property Name="i_pid" Type="int" Nullable="false" />
     <Property Name="i_lot" Type="int" Nullable="false" />
     <Property Name="i_lotperc" Type="float" Nullable="false" />
   </EntityType>
@@ -66,6 +55,7 @@
     <Property Name="p_id" Type="int" Nullable="false" />
     <Property Name="p_date" Type="date" Nullable="false" />
     <Property Name="p_profit" Type="float" Nullable="false" />
+    <Property Name="p_investorid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_reminder">
     <Key>
@@ -181,27 +171,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_investors_tb_profit">
-    <End Role="tb_profit" Type="Self.tb_profit" Multiplicity="1" />
-    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tb_profit">
-        <PropertyRef Name="p_id" />
-      </Principal>
-      <Dependent Role="tb_investors">
-        <PropertyRef Name="i_pid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tb_investors_tb_user">
     <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
-    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="0..1" />
+    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tb_user">
         <PropertyRef Name="u_id" />
       </Principal>
       <Dependent Role="tb_investors">
+        <PropertyRef Name="i_uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_profit_tb_investors">
+    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="1" />
+    <End Role="tb_profit" Type="Self.tb_profit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_investors">
         <PropertyRef Name="i_id" />
+      </Principal>
+      <Dependent Role="tb_profit">
+        <PropertyRef Name="p_investorid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -266,7 +256,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="db_vanguardproModelStoreContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_floor" EntityType="Self.tb_floor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_inventory" EntityType="Self.tb_inventory" Schema="dbo" store:Type="Tables" />
@@ -295,13 +284,13 @@
       <End Role="tb_floor" EntitySet="tb_floor" />
       <End Role="tb_inventory" EntitySet="tb_inventory" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_investors_tb_profit" Association="Self.FK_tb_investors_tb_profit">
-      <End Role="tb_profit" EntitySet="tb_profit" />
-      <End Role="tb_investors" EntitySet="tb_investors" />
-    </AssociationSet>
     <AssociationSet Name="FK_tb_investors_tb_user" Association="Self.FK_tb_investors_tb_user">
       <End Role="tb_user" EntitySet="tb_user" />
       <End Role="tb_investors" EntitySet="tb_investors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_profit_tb_investors" Association="Self.FK_tb_profit_tb_investors">
+      <End Role="tb_investors" EntitySet="tb_investors" />
+      <End Role="tb_profit" EntitySet="tb_profit" />
     </AssociationSet>
     <AssociationSet Name="FK_tb_reminder_tb_user" Association="Self.FK_tb_reminder_tb_user">
       <End Role="tb_user" EntitySet="tb_user" />

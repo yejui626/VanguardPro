@@ -14,17 +14,11 @@ namespace VanguardPro.Models
     
     public partial class tb_profit
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_profit()
-        {
-            this.tb_investors = new HashSet<tb_investors>();
-        }
-    
         public int p_id { get; set; }
         public System.DateTime p_date { get; set; }
         public double p_profit { get; set; }
+        public int p_investorid { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_investors> tb_investors { get; set; }
+        public virtual tb_investors tb_investors { get; set; }
     }
 }

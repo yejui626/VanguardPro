@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="db_vanguardproModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="tb_attendance">
     <Key>
       <PropertyRef Name="atd_id" />
@@ -54,11 +44,10 @@
     </Key>
     <Property Name="i_id" Type="Int32" Nullable="false" />
     <Property Name="i_uid" Type="Int32" Nullable="false" />
-    <Property Name="i_pid" Type="Int32" Nullable="false" />
     <Property Name="i_lot" Type="Int32" Nullable="false" />
     <Property Name="i_lotperc" Type="Double" Nullable="false" />
-    <NavigationProperty Name="tb_profit" Relationship="Self.FK_tb_investors_tb_profit" FromRole="tb_investors" ToRole="tb_profit" />
     <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_investors_tb_user" FromRole="tb_investors" ToRole="tb_user" />
+    <NavigationProperty Name="tb_profit" Relationship="Self.FK_tb_profit_tb_investors" FromRole="tb_investors" ToRole="tb_profit" />
   </EntityType>
   <EntityType Name="tb_landlord">
     <Key>
@@ -77,7 +66,8 @@
     <Property Name="p_id" Type="Int32" Nullable="false" />
     <Property Name="p_date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="p_profit" Type="Double" Nullable="false" />
-    <NavigationProperty Name="tb_investors" Relationship="Self.FK_tb_investors_tb_profit" FromRole="tb_profit" ToRole="tb_investors" />
+    <Property Name="p_investorid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_investors" Relationship="Self.FK_tb_profit_tb_investors" FromRole="tb_profit" ToRole="tb_investors" />
   </EntityType>
   <EntityType Name="tb_reminder">
     <Key>
@@ -227,27 +217,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_investors_tb_profit">
-    <End Role="tb_profit" Type="Self.tb_profit" Multiplicity="1" />
-    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tb_profit">
-        <PropertyRef Name="p_id" />
-      </Principal>
-      <Dependent Role="tb_investors">
-        <PropertyRef Name="i_pid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tb_investors_tb_user">
     <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
-    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="0..1" />
+    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tb_user">
         <PropertyRef Name="u_id" />
       </Principal>
       <Dependent Role="tb_investors">
+        <PropertyRef Name="i_uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_profit_tb_investors">
+    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="1" />
+    <End Role="tb_profit" Type="Self.tb_profit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_investors">
         <PropertyRef Name="i_id" />
+      </Principal>
+      <Dependent Role="tb_profit">
+        <PropertyRef Name="p_investorid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -288,7 +278,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="db_vanguardproEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
     <EntitySet Name="tb_floor" EntityType="Self.tb_floor" />
     <EntitySet Name="tb_inventory" EntityType="Self.tb_inventory" />
@@ -325,13 +314,13 @@
       <End Role="tb_floor" EntitySet="tb_floor" />
       <End Role="tb_transaction" EntitySet="tb_transaction" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_investors_tb_profit" Association="Self.FK_tb_investors_tb_profit">
-      <End Role="tb_profit" EntitySet="tb_profit" />
-      <End Role="tb_investors" EntitySet="tb_investors" />
-    </AssociationSet>
     <AssociationSet Name="FK_tb_investors_tb_user" Association="Self.FK_tb_investors_tb_user">
       <End Role="tb_user" EntitySet="tb_user" />
       <End Role="tb_investors" EntitySet="tb_investors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_profit_tb_investors" Association="Self.FK_tb_profit_tb_investors">
+      <End Role="tb_investors" EntitySet="tb_investors" />
+      <End Role="tb_profit" EntitySet="tb_profit" />
     </AssociationSet>
     <AssociationSet Name="FK_tb_reminder_tb_user" Association="Self.FK_tb_reminder_tb_user">
       <End Role="tb_user" EntitySet="tb_user" />

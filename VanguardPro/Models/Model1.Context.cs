@@ -25,7 +25,6 @@ namespace VanguardPro.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tb_attendance> tb_attendance { get; set; }
         public virtual DbSet<tb_floor> tb_floor { get; set; }
         public virtual DbSet<tb_inventory> tb_inventory { get; set; }
