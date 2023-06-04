@@ -1,0 +1,58 @@
+﻿@model IEnumerable<VanguardPro.Models.tb_landlord>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<style>
+    button {
+        background-color: #1AA260;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+</style>
+<div>
+    <button type="button">
+        @Html.ActionLink("Create New", "Create")
+    </button>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.l_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.l_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.l_due)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.l_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.l_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.l_due)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.l_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.l_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.l_id })
+        </td>
+    </tr>
+}
+
+</table>

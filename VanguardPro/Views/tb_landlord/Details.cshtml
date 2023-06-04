@@ -1,0 +1,42 @@
+﻿@model VanguardPro.Models.tb_landlord
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_landlord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.l_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.l_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.l_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.l_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.l_due)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.l_due)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.l_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
