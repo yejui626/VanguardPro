@@ -1,0 +1,66 @@
+﻿@model VanguardPro.Models.tb_transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_paymentMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_paymentMethod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tr_receipt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tr_receipt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_floor.f_building)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_floor.f_building)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.tr_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
