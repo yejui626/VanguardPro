@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\VanguardPro"
+    "\\VanguardPro",
+    "\\VanguardPro\\Controllers"
   ],
-  "SelectedNode": "\\VanguardPro\\favicon.ico",
+  "SelectedNode": "\\VanguardPro\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
