@@ -1,0 +1,74 @@
+﻿@model VanguardPro.Models.tb_floor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_floor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.f_building)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_building)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_wifipwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_wifipwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_modemIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_modemIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_cctvqr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_cctvqr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.f_layout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.f_layout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_landlord.l_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_landlord.l_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_user.u_username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_user.u_username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.f_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

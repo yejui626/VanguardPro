@@ -1,0 +1,69 @@
+﻿@model IEnumerable<VanguardPro.Models.tb_floor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.f_building)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.f_wifipwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.f_modemIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.f_cctvqr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.f_layout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_landlord.l_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_user.u_username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_building)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_wifipwd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_modemIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_cctvqr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.f_layout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_landlord.l_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_user.u_username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.f_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.f_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.f_id })
+        </td>
+    </tr>
+}
+
+</table>

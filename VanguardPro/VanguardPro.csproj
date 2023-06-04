@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\tb_floorController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2127,6 +2128,11 @@
     <Content Include="Views\tb_transaction\Details.cshtml" />
     <Content Include="Views\tb_transaction\Edit.cshtml" />
     <Content Include="Views\tb_transaction\Index.cshtml" />
+    <Content Include="Views\tb_floor\Create.cshtml" />
+    <Content Include="Views\tb_floor\Delete.cshtml" />
+    <Content Include="Views\tb_floor\Details.cshtml" />
+    <Content Include="Views\tb_floor\Edit.cshtml" />
+    <Content Include="Views\tb_floor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
