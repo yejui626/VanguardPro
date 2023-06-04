@@ -134,6 +134,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\tb_floorController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
+    <Compile Include="Controllers\tb_landlordController.cs" />
+    <Compile Include="Controllers\tb_landlordController1.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2133,6 +2135,11 @@
     <Content Include="Views\tb_floor\Details.cshtml" />
     <Content Include="Views\tb_floor\Edit.cshtml" />
     <Content Include="Views\tb_floor\Index.cshtml" />
+    <Content Include="Views\tb_landlord\Create.cshtml" />
+    <Content Include="Views\tb_landlord\Delete.cshtml" />
+    <Content Include="Views\tb_landlord\Details.cshtml" />
+    <Content Include="Views\tb_landlord\Edit.cshtml" />
+    <Content Include="Views\tb_landlord\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
