@@ -13,10 +13,10 @@ namespace VanguardPro.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db_vanguardproEntities1 : DbContext
+    public partial class db_vanguardproEntities : DbContext
     {
-        public db_vanguardproEntities1()
-            : base("name=db_vanguardproEntities1")
+        public db_vanguardproEntities()
+            : base("name=db_vanguardproEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace VanguardPro.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tb_attendance> tb_attendance { get; set; }
         public virtual DbSet<tb_floor> tb_floor { get; set; }
         public virtual DbSet<tb_inventory> tb_inventory { get; set; }

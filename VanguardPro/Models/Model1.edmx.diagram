@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b4e2e1f06c394e92a53828b91d1a4295" Name="Diagram1" ZoomLevel="74" ShowGrid="true">
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_attendance" Width="1.5" PointX="8.375" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_floor" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+      <Diagram DiagramId="5ac1ab5acf2449ba9eee8a9049231783" Name="Diagram1">
+        <EntityTypeShape EntityType="db_vanguardproModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_attendance" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_floor" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="db_vanguardproModel.tb_inventory" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_investors" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_landlord" Width="1.5" PointX="4.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_profit" Width="1.5" PointX="0.875" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_reminder" Width="1.5" PointX="2.875" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_rental" Width="1.5" PointX="9.125" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_room" Width="1.5" PointX="7.125" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_tenant" Width="1.5" PointX="11.125" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_transaction" Width="1.5" PointX="7.125" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_vanguardproModel.tb_user" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_investors" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_landlord" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_profit" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_reminder" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_rental" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_room" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_tenant" Width="1.5" PointX="5.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_transaction" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_vanguardproModel.tb_user" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <AssociationConnector Association="db_vanguardproModel.FK_tb_attendance_tb_floor" ManuallyRouted="false" />
         <AssociationConnector Association="db_vanguardproModel.FK_tb_floor_tb_landlord" ManuallyRouted="false" />
         <AssociationConnector Association="db_vanguardproModel.FK_tb_floor_tb_user" ManuallyRouted="false" />
