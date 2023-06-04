@@ -37,5 +37,6 @@ namespace VanguardPro.Models
         public virtual DbSet<tb_tenant> tb_tenant { get; set; }
         public virtual DbSet<tb_transaction> tb_transaction { get; set; }
         public virtual DbSet<tb_user> tb_user { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

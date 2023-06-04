@@ -4,12 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_vanguardproModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db_vanguardproModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="tb_attendance">
           <Key>
             <PropertyRef Name="atd_id" />
           </Key>
-          <Property Name="atd_id" Type="int" Nullable="false" />
+          <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="atd_fid" Type="int" Nullable="false" />
           <Property Name="atd_check" Type="datetime" Nullable="false" />
         </EntityType>
@@ -17,7 +27,7 @@
           <Key>
             <PropertyRef Name="f_id" />
           </Key>
-          <Property Name="f_id" Type="int" Nullable="false" />
+          <Property Name="f_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="f_lid" Type="int" Nullable="false" />
           <Property Name="f_building" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="f_wifipwd" Type="varchar" MaxLength="50" Nullable="false" />
@@ -30,7 +40,7 @@
           <Key>
             <PropertyRef Name="ivtry_id" />
           </Key>
-          <Property Name="ivtry_id" Type="int" Nullable="false" />
+          <Property Name="ivtry_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ivtry_fid" Type="int" Nullable="false" />
           <Property Name="ivtry_item" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ivtry_count" Type="int" Nullable="false" />
@@ -39,7 +49,7 @@
           <Key>
             <PropertyRef Name="i_id" />
           </Key>
-          <Property Name="i_id" Type="int" Nullable="false" />
+          <Property Name="i_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="i_uid" Type="int" Nullable="false" />
           <Property Name="i_lot" Type="int" Nullable="false" />
           <Property Name="i_lotperc" Type="float" Nullable="false" />
@@ -48,7 +58,7 @@
           <Key>
             <PropertyRef Name="l_id" />
           </Key>
-          <Property Name="l_id" Type="int" Nullable="false" />
+          <Property Name="l_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="l_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="l_phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="l_due" Type="date" Nullable="false" />
@@ -57,7 +67,7 @@
           <Key>
             <PropertyRef Name="p_id" />
           </Key>
-          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="p_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="p_date" Type="date" Nullable="false" />
           <Property Name="p_profit" Type="float" Nullable="false" />
           <Property Name="p_investorid" Type="int" Nullable="false" />
@@ -66,7 +76,7 @@
           <Key>
             <PropertyRef Name="rmd_id" />
           </Key>
-          <Property Name="rmd_id" Type="int" Nullable="false" />
+          <Property Name="rmd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="rmd_desc" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="rmd_uid" Type="int" Nullable="false" />
         </EntityType>
@@ -74,7 +84,7 @@
           <Key>
             <PropertyRef Name="re_id" />
           </Key>
-          <Property Name="re_id" Type="int" Nullable="false" />
+          <Property Name="re_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="re_indate" Type="datetime" />
           <Property Name="re_outdate" Type="datetime" />
           <Property Name="re_status" Type="varchar" MaxLength="50" Nullable="false" />
@@ -86,7 +96,7 @@
           <Key>
             <PropertyRef Name="r_id" />
           </Key>
-          <Property Name="r_id" Type="int" Nullable="false" />
+          <Property Name="r_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="r_fid" Type="int" Nullable="false" />
           <Property Name="r_price" Type="float" Nullable="false" />
           <Property Name="r_availability" Type="int" Nullable="false" />
@@ -96,7 +106,7 @@
           <Key>
             <PropertyRef Name="t_id" />
           </Key>
-          <Property Name="t_id" Type="int" Nullable="false" />
+          <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="t_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="t_ic" Type="int" Nullable="false" />
           <Property Name="t_uploadic" Type="varchar(max)" Nullable="false" />
@@ -110,7 +120,7 @@
           <Key>
             <PropertyRef Name="tr_id" />
           </Key>
-          <Property Name="tr_id" Type="int" Nullable="false" />
+          <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tr_fid" Type="int" />
           <Property Name="tr_desc" Type="float" Nullable="false" />
           <Property Name="tr_type" Type="varchar" MaxLength="50" Nullable="false" />
@@ -122,7 +132,7 @@
           <Key>
             <PropertyRef Name="u_id" />
           </Key>
-          <Property Name="u_id" Type="int" Nullable="false" />
+          <Property Name="u_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="u_username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="u_pwd" Type="varchar(max)" Nullable="false" />
           <Property Name="u_email" Type="varchar" MaxLength="50" Nullable="false" />
@@ -261,6 +271,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="db_vanguardproModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_floor" EntityType="Self.tb_floor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_inventory" EntityType="Self.tb_inventory" Schema="dbo" store:Type="Tables" />
@@ -318,8 +329,7 @@
             <End Role="tb_transaction" EntitySet="tb_transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_vanguardproModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -657,7 +667,18 @@
             <End Role="tb_tenant" EntitySet="tb_tenant" />
             <End Role="tb_rental" EntitySet="tb_rental" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="db_vanguardproModel.sysdiagram" />
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -796,6 +817,17 @@
                 <ScalarProperty Name="u_pwd" ColumnName="u_pwd" />
                 <ScalarProperty Name="u_email" ColumnName="u_email" />
                 <ScalarProperty Name="u_usertype" ColumnName="u_usertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="db_vanguardproModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

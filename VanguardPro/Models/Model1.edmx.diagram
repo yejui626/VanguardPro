@@ -28,6 +28,7 @@
         <AssociationConnector Association="db_vanguardproModel.FK_tb_reminder_tb_user" ManuallyRouted="false" />
         <AssociationConnector Association="db_vanguardproModel.FK_tb_rental_tb_room" ManuallyRouted="false" />
         <AssociationConnector Association="db_vanguardproModel.FK_tb_rental_tb_tenant" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_vanguardproModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
