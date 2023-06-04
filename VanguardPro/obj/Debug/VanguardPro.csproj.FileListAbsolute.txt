@@ -235,3 +235,7 @@ C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\obj\Debug\VanguardPro.cs
 C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\obj\Debug\VanguardPro.csproj.CopyComplete
 C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\obj\Debug\VanguardPro.dll
 C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\obj\Debug\VanguardPro.pdb
+C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.dll
+C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.SqlServer.dll
+C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.xml
+C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.SqlServer.xml

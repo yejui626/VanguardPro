@@ -1,0 +1,58 @@
+﻿@model VanguardPro.Models.tb_investors
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_investors</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.i_uid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.i_uid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.i_lot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.i_lot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.i_lotperc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.i_lotperc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_profit.p_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_profit.p_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_user.u_username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_user.u_username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.i_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

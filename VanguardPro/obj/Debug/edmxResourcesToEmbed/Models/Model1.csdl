@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_vanguardproModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tb_attendance">
+    <Key>
+      <PropertyRef Name="atd_id" />
+    </Key>
+    <Property Name="atd_id" Type="Int32" Nullable="false" />
+    <Property Name="atd_fid" Type="Int32" Nullable="false" />
+    <Property Name="atd_check" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_attendance_tb_floor" FromRole="tb_attendance" ToRole="tb_floor" />
+  </EntityType>
+  <EntityType Name="tb_floor">
+    <Key>
+      <PropertyRef Name="f_id" />
+    </Key>
+    <Property Name="f_id" Type="Int32" Nullable="false" />
+    <Property Name="f_lid" Type="Int32" Nullable="false" />
+    <Property Name="f_building" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="f_wifipwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="f_modemIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="f_cctvqr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="f_layout" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="f_uid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_attendance" Relationship="Self.FK_tb_attendance_tb_floor" FromRole="tb_floor" ToRole="tb_attendance" />
+    <NavigationProperty Name="tb_landlord" Relationship="Self.FK_tb_floor_tb_landlord" FromRole="tb_floor" ToRole="tb_landlord" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_floor_tb_user" FromRole="tb_floor" ToRole="tb_user" />
+    <NavigationProperty Name="tb_inventory" Relationship="Self.FK_tb_inventory_tb_floor" FromRole="tb_floor" ToRole="tb_inventory" />
+    <NavigationProperty Name="tb_room" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_floor" ToRole="tb_room" />
+    <NavigationProperty Name="tb_transaction" Relationship="Self.FK_tb_transaction_tb_floor" FromRole="tb_floor" ToRole="tb_transaction" />
+  </EntityType>
+  <EntityType Name="tb_inventory">
+    <Key>
+      <PropertyRef Name="ivtry_id" />
+    </Key>
+    <Property Name="ivtry_id" Type="Int32" Nullable="false" />
+    <Property Name="ivtry_fid" Type="Int32" Nullable="false" />
+    <Property Name="ivtry_item" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ivtry_count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_inventory_tb_floor" FromRole="tb_inventory" ToRole="tb_floor" />
+  </EntityType>
+  <EntityType Name="tb_investors">
+    <Key>
+      <PropertyRef Name="i_id" />
+    </Key>
+    <Property Name="i_id" Type="Int32" Nullable="false" />
+    <Property Name="i_uid" Type="Int32" Nullable="false" />
+    <Property Name="i_pid" Type="Int32" Nullable="false" />
+    <Property Name="i_lot" Type="Int32" Nullable="false" />
+    <Property Name="i_lotperc" Type="Double" Nullable="false" />
+    <NavigationProperty Name="tb_profit" Relationship="Self.FK_tb_investors_tb_profit" FromRole="tb_investors" ToRole="tb_profit" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_investors_tb_user" FromRole="tb_investors" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_landlord">
+    <Key>
+      <PropertyRef Name="l_id" />
+    </Key>
+    <Property Name="l_id" Type="Int32" Nullable="false" />
+    <Property Name="l_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="l_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="l_due" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_floor_tb_landlord" FromRole="tb_landlord" ToRole="tb_floor" />
+  </EntityType>
+  <EntityType Name="tb_profit">
+    <Key>
+      <PropertyRef Name="p_id" />
+    </Key>
+    <Property Name="p_id" Type="Int32" Nullable="false" />
+    <Property Name="p_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="p_profit" Type="Double" Nullable="false" />
+    <NavigationProperty Name="tb_investors" Relationship="Self.FK_tb_investors_tb_profit" FromRole="tb_profit" ToRole="tb_investors" />
+  </EntityType>
+  <EntityType Name="tb_reminder">
+    <Key>
+      <PropertyRef Name="rmd_id" />
+    </Key>
+    <Property Name="rmd_id" Type="Int32" Nullable="false" />
+    <Property Name="rmd_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rmd_uid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_reminder_tb_user" FromRole="tb_reminder" ToRole="tb_user" />
+  </EntityType>
+  <EntityType Name="tb_rental">
+    <Key>
+      <PropertyRef Name="re_id" />
+    </Key>
+    <Property Name="re_id" Type="Int32" Nullable="false" />
+    <Property Name="re_indate" Type="DateTime" Precision="3" />
+    <Property Name="re_outdate" Type="DateTime" Precision="3" />
+    <Property Name="re_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="re_outsession" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="re_tid" Type="Int32" Nullable="false" />
+    <Property Name="re_rid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_room" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_rental" ToRole="tb_room" />
+    <NavigationProperty Name="tb_tenant" Relationship="Self.FK_tb_rental_tb_tenant" FromRole="tb_rental" ToRole="tb_tenant" />
+  </EntityType>
+  <EntityType Name="tb_room">
+    <Key>
+      <PropertyRef Name="r_id" />
+    </Key>
+    <Property Name="r_id" Type="Int32" Nullable="false" />
+    <Property Name="r_fid" Type="Int32" Nullable="false" />
+    <Property Name="r_price" Type="Double" Nullable="false" />
+    <Property Name="r_availability" Type="Int32" Nullable="false" />
+    <Property Name="r_tid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
+    <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
+  </EntityType>
+  <EntityType Name="tb_tenant">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="Int32" Nullable="false" />
+    <Property Name="t_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_ic" Type="Int32" Nullable="false" />
+    <Property Name="t_uploadic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_contract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_emergcont" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_siriNo" Type="Int32" Nullable="false" />
+    <Property Name="t_paymentStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_tenant" FromRole="tb_tenant" ToRole="tb_rental" />
+  </EntityType>
+  <EntityType Name="tb_transaction">
+    <Key>
+      <PropertyRef Name="tr_id" />
+    </Key>
+    <Property Name="tr_id" Type="Int32" Nullable="false" />
+    <Property Name="tr_fid" Type="Int32" />
+    <Property Name="tr_desc" Type="Double" Nullable="false" />
+    <Property Name="tr_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tr_paymentMethod" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="tr_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tr_receipt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_transaction_tb_floor" FromRole="tb_transaction" ToRole="tb_floor" />
+  </EntityType>
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="Int32" Nullable="false" />
+    <Property Name="u_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="u_pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="u_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="u_usertype" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_floor_tb_user" FromRole="tb_user" ToRole="tb_floor" />
+    <NavigationProperty Name="tb_investors" Relationship="Self.FK_tb_investors_tb_user" FromRole="tb_user" ToRole="tb_investors" />
+    <NavigationProperty Name="tb_reminder" Relationship="Self.FK_tb_reminder_tb_user" FromRole="tb_user" ToRole="tb_reminder" />
+  </EntityType>
+  <Association Name="FK_tb_attendance_tb_floor">
+    <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="1" />
+    <End Role="tb_attendance" Type="Self.tb_attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_floor">
+        <PropertyRef Name="f_id" />
+      </Principal>
+      <Dependent Role="tb_attendance">
+        <PropertyRef Name="atd_fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_floor_tb_landlord">
+    <End Role="tb_landlord" Type="Self.tb_landlord" Multiplicity="1" />
+    <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_landlord">
+        <PropertyRef Name="l_id" />
+      </Principal>
+      <Dependent Role="tb_floor">
+        <PropertyRef Name="f_lid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_floor_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+    <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="tb_floor">
+        <PropertyRef Name="f_uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_inventory_tb_floor">
+    <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="1" />
+    <End Role="tb_inventory" Type="Self.tb_inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_floor">
+        <PropertyRef Name="f_id" />
+      </Principal>
+      <Dependent Role="tb_inventory">
+        <PropertyRef Name="ivtry_fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_room_tb_floor">
+    <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="1" />
+    <End Role="tb_room" Type="Self.tb_room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_floor">
+        <PropertyRef Name="f_id" />
+      </Principal>
+      <Dependent Role="tb_room">
+        <PropertyRef Name="r_fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_transaction_tb_floor">
+    <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="0..1" />
+    <End Role="tb_transaction" Type="Self.tb_transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_floor">
+        <PropertyRef Name="f_id" />
+      </Principal>
+      <Dependent Role="tb_transaction">
+        <PropertyRef Name="tr_fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_investors_tb_profit">
+    <End Role="tb_profit" Type="Self.tb_profit" Multiplicity="1" />
+    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_profit">
+        <PropertyRef Name="p_id" />
+      </Principal>
+      <Dependent Role="tb_investors">
+        <PropertyRef Name="i_pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_investors_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+    <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="tb_investors">
+        <PropertyRef Name="i_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_reminder_tb_user">
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+    <End Role="tb_reminder" Type="Self.tb_reminder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="tb_reminder">
+        <PropertyRef Name="rmd_uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_rental_tb_room">
+    <End Role="tb_room" Type="Self.tb_room" Multiplicity="1" />
+    <End Role="tb_rental" Type="Self.tb_rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_room">
+        <PropertyRef Name="r_id" />
+      </Principal>
+      <Dependent Role="tb_rental">
+        <PropertyRef Name="re_rid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_rental_tb_tenant">
+    <End Role="tb_tenant" Type="Self.tb_tenant" Multiplicity="1" />
+    <End Role="tb_rental" Type="Self.tb_rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_tenant">
+        <PropertyRef Name="t_id" />
+      </Principal>
+      <Dependent Role="tb_rental">
+        <PropertyRef Name="re_tid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_vanguardproEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
+    <EntitySet Name="tb_floor" EntityType="Self.tb_floor" />
+    <EntitySet Name="tb_inventory" EntityType="Self.tb_inventory" />
+    <EntitySet Name="tb_investors" EntityType="Self.tb_investors" />
+    <EntitySet Name="tb_landlord" EntityType="Self.tb_landlord" />
+    <EntitySet Name="tb_profit" EntityType="Self.tb_profit" />
+    <EntitySet Name="tb_reminder" EntityType="Self.tb_reminder" />
+    <EntitySet Name="tb_rental" EntityType="Self.tb_rental" />
+    <EntitySet Name="tb_room" EntityType="Self.tb_room" />
+    <EntitySet Name="tb_tenant" EntityType="Self.tb_tenant" />
+    <EntitySet Name="tb_transaction" EntityType="Self.tb_transaction" />
+    <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+    <AssociationSet Name="FK_tb_attendance_tb_floor" Association="Self.FK_tb_attendance_tb_floor">
+      <End Role="tb_floor" EntitySet="tb_floor" />
+      <End Role="tb_attendance" EntitySet="tb_attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_floor_tb_landlord" Association="Self.FK_tb_floor_tb_landlord">
+      <End Role="tb_landlord" EntitySet="tb_landlord" />
+      <End Role="tb_floor" EntitySet="tb_floor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_floor_tb_user" Association="Self.FK_tb_floor_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_floor" EntitySet="tb_floor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_inventory_tb_floor" Association="Self.FK_tb_inventory_tb_floor">
+      <End Role="tb_floor" EntitySet="tb_floor" />
+      <End Role="tb_inventory" EntitySet="tb_inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_room_tb_floor" Association="Self.FK_tb_room_tb_floor">
+      <End Role="tb_floor" EntitySet="tb_floor" />
+      <End Role="tb_room" EntitySet="tb_room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_transaction_tb_floor" Association="Self.FK_tb_transaction_tb_floor">
+      <End Role="tb_floor" EntitySet="tb_floor" />
+      <End Role="tb_transaction" EntitySet="tb_transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_investors_tb_profit" Association="Self.FK_tb_investors_tb_profit">
+      <End Role="tb_profit" EntitySet="tb_profit" />
+      <End Role="tb_investors" EntitySet="tb_investors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_investors_tb_user" Association="Self.FK_tb_investors_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_investors" EntitySet="tb_investors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_reminder_tb_user" Association="Self.FK_tb_reminder_tb_user">
+      <End Role="tb_user" EntitySet="tb_user" />
+      <End Role="tb_reminder" EntitySet="tb_reminder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_rental_tb_room" Association="Self.FK_tb_rental_tb_room">
+      <End Role="tb_room" EntitySet="tb_room" />
+      <End Role="tb_rental" EntitySet="tb_rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_rental_tb_tenant" Association="Self.FK_tb_rental_tb_tenant">
+      <End Role="tb_tenant" EntitySet="tb_tenant" />
+      <End Role="tb_rental" EntitySet="tb_rental" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
