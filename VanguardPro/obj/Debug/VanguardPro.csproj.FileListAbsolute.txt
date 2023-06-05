@@ -239,3 +239,7 @@ C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.dll
 C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.SqlServer.dll
 C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.xml
 C:\Users\gooyt\Documents\GitHub\VanguardPro\VanguardPro\bin\EntityFramework.SqlServer.xml
+C:\Users\vince\source\repos\yejui626\VanguardPro\VanguardPro\bin\EntityFramework.dll
+C:\Users\vince\source\repos\yejui626\VanguardPro\VanguardPro\bin\EntityFramework.SqlServer.dll
+C:\Users\vince\source\repos\yejui626\VanguardPro\VanguardPro\bin\EntityFramework.xml
+C:\Users\vince\source\repos\yejui626\VanguardPro\VanguardPro\bin\EntityFramework.SqlServer.xml
