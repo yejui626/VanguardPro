@@ -2126,6 +2126,16 @@
     <Content Include="Views\tb_investors\Details.cshtml" />
     <Content Include="Views\tb_investors\Edit.cshtml" />
     <Content Include="Views\tb_investors\Index.cshtml" />
+    <Content Include="Views\tb_user\Create.cshtml" />
+    <Content Include="Views\tb_user\Delete.cshtml" />
+    <Content Include="Views\tb_user\Details.cshtml" />
+    <Content Include="Views\tb_user\Edit.cshtml" />
+    <Content Include="Views\tb_user\Index.cshtml" />
+    <Content Include="Views\tb_landlord\Create.cshtml" />
+    <Content Include="Views\tb_landlord\Delete.cshtml" />
+    <Content Include="Views\tb_landlord\Details.cshtml" />
+    <Content Include="Views\tb_landlord\Edit.cshtml" />
+    <Content Include="Views\tb_landlord\Index.cshtml" />
     <Content Include="Views\tb_transaction\Create.cshtml" />
     <Content Include="Views\tb_transaction\Delete.cshtml" />
     <Content Include="Views\tb_transaction\Details.cshtml" />
@@ -2136,19 +2146,6 @@
     <Content Include="Views\tb_floor\Details.cshtml" />
     <Content Include="Views\tb_floor\Edit.cshtml" />
     <Content Include="Views\tb_floor\Index.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\tb_user\Create.cshtml" />
-    <Content Include="Views\tb_user\Delete.cshtml" />
-    <Content Include="Views\tb_user\Details.cshtml" />
-    <Content Include="Views\tb_user\Edit.cshtml" />
-    <Content Include="Views\tb_user\Index.cshtml" />
-=======
-    <Content Include="Views\tb_landlord\Create.cshtml" />
-    <Content Include="Views\tb_landlord\Delete.cshtml" />
-    <Content Include="Views\tb_landlord\Details.cshtml" />
-    <Content Include="Views\tb_landlord\Edit.cshtml" />
-    <Content Include="Views\tb_landlord\Index.cshtml" />
->>>>>>> e2d35fa9d9ae24e28c1509d0651c0710d01bf71f
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
