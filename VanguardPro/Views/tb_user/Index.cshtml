@@ -1,0 +1,61 @@
+﻿@model IEnumerable<VanguardPro.Models.tb_user>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User List</h6>
+        </div>
+
+        <div class="card-body">
+            <p style="float:right">
+                @Html.ActionLink("+New User", "Create")
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.u_username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.u_pwd)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.u_email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.u_usertype)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.u_username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.u_pwd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.u_email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.u_usertype)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.u_id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.u_id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.u_id })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
