@@ -1,0 +1,42 @@
+﻿@model VanguardPro.Models.tb_inventory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_inventory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ivtry_item)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ivtry_item)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ivtry_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ivtry_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_floor.f_building)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_floor.f_building)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ivtry_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

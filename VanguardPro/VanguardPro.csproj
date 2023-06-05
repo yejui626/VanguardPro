@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\tb_floorController.cs" />
+    <Compile Include="Controllers\tb_inventoryController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
     <Compile Include="Controllers\tb_landlordController.cs" />
     <Compile Include="Controllers\tb_landlordController1.cs" />
@@ -2136,6 +2137,7 @@
     <Content Include="Views\tb_floor\Details.cshtml" />
     <Content Include="Views\tb_floor\Edit.cshtml" />
     <Content Include="Views\tb_floor\Index.cshtml" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <Content Include="Views\tb_user\Create.cshtml" />
     <Content Include="Views\tb_user\Delete.cshtml" />
@@ -2149,6 +2151,13 @@
     <Content Include="Views\tb_landlord\Edit.cshtml" />
     <Content Include="Views\tb_landlord\Index.cshtml" />
 >>>>>>> e2d35fa9d9ae24e28c1509d0651c0710d01bf71f
+=======
+    <Content Include="Views\tb_inventory\Create.cshtml" />
+    <Content Include="Views\tb_inventory\Delete.cshtml" />
+    <Content Include="Views\tb_inventory\Details.cshtml" />
+    <Content Include="Views\tb_inventory\Edit.cshtml" />
+    <Content Include="Views\tb_inventory\Index.cshtml" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
