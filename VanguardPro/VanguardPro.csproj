@@ -135,7 +135,6 @@
     <Compile Include="Controllers\tb_floorController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
     <Compile Include="Controllers\tb_landlordController.cs" />
-    <Compile Include="Controllers\tb_landlordController1.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
     <Compile Include="Controllers\tb_userController.cs" />
     <Compile Include="Global.asax.cs">
