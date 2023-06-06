@@ -24,6 +24,7 @@
     </Key>
     <Property Name="f_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="f_lid" Type="int" Nullable="false" />
+    <Property Name="f_desc" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="f_building" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="f_wifipwd" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="f_modemIP" Type="varchar" MaxLength="50" Nullable="false" />
@@ -182,7 +183,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_tb_investors_tb_user">
-    <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+    <End Role="tb_user" Type="Self.tb_user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tb_user">

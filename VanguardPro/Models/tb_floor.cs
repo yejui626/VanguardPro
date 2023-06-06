@@ -23,16 +23,28 @@ namespace VanguardPro.Models
             this.tb_room = new HashSet<tb_room>();
             this.tb_transaction = new HashSet<tb_transaction>();
         }
-    
+        [Display(Name = "Floor ID")]
         public int f_id { get; set; }
+        [Display(Name = "Landlord ID")]
         public int f_lid { get; set; }
+
         [Display(Name = "Floor Building")]
+
+        [Display(Name = "Building")]
+
         public string f_building { get; set; }
+        [Display(Name = "Wifi Password")]
         public string f_wifipwd { get; set; }
+        [Display(Name = "Modem IP")]
         public string f_modemIP { get; set; }
+        [Display(Name = "CCTV QR")]
         public string f_cctvqr { get; set; }
+        [Display(Name = "Layout")]
         public string f_layout { get; set; }
+
         public int f_uid { get; set; }
+        [Display(Name = "Floor")]
+        public string f_desc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_attendance> tb_attendance { get; set; }

@@ -13,6 +13,7 @@
     <EntitySetMapping Name="tb_floor">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_floor">
         <MappingFragment StoreEntitySet="tb_floor">
+          <ScalarProperty Name="f_desc" ColumnName="f_desc" />
           <ScalarProperty Name="f_id" ColumnName="f_id" />
           <ScalarProperty Name="f_lid" ColumnName="f_lid" />
           <ScalarProperty Name="f_building" ColumnName="f_building" />
