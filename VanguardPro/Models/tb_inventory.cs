@@ -14,6 +14,7 @@ namespace VanguardPro.Models
     
     public partial class tb_inventory
     {
+
         public int ivtry_id { get; set; }
         public int ivtry_fid { get; set; }
         public string ivtry_item { get; set; }

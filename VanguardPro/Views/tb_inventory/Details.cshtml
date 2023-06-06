@@ -1,0 +1,76 @@
+﻿@model VanguardPro.Models.tb_inventory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+<div class="container-fluid">
+    <h2 class="h3 mb-2 text-gray-800">Details of Inventory</h2>
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Inventory List</h6>
+
+
+        </div>
+        <div class="card-body">
+            <div class="table">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" ">
+
+
+
+
+
+
+                    <div>
+
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.ivtry_item)
+                            </dt>
+
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.ivtry_item)
+                            </dd>
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.ivtry_count)
+                            </dt>
+
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.ivtry_count)
+                            </dd>
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                            </dt>
+
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.tb_floor.f_building)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ivtry_id }) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Page level plugins -->
+<script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
