@@ -27,11 +27,7 @@ namespace VanguardPro.Models
         public int f_id { get; set; }
         [Display(Name = "Landlord ID")]
         public int f_lid { get; set; }
-
-        [Display(Name = "Floor Building")]
-
         [Display(Name = "Building")]
-
         public string f_building { get; set; }
         [Display(Name = "Wifi Password")]
         public string f_wifipwd { get; set; }
