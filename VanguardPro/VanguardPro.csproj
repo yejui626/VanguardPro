@@ -140,6 +140,7 @@
     <Compile Include="Controllers\tb_tenantController.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
     <Compile Include="Controllers\tb_userController.cs" />
+    <Compile Include="Controllers\transactionSummaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +198,7 @@
     <Compile Include="Models\tb_user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\transactionSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2164,6 +2166,7 @@
     <Content Include="Views\tb_tenant\Details.cshtml" />
     <Content Include="Views\tb_tenant\Edit.cshtml" />
     <Content Include="Views\tb_tenant\Index.cshtml" />
+    <Content Include="Views\transactionSummary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

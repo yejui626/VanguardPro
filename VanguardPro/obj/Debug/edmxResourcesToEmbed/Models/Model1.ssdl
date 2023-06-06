@@ -118,11 +118,12 @@
     </Key>
     <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tr_fid" Type="int" />
-    <Property Name="tr_desc" Type="float" Nullable="false" />
+    <Property Name="tr_desc" Type="varchar(max)" Nullable="false" />
     <Property Name="tr_type" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="tr_paymentMethod" Type="char" MaxLength="10" Nullable="false" />
-    <Property Name="tr_date" Type="datetime" Nullable="false" />
+    <Property Name="tr_date" Type="date" Nullable="false" />
     <Property Name="tr_receipt" Type="varchar(max)" />
+    <Property Name="tr_amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_user">
     <Key>

@@ -116,6 +116,7 @@
     <EntitySetMapping Name="tb_transaction">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_transaction">
         <MappingFragment StoreEntitySet="tb_transaction">
+          <ScalarProperty Name="tr_amount" ColumnName="tr_amount" />
           <ScalarProperty Name="tr_id" ColumnName="tr_id" />
           <ScalarProperty Name="tr_fid" ColumnName="tr_fid" />
           <ScalarProperty Name="tr_desc" ColumnName="tr_desc" />

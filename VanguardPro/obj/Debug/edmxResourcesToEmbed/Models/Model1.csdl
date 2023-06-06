@@ -126,12 +126,13 @@
     </Key>
     <Property Name="tr_id" Type="Int32" Nullable="false" />
     <Property Name="tr_fid" Type="Int32" />
-    <Property Name="tr_desc" Type="Double" Nullable="false" />
+    <Property Name="tr_desc" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="tr_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="tr_paymentMethod" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="tr_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tr_date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="tr_receipt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_transaction_tb_floor" FromRole="tb_transaction" ToRole="tb_floor" />
+    <Property Name="tr_amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="tb_user">
     <Key>
