@@ -24,7 +24,7 @@ namespace VanguardPro.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (db_vanguardproEntities db = new db_vanguardproEntities()) ;
+                using (db_vanguardproEntities db = new db_vanguardproEntities());
                 {
                     var obj = db.tb_user.Where(a => a.u_username.Equals(objk.u_username) && a.u_pwd.Equals(objk.u_pwd)).FirstOrDefault();
 

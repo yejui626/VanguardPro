@@ -39,6 +39,7 @@ namespace VanguardPro.Models
         public string f_layout { get; set; }
 
         public int f_uid { get; set; }
+        [Display(Name = "Floor")]
         public string f_desc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

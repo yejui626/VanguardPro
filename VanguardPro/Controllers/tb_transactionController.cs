@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -37,9 +38,25 @@ namespace VanguardPro.Controllers
         }
 
         // GET: tb_transaction/Create
-        public ActionResult Create()
+        public ActionResult Create(HttpPostedFileBase file)
         {
             ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_building");
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Images"),
+                                               Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    ViewBag.Message = "File uploaded successfully";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            else
+            {
+                ViewBag.Message = "You have not specified a file.";
+            }
             return View();
         }
 

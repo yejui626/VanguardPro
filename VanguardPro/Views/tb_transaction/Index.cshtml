@@ -17,6 +17,9 @@
                     <table class="table" id="dataTable" width="100%" cellspacing="0" ">
                         <tr>
                             <th>
+                                @Html.DisplayNameFor(model => model.tb_floor.f_desc)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.tr_date)
                             </th>
                             <th>
@@ -37,6 +40,9 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_floor.f_desc)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.tr_date)
                                 </td>

@@ -49,7 +49,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "f_id,f_lid,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor)
+        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor)
         {
             if (ModelState.IsValid)
             {
