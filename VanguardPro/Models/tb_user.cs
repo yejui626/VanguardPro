@@ -22,7 +22,11 @@ namespace VanguardPro.Models
             this.tb_investors = new HashSet<tb_investors>();
             this.tb_reminder = new HashSet<tb_reminder>();
         }
+<<<<<<< HEAD
         [Display(Name = "User ID")]
+=======
+        [Display(Name ="User ID")]
+>>>>>>> 82139065515aaac3ee3994bf9047bf6fd1ae97d8
         public int u_id { get; set; }
         [Display(Name = "Username")]
         public string u_username { get; set; }

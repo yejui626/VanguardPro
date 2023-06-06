@@ -3,43 +3,76 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .button {
+        background-color: #33e82b;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        width: 200px;
+        cursor: pointer;
+    }
+</style>
 
-<h2>Index</h2>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="m-0 font-weight-bold text-primary">Landlord List</h1>
+        </div>
+        <button class="button" width="20">
+            @Html.ActionLink("Create New", "Create")
+        </button>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.l_name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.l_phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.l_due)
+                            </th>
+                            <th></th>
+                        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.l_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.l_phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.l_due)
-        </th>
-        <th></th>
-    </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.l_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.l_phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.l_due)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.l_id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.l_id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.l_id })
+                                </td>
+                            </tr>
+                        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.l_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.l_phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.l_due)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.l_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.l_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.l_id })
-        </td>
-    </tr>
-}
+                    </table>
 
-</table>
+                </div>
+            </div>
+</div>
+</div>
+        <!-- Page level plugins -->
+        <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>

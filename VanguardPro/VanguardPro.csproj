@@ -135,7 +135,6 @@
     <Compile Include="Controllers\tb_floorController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
     <Compile Include="Controllers\tb_landlordController.cs" />
-    <Compile Include="Controllers\tb_landlordController1.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
     <Compile Include="Controllers\tb_userController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2146,6 +2145,7 @@
     <Content Include="Views\tb_floor\Details.cshtml" />
     <Content Include="Views\tb_floor\Edit.cshtml" />
     <Content Include="Views\tb_floor\Index.cshtml" />
+    <Content Include="Views\Login\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
