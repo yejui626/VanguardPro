@@ -37,17 +37,6 @@
         margin-bottom: 25px;
     }
 
-    /* Set a style for all buttons */
-    button {
-        background-color: #04AA6D;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
 
         button:hover {
             opacity: 1;
@@ -115,11 +104,12 @@
 
         <div class="clearfix">
             <input type="submit" value="Login" class="signupbtn" />
+            <button class="cancelbtn">
+                @Html.ActionLink("Cancel", "Index", "Home")
+            </button>
         </div>
         <div>
-            <button class="cancelbtn"> 
-                @Html.ActionLink("Back to List", "Index")
-            </button>
+            
         </div>
     </div>
 </form>
