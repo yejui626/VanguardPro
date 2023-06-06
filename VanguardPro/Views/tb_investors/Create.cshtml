@@ -6,57 +6,49 @@
 }
 
 <div class="container-fluid">
-    <h2 class="h3 mb-2 text-gray-800">Create Investor</h2>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <!--
-            <div class="form-group">
-                @Html.LabelFor(model => model.i_uid, "User ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.i_uid, (SelectList) ViewBag.i_uid, new { @class = "form-control" } )
-                    @Html.ValidationMessageFor(model => model.i_uid, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            -->
-            <div class="form-group">
-                @Html.LabelFor(model => model.i_lot, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.i_lot, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.i_lot, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.i_lotperc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.i_lotperc, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.i_lotperc, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Add Investor</h6>
         </div>
-    }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="card-body">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.i_lot, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.i_lot, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.i_lot, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.i_lotperc, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.i_lotperc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.i_lotperc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
+    <!-- Page level plugins -->
+    <script src="~/Content/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="~/Content/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="~/Content/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="~/Content/admin/js/demo/datatables-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/Content/admin/js/demo/datatables-demo.js"></script>
