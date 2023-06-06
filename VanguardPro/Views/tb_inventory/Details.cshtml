@@ -4,9 +4,6 @@
     ViewBag.Title = "Details";
 }
 
-
-
-
 <div class="container-fluid">
     <h2 class="h3 mb-2 text-gray-800">Details of Inventory</h2>
 
@@ -19,52 +16,45 @@
         </div>
         <div class="card-body">
             <div class="table">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" ">
 
 
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                    </dt>
 
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.tb_floor.f_building)
+                    </dd>
 
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ivtry_item)
+                    </dt>
 
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ivtry_item) - 
+                        @Html.DisplayFor(model => model.ivtry_count)
+                    </dd>
 
-                    <div>
+                   
 
-                        <dl class="row">
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.ivtry_item)
-                            </dt>
+                  
 
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.ivtry_item)
-                            </dd>
-
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.ivtry_count)
-                            </dt>
-
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.ivtry_count)
-                            </dd>
-
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.tb_floor.f_building)
-                            </dt>
-
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.tb_floor.f_building)
-                            </dd>
-
-                        </dl>
-                    </div>
-                    <p>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.ivtry_id }) |
-                        @Html.ActionLink("Back to List", "Index")
-                    </p>
-                </table>
-
+                </dl>
             </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ivtry_id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+
+
+
+
+
         </div>
     </div>
 </div>
+
 
 
 
@@ -74,3 +64,14 @@
 
 <!-- Page level custom scripts -->
 <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+
+
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,8 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_floor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,6 +26,7 @@ namespace VanguardPro.Models
     
         public int f_id { get; set; }
         public int f_lid { get; set; }
+        [Display(Name = "Floor Building")]
         public string f_building { get; set; }
         public string f_wifipwd { get; set; }
         public string f_modemIP { get; set; }

@@ -15,46 +15,47 @@
 
 
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" ">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ivtry_item)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ivtry_count)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tb_floor.f_building)
-                        </th>
-                        <th></th>
-                    </tr>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ivtry_item)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ivtry_count)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.tb_floor.f_building)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ivtry_id } ) |
-                                @Html.ActionLink("Details", "Details", new { id = item.ivtry_id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.ivtry_id })
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
-        </div>
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ivtry_item)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ivtry_count)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ivtry_item)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ivtry_count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_floor.f_building)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ivtry_id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ivtry_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ivtry_id })
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
 </div>
+
 
 <!-- Page level plugins -->
 <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -62,3 +63,9 @@
 
 <!-- Page level custom scripts -->
 <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+
+
+
+
+
+

@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\tb_attendanceController.cs" />
     <Compile Include="Controllers\tb_floorController.cs" />
     <Compile Include="Controllers\tb_inventoryController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
@@ -2146,12 +2147,17 @@
     <Content Include="Views\tb_floor\Details.cshtml" />
     <Content Include="Views\tb_floor\Edit.cshtml" />
     <Content Include="Views\tb_floor\Index.cshtml" />
+    <Content Include="Views\Login\Logout.cshtml" />
+    <Content Include="Views\tb_attendance\Create.cshtml" />
+    <Content Include="Views\tb_attendance\Delete.cshtml" />
+    <Content Include="Views\tb_attendance\Details.cshtml" />
+    <Content Include="Views\tb_attendance\Edit.cshtml" />
+    <Content Include="Views\tb_attendance\Index.cshtml" />
     <Content Include="Views\tb_inventory\Create.cshtml" />
     <Content Include="Views\tb_inventory\Delete.cshtml" />
     <Content Include="Views\tb_inventory\Details.cshtml" />
     <Content Include="Views\tb_inventory\Edit.cshtml" />
     <Content Include="Views\tb_inventory\Index.cshtml" />
-    <Content Include="Views\Login\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

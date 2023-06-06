@@ -18,8 +18,7 @@
 
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" ">
+            <div class="table">
 
 
 
@@ -28,49 +27,49 @@
 
 
 
-                    <dl class="dl-horizontal">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ivtry_item)
-                        </dt>
 
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ivtry_item)
-                        </dd>
+                <dl class="row" ">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                    </dt>
 
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.ivtry_count)
-                        </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.tb_floor.f_building)
+                    </dd>
 
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.ivtry_count)
-                        </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ivtry_item)
+                    </dt>
 
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.tb_floor.f_building)
-                        </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ivtry_item) - 
+                        @Html.DisplayFor(model => model.ivtry_count)
 
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.tb_floor.f_building)
-                        </dd>
+                    </dd>
 
-                    </dl>
+                  
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                    
 
-                        <div class="form-actions no-color">
-                            <input type="submit" value="Delete" class="btn btn-danger" /> |
-                            @Html.ActionLink("Back to List", "Index")
-                        </div>
-                    }
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+
+
+
+
+
             </div>
-
-            </table>
-
         </div>
     </div>
-</div>
 </div>
 
 

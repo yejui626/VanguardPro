@@ -11,13 +11,18 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+     
     
     public partial class tb_inventory
     {
-
+        [Display(Name = "Inventory ID")]
         public int ivtry_id { get; set; }
+        [Display(Name = "Inventory Floor ID")]
         public int ivtry_fid { get; set; }
+        [Display(Name = "Inventory Items")]
         public string ivtry_item { get; set; }
+        [Display(Name = "Item Count")]
         public int ivtry_count { get; set; }
     
         public virtual tb_floor tb_floor { get; set; }

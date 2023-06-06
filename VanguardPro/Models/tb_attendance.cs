@@ -11,13 +11,17 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_attendance
     {
+        [Display(Name = "Attendance ID")]
         public int atd_id { get; set; }
+        [Display(Name = "Attendance Floor ID")]
         public int atd_fid { get; set; }
+        [Display(Name = "Attendance Date and Time")]
         public System.DateTime atd_check { get; set; }
-    
+        
         public virtual tb_floor tb_floor { get; set; }
     }
 }

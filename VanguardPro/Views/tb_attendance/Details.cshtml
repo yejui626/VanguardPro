@@ -1,0 +1,61 @@
+﻿@model VanguardPro.Models.tb_attendance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="container-fluid">
+    <h2 class="h3 mb-2 text-gray-800">Detail of Cleaner Attendance</h2>
+
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cleaner Attendance</h6>
+
+
+        </div>
+        <div class="card-body">
+
+
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                </dt>
+
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.tb_floor.f_building)
+                </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.atd_check)
+                </dt>
+
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.atd_check)
+                </dd>
+
+            </dl>
+            <p>
+
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+
+        </div>
+      
+    </div>
+</div>
+</div>
+
+
+
+
+<!-- Page level plugins -->
+<script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+
+
