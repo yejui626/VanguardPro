@@ -29,6 +29,7 @@
           </Key>
           <Property Name="f_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="f_lid" Type="int" Nullable="false" />
+          <Property Name="f_desc" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="f_building" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="f_wifipwd" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="f_modemIP" Type="varchar" MaxLength="50" Nullable="false" />
@@ -187,7 +188,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tb_investors_tb_user">
-          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tb_investors" Type="Self.tb_investors" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tb_user">
@@ -360,6 +363,7 @@
           <NavigationProperty Name="tb_inventory" Relationship="Self.FK_tb_inventory_tb_floor" FromRole="tb_floor" ToRole="tb_inventory" />
           <NavigationProperty Name="tb_room" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_floor" ToRole="tb_room" />
           <NavigationProperty Name="tb_transaction" Relationship="Self.FK_tb_transaction_tb_floor" FromRole="tb_floor" ToRole="tb_transaction" />
+          <Property Name="f_desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tb_inventory">
           <Key>
@@ -697,6 +701,7 @@
           <EntitySetMapping Name="tb_floor">
             <EntityTypeMapping TypeName="db_vanguardproModel.tb_floor">
               <MappingFragment StoreEntitySet="tb_floor">
+                <ScalarProperty Name="f_desc" ColumnName="f_desc" />
                 <ScalarProperty Name="f_id" ColumnName="f_id" />
                 <ScalarProperty Name="f_lid" ColumnName="f_lid" />
                 <ScalarProperty Name="f_building" ColumnName="f_building" />
