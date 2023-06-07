@@ -1,97 +1,106 @@
 ﻿@model IEnumerable<VanguardPro.Models.tb_transaction>
 
-    @{
-        ViewBag.Title = "Index";
-    }
+@{
+    ViewBag.Title = "Index";
+    var isAdmin = false;
+}
+@if (Session["UserID"] != null && Session["UserType"].ToString() == "1")
+{
+    isAdmin = true;
+}
 
-    <div class="container-fluid">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Transaction List</h6>
-            </div>
-            <div class="card-body">
-                <p style="float:right;">
-                    @Html.ActionLink("Create New", "Create")
-                </p>
-                <p style="float:right;">
-                    @Html.ActionLink("Summarize Transaction", "Index","transactionSummary")
-                </p>
-                <div class="table-responsive">
-                    <table class="table" id="dataTable" width="100%" cellspacing="0" ">
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Transaction List</h6>
+        </div>
+        <div class="card-body">
+            @if (isAdmin)
+            {
+                <a href="@Url.Action("Create")" title="Delete" class="btn btn-primary" style="float:right;">
+                    Create
+                </a>
+            }
+
+            <a href="@Url.Action("Index", "transactionSummary")" title="Delete" class="btn btn-primary" style="float:right; margin-right:10px">
+                Summarize
+            </a>
+            <div class="table-responsive">
+                <table class="table" id="dataTable" width="100%" cellspacing="0" ">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tb_floor.f_desc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tr_date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tr_amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tr_desc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tr_type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tr_paymentMethod)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tr_receipt)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tb_floor.f_desc)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tr_date)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tr_amount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tr_desc)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tr_type)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tr_paymentMethod)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tr_receipt)
-                            </th>
-                            <th></th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_floor.f_desc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tr_date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tr_amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tr_desc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tr_type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tr_paymentMethod)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tr_receipt)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.tr_id })" title="Edit">
+                                    <i class="fas fa-edit fa-lg text-primary"></i>
+                                </a>
+
+                                <a href="@Url.Action("Details", new { id = item.tr_id })" title="Details">
+                                    <i class="fas fa-info-circle fa-lg text-info"></i>
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { id = item.tr_id })" title="Delete">
+                                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                </a>
+                            </td>
                         </tr>
+                    }
 
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_floor.f_desc)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tr_date)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tr_amount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tr_desc)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tr_type)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tr_paymentMethod)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tr_receipt)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.tr_id })" title="Edit">
-                                        <i class="fas fa-edit fa-lg text-primary"></i>
-                                    </a>
-
-                                    <a href="@Url.Action("Details", new { id = item.tr_id })" title="Details">
-                                        <i class="fas fa-info-circle fa-lg text-info"></i>
-                                    </a>
-
-                                    <a href="@Url.Action("Delete", new { id = item.tr_id })" title="Delete">
-                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-
-                    </table>
-                </div>
+                </table>
             </div>
         </div>
     </div>
-
-    <!-- Page level plugins -->
-    <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+</div>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+@section Scripts{
+    <script>
+    </script>
+}

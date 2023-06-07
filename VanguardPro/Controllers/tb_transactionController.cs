@@ -40,7 +40,14 @@ namespace VanguardPro.Controllers
         // GET: tb_transaction/Create
         public ActionResult Create(HttpPostedFileBase file)
         {
-            ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_building");
+            //add null to select list
+            var floorList = db.tb_floor.ToList();
+            var selectList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = null, Text = "General" }
+            };
+            selectList.AddRange(floorList.Select(f => new SelectListItem { Value = f.f_id.ToString(), Text = f.f_desc }));
+            ViewBag.tr_fid = new SelectList(selectList, "Value", "Text");
             if (file != null && file.ContentLength > 0)
                 try
                 {
@@ -74,7 +81,7 @@ namespace VanguardPro.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_building", tb_transaction.tr_fid);
+            ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_desc", tb_transaction.tr_fid);
             return View(tb_transaction);
         }
 
@@ -90,7 +97,14 @@ namespace VanguardPro.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_building", tb_transaction.tr_fid);
+            //add null to select list
+            var floorList = db.tb_floor.ToList();
+            var selectList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = null, Text = "General" }
+            };
+            selectList.AddRange(floorList.Select(f => new SelectListItem { Value = f.f_id.ToString(), Text = f.f_desc }));
+            ViewBag.tr_fid = new SelectList(selectList, "Value", "Text");
             return View(tb_transaction);
         }
 
@@ -107,7 +121,7 @@ namespace VanguardPro.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_building", tb_transaction.tr_fid);
+            ViewBag.tr_fid = new SelectList(db.tb_floor, "f_id", "f_desc", tb_transaction.tr_fid);
             return View(tb_transaction);
         }
 

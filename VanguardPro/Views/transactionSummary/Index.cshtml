@@ -4,101 +4,162 @@
     ViewBag.Title = "Transaction Summary";
 }
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<div class="container-fluid">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Transaction List</h6>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Transaction</h5>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Summmary</h5>
+                <!-- Filter -->
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" name="startDate" value="@DateTime.Now.ToString("yyyy-MM")-01" class="form-control" />
+                    </div>
 
-            <!-- Filter -->
-            <div class="row">
-                <div class="form-group col-md-5">
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="startDate" name="startDate" value="@DateTime.Now.ToString("yyyy-MM")-01" class="form-control" />
+                    <div class="form-group col-md-2">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" name="endDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+                    </div>
+
+
+                    <div class="form-group col-md-2">
+                        <label for="floor">Floor:</label>
+                        @Html.DropDownList("trs_floor", null, htmlAttributes: new { @class = "form-control", id = "floor" })
+
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="payment">Payment Method:</label>
+                        @Html.DropDownList("trs_paymentMethod", null, htmlAttributes: new { @class = "form-control", id = "payment" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="type">Type:</label>
+                        @Html.DropDownList("trs_type", null, htmlAttributes: new { @class = "form-control", id = "type" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="reset">Clear Filter:</label>
+                        <button id="clearFilter" class="form-control btn btn-success">Reset</button>
+                    </div>
                 </div>
+                <!-- End Filter -->
+                <!--==== DATATABLE ====-->
 
-                <div class="form-group col-md-5">
-                    <label for="endDate">End Date:</label>
-                    <input type="date" id="endDate" name="endDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
+                <div id="partialViewContainer">
+                    @Html.Partial("_summaryTable", Model)
                 </div>
+                <button class="btn btn-primary" id="exportPdf" onclick="PrintElem('#partialViewContainer')">Print</button>
+
             </div>
-            <!-- End Filter -->
-
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th>Month</th>
-                        <th>Day</th>
-                        <th>Method</th>
-                        <th>Description</th>
-                        <th>Inflow</th>
-                        <th>Outflow</th>
-                        <th>Total In</th>
-                        <th>Total Out</th>
-                        <th>Difference</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Year</td>
-                            <td>@item.Month</td>
-                            <td>@item.Day</td>
-                            <td>@item.PaymentMethod</td>
-                            <td>@item.Desc</td>
-                            <td>@item.Inflow</td>
-                            <td>@item.Outflow</td>
-                            <td>@item.TotalIn</td>
-                            <td>@item.TotalOut</td>
-                            <td>@item.Difference</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
-    </div>
-<div id="result"></div>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </section>
-@section scripts{
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+@section Scripts{
     <script>
         $(document).ready(function () {
-            $('#startDate, #endDate').on('change', function () {
-                var startDate = $('#startDate').val();
-                var endDate = $('#endDate').val();
-                // Use the startDate and endDate values as needed
-                console.log('Start Date:', startDate);
-                console.log('End Date:', endDate);
-                // Perform further actions or AJAX request with the startDate and endDate values
+            $('#startDate, #endDate, #floor, #payment, #type').on('change', function () {
+                var data = {
+                    startDate: $('#startDate').val(),
+                    endDate: $('#endDate').val(),
+                    floor: $('#floor').val(),
+                    payment: $('#payment').val(),
+                    type: $('#type').val()
+                };
+                var qurl = '@Url.Action("summaryFilter", "transactionSummary")' + '?' + $.param(data);
+                console.log('Url: '+qurl);
                 $.ajax({
-                    url: @Url.Action("filter", "transactionSummary"),
-                    type: 'POST',
-                    dataType: 'html',
-                    data： {
-                    start: startDate,
-                    end: endDate
-                }
+                    url: '@Url.Action("summaryFilter", "transactionSummary")',
+                    type: 'GET',
+                    data: data,
+                    dataType: "html",
                     success: function (result) {
-                        #('#result').html(result);
+                        //console.log(result);
+                        $('#partialViewContainer').html(result);
                     },
-                    error: function () {
-                        console.log('error');
+                    error: function (error) {
+                        console.log(error);
                     }
-                })
+                });
+            });
+
+            //clearFilter
+            $('#clearFilter').click(function () {
+                $('#startDate').val('');
+                $('#endDate').val('');
+                $('#floor').val(0);
+                $('#payment').val(0);
+                $('#type').val(0);
+
+                var data = {
+                    startDate: '',
+                    endDate: '',
+                    floor: 0,
+                    payment: 0,
+                    type: 0
+                };
+                $.ajax({
+                    url: '@Url.Action("summaryFilter", "expenditureSummary")',
+                    type: 'GET',
+                    data: data,
+                    dataType: "html",
+                    success: function (result) {
+                        //console.log(result);
+                        $('#partialViewContainer').html(result);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
             });
         });
+        function PrintElem(elem) {
+            Popup($(elem).html());
+        }
+
+        function Popup(divtoprint) {
+            var styleSheet = `
+    <!-- Vendor CSS Files -->
+    <link href="/Content/admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/Content/admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/Content/admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/Content/admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/Content/admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/Content/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/Content/admin/assets/css/style.css" rel="stylesheet">
+    <link href="/Content/custom.css" rel="stylesheet" />`;
+
+
+            var myWindow = window.open('', 'Report', 'height=794,width=1123');
+            myWindow.document.write('<html><head><title>Report</title>');
+            myWindow.document.write(`    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Report</h5>`);
+            myWindow.document.write(styleSheet);
+            myWindow.document.write('</head><body >');
+            myWindow.document.write(divtoprint);
+            myWindow.document.write(data);
+            myWindow.document.write(`
+                </div>
+            </div>
+        </div>
+    </div>`);
+            myWindow.document.write('</body></html>');
+            myWindow.document.close(); // necessary for IE >= 10
+
+            myWindow.onload = function () { // necessary if the div contain images
+
+                myWindow.focus(); // necessary for IE >= 10
+                myWindow.print();
+                myWindow.close();
+            };
+        }
     </script>
 }

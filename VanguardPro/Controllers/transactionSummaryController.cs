@@ -14,39 +14,173 @@ namespace VanguardPro.Controllers
 
         public ActionResult Index()
         {
-            transactionSubSummary SubSummary = new transactionSubSummary();
-            transactionSummary Summary = new transactionSummary();
-            var query = from tr in db.tb_transaction
-                        select new transactionSubSummary
-                        {
-                            Year = tr.tr_date.Year,
-                            Month = tr.tr_date.Month,
-                            Day = tr.tr_date.Day,
-                            PaymentMethod = tr.tr_paymentMethod,
-                            Desc = tr.tr_desc,
-                            Inflow = tr.tr_type == "Inflow" ? (decimal)tr.tr_amount : 0,
-                            Outflow = tr.tr_type == "Outflow" ? (decimal)tr.tr_amount : 0,
-                        };
+            var floorList = db.tb_floor.ToList();
+            var selectList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "-- All --" },
+                new SelectListItem { Value = null, Text = "General" }
+            };
 
-            var resultList = query.GroupBy(x => new { x.Year, x.Month })
-                              .Select(g => new transactionSummary
-                              {
-                                  Year = g.Key.Year,
-                                  Month = g.Key.Month,
-                                  Day = 0,
-                                  Inflow = 0,
-                                  Outflow = 0,
-                                  PaymentMethod = null,
-                                  Desc = null,
-                                  TotalIn = g.Sum(x => x.Inflow),
-                                  TotalOut = g.Sum(x => x.Outflow),
-                                  Difference = g.Sum(x => x.Inflow) - g.Sum(x => x.Outflow)
-                              })
-                              .OrderBy(x => x.Year)
-                              .ThenBy(x => x.Month)
-                              .ThenBy(x => x.Day)
-                              .ToList();
-            return View(resultList);
+            selectList.AddRange(floorList.Select(f => new SelectListItem { Value = f.f_id.ToString(), Text = f.f_desc }));
+            ViewBag.trs_floor = new SelectList(selectList, "Value", "Text");
+
+            var paymentList = db.tb_transaction.ToList();
+            paymentList.Insert(0, new tb_transaction { tr_paymentMethod = "-- All --" });
+            ViewBag.trs_paymentMethod = new SelectList(paymentList, "tr_paymentMethod");
+
+            var typeList = db.tb_transaction.ToList();
+            typeList.Insert(0, new tb_transaction { tr_type = "-- All --" });
+            ViewBag.trs_type = new SelectList(typeList, "tr_type");
+
+            var query = from tr in db.tb_transaction
+                        join fl in db.tb_floor on tr.tr_fid equals fl.f_id into floorGroup
+                        from fl in floorGroup.DefaultIfEmpty()
+                        select tr;
+            var queryList = query.ToList();
+            var tempSummary = new List<transactionSummary>();
+            foreach (var tr in queryList)
+            {
+                var sum = new transactionSummary
+                {
+                    Year = tr.tr_date.Year,
+                    Month = tr.tr_date.Month,
+                    Day = tr.tr_date.Day,
+                    PaymentMethod = tr.tr_paymentMethod,
+                    Desc = tr.tr_desc,
+                    Inflow = tr.tr_type == "Inflow" ? (decimal)tr.tr_amount : 0,
+                    Outflow = tr.tr_type == "Outflow" ? (decimal)tr.tr_amount : 0,
+                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General"
+                };
+                tempSummary.Add(sum);
+            }
+
+            var groupedQuery = tempSummary.OrderBy(x => x.Year)
+                  .ThenBy(x => x.Month)
+                  .ThenBy(x => x.Day)
+                  .ToList();
+
+            foreach (var item in groupedQuery)
+            {
+                var monthRecords = groupedQuery.Where(x => x.Year == item.Year && x.Month == item.Month).ToList();
+                item.TotalIn = monthRecords.Sum(x => x.Inflow);
+                item.TotalOut = monthRecords.Sum(x => x.Outflow);
+                item.Difference = item.TotalIn - item.TotalOut;
+            }
+
+            var result = new List<transactionSummary>();
+            int currentYear = 0;
+            int currentMonth = 0;
+            int rowSpanYear = 0;
+            int rowSpanMonth = 0;
+
+            foreach (var item in groupedQuery)
+            {
+                if (item.Year != currentYear)
+                {
+                    currentYear = item.Year;
+                    rowSpanYear = groupedQuery.Count(x => x.Year == currentYear);
+                }
+
+                if (item.Month != currentMonth)
+                {
+                    currentMonth = item.Month;
+                    rowSpanMonth = groupedQuery.Count(x => x.Year == currentYear && x.Month == currentMonth);
+                }
+
+                item.RowSpanYear = rowSpanYear;
+                item.RowSpanMonth = rowSpanMonth;
+
+                result.Add(item);
+            }
+            return View(result);
+        }
+
+
+        public ActionResult summaryFilter(string startDate, string endDate, int? floor, int payment, int type)
+        {
+            var query = from tr in db.tb_transaction
+                        join fl in db.tb_floor on tr.tr_fid equals fl.f_id into floorGroup
+                        from fl in floorGroup.DefaultIfEmpty()
+                        select tr;
+            var queryList = query.ToList();
+            // apply filter
+            if (floor != 0)
+            {
+                queryList = queryList.Where(item => item.tr_fid == floor).ToList();
+            }
+
+            if (payment != 0)
+            {
+                queryList = queryList.Where(item => item.tr_paymentMethod == payment.ToString()).ToList();
+            }
+
+            if (type != 0)
+            {
+                queryList = queryList.Where(item => item.tr_type == type.ToString()).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+            {
+                DateTime startDateTime = DateTime.Parse(startDate);
+                DateTime endDateTime = DateTime.Parse(endDate);
+                queryList = queryList.Where(item => item.tr_date >= startDateTime && item.tr_date <= endDateTime).ToList();
+            }
+            var tempSummary = new List<transactionSummary>();
+            foreach (var tr in queryList)
+            {
+                var sum = new transactionSummary
+                {
+                    Year = tr.tr_date.Year,
+                    Month = tr.tr_date.Month,
+                    Day = tr.tr_date.Day,
+                    PaymentMethod = tr.tr_paymentMethod,
+                    Desc = tr.tr_desc,
+                    Inflow = tr.tr_type == "Inflow" ? (decimal)tr.tr_amount : 0,
+                    Outflow = tr.tr_type == "Outflow" ? (decimal)tr.tr_amount : 0,
+                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General"
+                };
+                tempSummary.Add(sum);
+            }
+
+            List<transactionSummary> groupedQuery = tempSummary.OrderBy(x => x.Year)
+                  .ThenBy(x => x.Month)
+                  .ThenBy(x => x.Day)
+                  .ToList();
+
+            foreach (var item in groupedQuery)
+            {
+                var monthRecords = groupedQuery.Where(x => x.Year == item.Year && x.Month == item.Month).ToList();
+                item.TotalIn = monthRecords.Sum(x => x.Inflow);
+                item.TotalOut = monthRecords.Sum(x => x.Outflow);
+                item.Difference = item.TotalIn - item.TotalOut;
+            }
+
+            var result = new List<transactionSummary>();
+            int currentYear = 0;
+            int currentMonth = 0;
+            int rowSpanYear = 0;
+            int rowSpanMonth = 0;
+
+            foreach (var item in groupedQuery)
+            {
+                if (item.Year != currentYear)
+                {
+                    currentYear = item.Year;
+                    rowSpanYear = groupedQuery.Count(x => x.Year == currentYear);
+                }
+
+                if (item.Month != currentMonth)
+                {
+                    currentMonth = item.Month;
+                    rowSpanMonth = groupedQuery.Count(x => x.Year == currentYear && x.Month == currentMonth);
+                }
+
+                item.RowSpanYear = rowSpanYear;
+                item.RowSpanMonth = rowSpanMonth;
+
+                result.Add(item);
+            }
+            return PartialView("_summaryTable", result);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace VanguardPro.Models
     {
         [Display(Name = "Transaction ID")]
         public int tr_id { get; set; }
-        [Display(Name = "Floor ID")]
+        [Display(Name = "FloorID")]
         public Nullable<int> tr_fid { get; set; }
         [Display(Name = "Description")]
         public string tr_desc { get; set; }
