@@ -30,8 +30,10 @@ namespace VanguardPro.Models
 
 
 
-        [Display(Name = "Building")]
 
+
+
+        [Display(Name = "Building")]
         public string f_building { get; set; }
         [Display(Name = "Wifi Password")]
         public string f_wifipwd { get; set; }

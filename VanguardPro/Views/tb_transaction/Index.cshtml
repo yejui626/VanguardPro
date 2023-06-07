@@ -7,11 +7,14 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Investor List</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Transaction List</h6>
             </div>
             <div class="card-body">
                 <p style="float:right;">
                     @Html.ActionLink("Create New", "Create")
+                </p>
+                <p style="float:right;">
+                    @Html.ActionLink("Summarize Transaction", "Index","transactionSummary")
                 </p>
                 <div class="table-responsive">
                     <table class="table" id="dataTable" width="100%" cellspacing="0" ">
