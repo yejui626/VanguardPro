@@ -34,11 +34,15 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Inflow/Outflow</th>
-                        <th>Payment Method</th>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Day</th>
+                        <th>Method</th>
                         <th>Description</th>
-                        <th>Amount</th>
+                        <th>Inflow</th>
+                        <th>Outflow</th>
+                        <th>Total In</th>
+                        <th>Total Out</th>
                         <th>Difference</th>
                     </tr>
                 </thead>
@@ -46,12 +50,16 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.tr_date</td>
-                            <td>@item.tr_type</td>
-                            <td>@item.tr_paymentMethod</td>
-                            <td>@item.tr_desc</td>
-                            <td>@item.tr_amount</td>
-                            <td>@item.Total</td>
+                            <td>@item.Year</td>
+                            <td>@item.Month</td>
+                            <td>@item.Day</td>
+                            <td>@item.PaymentMethod</td>
+                            <td>@item.Desc</td>
+                            <td>@item.Inflow</td>
+                            <td>@item.Outflow</td>
+                            <td>@item.TotalIn</td>
+                            <td>@item.TotalOut</td>
+                            <td>@item.Difference</td>
                         </tr>
                     }
                 </tbody>

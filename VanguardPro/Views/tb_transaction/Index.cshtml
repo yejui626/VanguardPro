@@ -26,6 +26,9 @@
                                 @Html.DisplayNameFor(model => model.tr_date)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.tr_amount)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.tr_desc)
                             </th>
                             <th>
@@ -50,6 +53,9 @@
                                     @Html.DisplayFor(modelItem => item.tr_date)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.tr_amount)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.tr_desc)
                                 </td>
                                 <td>
@@ -62,9 +68,17 @@
                                     @Html.DisplayFor(modelItem => item.tr_receipt)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.tr_id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.tr_id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.tr_id })
+                                    <a href="@Url.Action("Edit", new { id = item.tr_id })" title="Edit">
+                                        <i class="fas fa-edit fa-lg text-primary"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Details", new { id = item.tr_id })" title="Details">
+                                        <i class="fas fa-info-circle fa-lg text-info"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", new { id = item.tr_id })" title="Delete">
+                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }

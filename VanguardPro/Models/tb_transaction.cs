@@ -29,6 +29,7 @@ namespace VanguardPro.Models
         public System.DateTime tr_date { get; set; }
         [Display(Name = "Receipt")]
         public string tr_receipt { get; set; }
+        [Display(Name = "Amount")]
         public decimal tr_amount { get; set; }
 
         public virtual tb_floor tb_floor { get; set; }

@@ -65,7 +65,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt")] tb_transaction tb_transaction)
+        public ActionResult Create([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt,tr_amount")] tb_transaction tb_transaction)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt")] tb_transaction tb_transaction)
+        public ActionResult Edit([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt,tr_amount")] tb_transaction tb_transaction)
         {
             if (ModelState.IsValid)
             {
