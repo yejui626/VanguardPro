@@ -28,7 +28,7 @@ namespace VanguardPro.Models
         [Display(Name = "Landlord ID")]
         public int f_lid { get; set; }
 
-        [Display(Name = "Floor Building")]
+
 
         [Display(Name = "Building")]
 
