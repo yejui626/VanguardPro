@@ -101,7 +101,6 @@
           <Property Name="r_fid" Type="int" Nullable="false" />
           <Property Name="r_price" Type="float" Nullable="false" />
           <Property Name="r_availability" Type="int" Nullable="false" />
-          <Property Name="r_tid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_tenant">
           <Key>
@@ -438,7 +437,6 @@
           <Property Name="r_fid" Type="Int32" Nullable="false" />
           <Property Name="r_price" Type="Double" Nullable="false" />
           <Property Name="r_availability" Type="Int32" Nullable="false" />
-          <Property Name="r_tid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
           <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
         </EntityType>
@@ -784,7 +782,6 @@
                 <ScalarProperty Name="r_fid" ColumnName="r_fid" />
                 <ScalarProperty Name="r_price" ColumnName="r_price" />
                 <ScalarProperty Name="r_availability" ColumnName="r_availability" />
-                <ScalarProperty Name="r_tid" ColumnName="r_tid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

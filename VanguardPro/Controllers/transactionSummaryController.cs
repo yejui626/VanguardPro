@@ -182,5 +182,6 @@ namespace VanguardPro.Controllers
             }
             return PartialView("_summaryTable", result);
         }
+
     }
 }
