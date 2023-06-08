@@ -97,21 +97,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tb_tenant">
-      <EntityTypeMapping TypeName="db_vanguardproModel.tb_tenant">
-        <MappingFragment StoreEntitySet="tb_tenant">
-          <ScalarProperty Name="t_id" ColumnName="t_id" />
-          <ScalarProperty Name="t_name" ColumnName="t_name" />
-          <ScalarProperty Name="t_ic" ColumnName="t_ic" />
-          <ScalarProperty Name="t_uploadic" ColumnName="t_uploadic" />
-          <ScalarProperty Name="t_contract" ColumnName="t_contract" />
-          <ScalarProperty Name="t_phone" ColumnName="t_phone" />
-          <ScalarProperty Name="t_emergcont" ColumnName="t_emergcont" />
-          <ScalarProperty Name="t_siriNo" ColumnName="t_siriNo" />
-          <ScalarProperty Name="t_paymentStatus" ColumnName="t_paymentStatus" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tb_transaction">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_transaction">
         <MappingFragment StoreEntitySet="tb_transaction">
@@ -145,6 +130,21 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
           <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_tenant">
+      <EntityTypeMapping TypeName="db_vanguardproModel.tb_tenant">
+        <MappingFragment StoreEntitySet="tb_tenant">
+          <ScalarProperty Name="t_paymentStatus" ColumnName="t_paymentStatus" />
+          <ScalarProperty Name="t_siriNo" ColumnName="t_siriNo" />
+          <ScalarProperty Name="t_emergcont" ColumnName="t_emergcont" />
+          <ScalarProperty Name="t_phone" ColumnName="t_phone" />
+          <ScalarProperty Name="t_contract" ColumnName="t_contract" />
+          <ScalarProperty Name="t_uploadic" ColumnName="t_uploadic" />
+          <ScalarProperty Name="t_ic" ColumnName="t_ic" />
+          <ScalarProperty Name="t_name" ColumnName="t_name" />
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

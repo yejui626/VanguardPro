@@ -1,0 +1,82 @@
+﻿@model VanguardPro.Models.tb_tenant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_tenant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.t_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_ic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_ic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_uploadic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_uploadic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_contract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_contract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_emergcont)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_emergcont)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_siriNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_siriNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.t_paymentStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.t_paymentStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.t_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

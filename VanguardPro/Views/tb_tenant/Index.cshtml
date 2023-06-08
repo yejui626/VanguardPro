@@ -1,0 +1,103 @@
+﻿@model IEnumerable<VanguardPro.Models.tb_tenant>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .row {
+        margin-right: 0px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tenant List</h6>
+        </div>
+        <div class="card-body">
+            <p style="float:right;">
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <div class="table-responsive">
+                <table class="table" id="dataTable" width="100%" cellspacing="0" ">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_ic)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_uploadic)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_contract)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_emergcont)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_siriNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.t_paymentStatus)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_ic)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = item.t_uploadic})" target="_blank" style="color: blue; font-weight: bold;">
+                                        @item.t_uploadic (Click to see)
+                                    </a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_contract)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_emergcont)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_siriNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.t_paymentStatus)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.t_id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.t_id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.t_id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}
