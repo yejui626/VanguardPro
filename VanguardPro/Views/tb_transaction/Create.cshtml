@@ -72,8 +72,8 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.tr_receipt, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <label for="file">Upload Image:</label>
-                            <input type="file" name="file" id="file" /><br><br>
+                            <input type="file" name="receipt" id="receipt" />
+                            @Html.ValidationMessageFor(model => model.tr_receipt, "", new { @class = "text-danger" })
                         </div>
                     </div>
 

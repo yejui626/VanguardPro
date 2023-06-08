@@ -74,19 +74,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tb_rental">
-      <EntityTypeMapping TypeName="db_vanguardproModel.tb_rental">
-        <MappingFragment StoreEntitySet="tb_rental">
-          <ScalarProperty Name="re_id" ColumnName="re_id" />
-          <ScalarProperty Name="re_indate" ColumnName="re_indate" />
-          <ScalarProperty Name="re_outdate" ColumnName="re_outdate" />
-          <ScalarProperty Name="re_status" ColumnName="re_status" />
-          <ScalarProperty Name="re_outsession" ColumnName="re_outsession" />
-          <ScalarProperty Name="re_tid" ColumnName="re_tid" />
-          <ScalarProperty Name="re_rid" ColumnName="re_rid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tb_room">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_room">
         <MappingFragment StoreEntitySet="tb_room">
@@ -136,7 +123,7 @@
     <EntitySetMapping Name="tb_tenant">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_tenant">
         <MappingFragment StoreEntitySet="tb_tenant">
-          <ScalarProperty Name="t_paymentStatus" ColumnName="t_paymentStatus" />
+          <ScalarProperty Name="t_accessCardNo" ColumnName="t_accessCardNo" />
           <ScalarProperty Name="t_siriNo" ColumnName="t_siriNo" />
           <ScalarProperty Name="t_emergcont" ColumnName="t_emergcont" />
           <ScalarProperty Name="t_phone" ColumnName="t_phone" />
@@ -145,6 +132,23 @@
           <ScalarProperty Name="t_ic" ColumnName="t_ic" />
           <ScalarProperty Name="t_name" ColumnName="t_name" />
           <ScalarProperty Name="t_id" ColumnName="t_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_rental">
+      <EntityTypeMapping TypeName="db_vanguardproModel.tb_rental">
+        <MappingFragment StoreEntitySet="tb_rental">
+          <ScalarProperty Name="re_outstanding" ColumnName="re_outstanding" />
+          <ScalarProperty Name="re_payDate" ColumnName="re_payDate" />
+          <ScalarProperty Name="re_paymentStatus" ColumnName="re_paymentStatus" />
+          <ScalarProperty Name="re_rentPrice" ColumnName="re_rentPrice" />
+          <ScalarProperty Name="re_deposit" ColumnName="re_deposit" />
+          <ScalarProperty Name="re_rid" ColumnName="re_rid" />
+          <ScalarProperty Name="re_tid" ColumnName="re_tid" />
+          <ScalarProperty Name="re_outsession" ColumnName="re_outsession" />
+          <ScalarProperty Name="re_outdate" ColumnName="re_outdate" />
+          <ScalarProperty Name="re_indate" ColumnName="re_indate" />
+          <ScalarProperty Name="re_id" ColumnName="re_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -2,7 +2,13 @@
 
 @{
     ViewBag.Title = "Index";
+    var isAdmin = false;
 }
+@if (Session["UserID"] != null && Session["UserType"].ToString() == "1")
+{
+    isAdmin = true;
+}
+
 <style>
     .row {
         margin-right: 0px;
@@ -14,9 +20,12 @@
             <h6 class="m-0 font-weight-bold text-primary">Tenant List</h6>
         </div>
         <div class="card-body">
-            <p style="float:right;">
-                @Html.ActionLink("Create New", "Create")
-            </p>
+            @if (isAdmin)
+            {
+                <a href="@Url.Action("Create")" title="Create" class="btn btn-primary" style="float:right;">
+                    Create
+                </a>
+            }
             <div class="table-responsive">
                 <table class="table" id="dataTable" width="100%" cellspacing="0" ">
                     <thead>
@@ -43,7 +52,7 @@
                                 @Html.DisplayNameFor(model => model.t_siriNo)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_paymentStatus)
+                                @Html.DisplayNameFor(model => model.t_accessCardNo)
                             </th>
                             <th></th>
                         </tr>
@@ -64,7 +73,9 @@
                                     </a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.t_contract)
+                                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = item.t_contract})" target="_blank" style="color: blue; font-weight: bold;">
+                                        @item.t_contract (Click to see)
+                                    </a>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.t_phone)
@@ -76,12 +87,20 @@
                                     @Html.DisplayFor(modelItem => item.t_siriNo)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.t_paymentStatus)
+                                    @Html.DisplayFor(modelItem => item.t_accessCardNo)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.t_id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.t_id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.t_id })
+                                    <a href="@Url.Action("Edit", new { id = item.t_id })" title="Edit">
+                                        <i class="fas fa-edit fa-lg text-primary"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Details", new { id = item.t_id })" title="Details">
+                                        <i class="fas fa-info-circle fa-lg text-info"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", new { id = item.t_id })" title="Delete">
+                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }

@@ -67,15 +67,36 @@ namespace VanguardPro.Controllers
             return View();
         }
 
+        public ActionResult GetFile(string floorLayoutFileName)
+        {
+            string filePath = Server.MapPath("~/Content/admin/vendor/images/" + floorLayoutFileName);
+            if (System.IO.File.Exists(filePath))
+            {
+                return File(filePath, "image/png"); // Adjust the content type according to the actual file type
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
+
         // POST: tb_transaction/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt,tr_amount")] tb_transaction tb_transaction)
+        public ActionResult Create([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt,tr_amount")] tb_transaction tb_transaction, HttpPostedFileBase receipt)
         {
             if (ModelState.IsValid)
             {
+                if (receipt != null && receipt.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(receipt.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    receipt.SaveAs(filePath);
+                    tb_transaction.tr_receipt = fileName; // Save the unique file name in the database
+                }
+
                 db.tb_transaction.Add(tb_transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,10 +134,17 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt,tr_amount")] tb_transaction tb_transaction)
+        public ActionResult Edit([Bind(Include = "tr_id,tr_fid,tr_desc,tr_type,tr_paymentMethod,tr_date,tr_receipt,tr_amount")] tb_transaction tb_transaction, HttpPostedFileBase receipt)
         {
             if (ModelState.IsValid)
             {
+                if (receipt != null && receipt.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(receipt.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    receipt.SaveAs(filePath);
+                    tb_transaction.tr_receipt = fileName; // Save the unique file name in the database
+                }
                 db.Entry(tb_transaction).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -83,10 +83,14 @@
     <Property Name="re_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="re_indate" Type="datetime" />
     <Property Name="re_outdate" Type="datetime" />
-    <Property Name="re_status" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="re_outsession" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="re_tid" Type="int" Nullable="false" />
     <Property Name="re_rid" Type="int" Nullable="false" />
+    <Property Name="re_deposit" Type="float" Nullable="false" />
+    <Property Name="re_rentPrice" Type="float" Nullable="false" />
+    <Property Name="re_paymentStatus" Type="varchar" MaxLength="50" />
+    <Property Name="re_payDate" Type="datetime" />
+    <Property Name="re_outstanding" Type="float" />
   </EntityType>
   <EntityType Name="tb_room">
     <Key>
@@ -109,7 +113,7 @@
     <Property Name="t_phone" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="t_emergcont" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="t_siriNo" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="t_paymentStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="t_accessCardNo" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_transaction">
     <Key>

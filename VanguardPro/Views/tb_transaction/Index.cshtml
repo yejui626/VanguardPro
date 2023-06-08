@@ -22,12 +22,12 @@
         <div class="card-body">
             @if (isAdmin)
             {
-                <a href="@Url.Action("Create")" title="Delete" class="btn btn-primary" style="float:right;">
+                <a href="@Url.Action("Create")" title="Create" class="btn btn-primary" style="float:right;">
                     Create
                 </a>
             }
 
-            <a href="@Url.Action("Index", "transactionSummary")" title="Delete" class="btn btn-primary" style="float:right; margin-right:10px">
+            <a href="@Url.Action("Index", "transactionSummary")" title="Summary" class="btn btn-primary" style="float:right; margin-right:10px">
                 Summarize
             </a>
             <div class="table-responsive">
@@ -81,7 +81,9 @@
                                     @Html.DisplayFor(modelItem => item.tr_paymentMethod)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.tr_receipt)
+                                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = item.tr_receipt})" target="_blank" style="color: blue; font-weight: bold;">
+                                        @item.tr_receipt (Click to see)
+                                    </a>
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Edit", new { id = item.tr_id })" title="Edit">
