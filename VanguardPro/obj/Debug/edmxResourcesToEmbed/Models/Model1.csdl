@@ -101,7 +101,6 @@
     <Property Name="r_fid" Type="Int32" Nullable="false" />
     <Property Name="r_price" Type="Double" Nullable="false" />
     <Property Name="r_availability" Type="Int32" Nullable="false" />
-    <Property Name="r_tid" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
     <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
   </EntityType>
@@ -113,11 +112,11 @@
     <Property Name="t_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="t_ic" Type="Int32" Nullable="false" />
     <Property Name="t_uploadic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="t_contract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="t_contract" Type="Int32" Nullable="false" />
     <Property Name="t_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="t_emergcont" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="t_siriNo" Type="Int32" Nullable="false" />
-    <Property Name="t_paymentStatus" Type="Int32" Nullable="false" />
+    <Property Name="t_paymentStatus" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_tenant" FromRole="tb_tenant" ToRole="tb_rental" />
   </EntityType>
   <EntityType Name="tb_transaction">

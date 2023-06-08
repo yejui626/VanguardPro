@@ -94,7 +94,6 @@
           <ScalarProperty Name="r_fid" ColumnName="r_fid" />
           <ScalarProperty Name="r_price" ColumnName="r_price" />
           <ScalarProperty Name="r_availability" ColumnName="r_availability" />
-          <ScalarProperty Name="r_tid" ColumnName="r_tid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

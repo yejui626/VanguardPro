@@ -96,7 +96,6 @@
     <Property Name="r_fid" Type="int" Nullable="false" />
     <Property Name="r_price" Type="float" Nullable="false" />
     <Property Name="r_availability" Type="int" Nullable="false" />
-    <Property Name="r_tid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_tenant">
     <Key>
@@ -106,11 +105,11 @@
     <Property Name="t_name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="t_ic" Type="int" Nullable="false" />
     <Property Name="t_uploadic" Type="varchar(max)" Nullable="false" />
-    <Property Name="t_contract" Type="varchar(max)" Nullable="false" />
+    <Property Name="t_contract" Type="int" Nullable="false" />
     <Property Name="t_phone" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="t_emergcont" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="t_siriNo" Type="int" Nullable="false" />
-    <Property Name="t_paymentStatus" Type="int" Nullable="false" />
+    <Property Name="t_paymentStatus" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_transaction">
     <Key>
