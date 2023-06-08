@@ -88,10 +88,14 @@
           <Property Name="re_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="re_indate" Type="datetime" />
           <Property Name="re_outdate" Type="datetime" />
-          <Property Name="re_status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="re_outsession" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="re_tid" Type="int" Nullable="false" />
           <Property Name="re_rid" Type="int" Nullable="false" />
+          <Property Name="re_deposit" Type="float" Nullable="false" />
+          <Property Name="re_rentPrice" Type="float" Nullable="false" />
+          <Property Name="re_paymentStatus" Type="varchar" MaxLength="50" />
+          <Property Name="re_payDate" Type="datetime" />
+          <Property Name="re_outstanding" Type="float" />
         </EntityType>
         <EntityType Name="tb_room">
           <Key>
@@ -114,7 +118,7 @@
           <Property Name="t_phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="t_emergcont" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="t_siriNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="t_paymentStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="t_accessCardNo" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_transaction">
           <Key>
@@ -415,20 +419,6 @@
           <Property Name="rmd_uid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_reminder_tb_user" FromRole="tb_reminder" ToRole="tb_user" />
         </EntityType>
-        <EntityType Name="tb_rental">
-          <Key>
-            <PropertyRef Name="re_id" />
-          </Key>
-          <Property Name="re_id" Type="Int32" Nullable="false" />
-          <Property Name="re_indate" Type="DateTime" Precision="3" />
-          <Property Name="re_outdate" Type="DateTime" Precision="3" />
-          <Property Name="re_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="re_outsession" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="re_tid" Type="Int32" Nullable="false" />
-          <Property Name="re_rid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tb_room" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_rental" ToRole="tb_room" />
-          <NavigationProperty Name="tb_tenant" Relationship="db_vanguardproModel.FK_tb_rental_tb_tenant" FromRole="tb_rental" ToRole="tb_tenant" />
-        </EntityType>
         <EntityType Name="tb_room">
           <Key>
             <PropertyRef Name="r_id" />
@@ -438,7 +428,7 @@
           <Property Name="r_price" Type="Double" Nullable="false" />
           <Property Name="r_availability" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
-          <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
+          <NavigationProperty Name="tb_rental" Relationship="db_vanguardproModel.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
         </EntityType>
         <EntityType Name="tb_transaction">
           <Key>
@@ -575,18 +565,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tb_rental_tb_room">
-          <End Role="tb_room" Type="Self.tb_room" Multiplicity="1" />
-          <End Role="tb_rental" Type="Self.tb_rental" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_room">
-              <PropertyRef Name="r_id" />
-            </Principal>
-            <Dependent Role="tb_rental">
-              <PropertyRef Name="re_rid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="db_vanguardproEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
           <EntitySet Name="tb_floor" EntityType="Self.tb_floor" />
@@ -595,7 +573,6 @@
           <EntitySet Name="tb_landlord" EntityType="Self.tb_landlord" />
           <EntitySet Name="tb_profit" EntityType="Self.tb_profit" />
           <EntitySet Name="tb_reminder" EntityType="Self.tb_reminder" />
-          <EntitySet Name="tb_rental" EntityType="Self.tb_rental" />
           <EntitySet Name="tb_room" EntityType="Self.tb_room" />
           <EntitySet Name="tb_transaction" EntityType="Self.tb_transaction" />
           <EntitySet Name="tb_user" EntityType="Self.tb_user" />
@@ -635,12 +612,13 @@
             <End Role="tb_user" EntitySet="tb_user" />
             <End Role="tb_reminder" EntitySet="tb_reminder" />
           </AssociationSet>
-          <AssociationSet Name="FK_tb_rental_tb_room" Association="Self.FK_tb_rental_tb_room">
+          <EntitySet Name="sysdiagrams" EntityType="db_vanguardproModel.sysdiagram" />
+          <EntitySet Name="tb_tenant" EntityType="db_vanguardproModel.tb_tenant" />
+          <EntitySet Name="tb_rental" EntityType="db_vanguardproModel.tb_rental" />
+          <AssociationSet Name="FK_tb_rental_tb_room" Association="db_vanguardproModel.FK_tb_rental_tb_room">
             <End Role="tb_room" EntitySet="tb_room" />
             <End Role="tb_rental" EntitySet="tb_rental" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="db_vanguardproModel.sysdiagram" />
-          <EntitySet Name="tb_tenant" EntityType="db_vanguardproModel.tb_tenant" />
           <AssociationSet Name="FK_tb_rental_tb_tenant" Association="db_vanguardproModel.FK_tb_rental_tb_tenant">
             <End Role="tb_tenant" EntitySet="tb_tenant" />
             <End Role="tb_rental" EntitySet="tb_rental" />
@@ -668,9 +646,39 @@
           <Property Name="t_phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="t_emergcont" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="t_siriNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="t_paymentStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="t_accessCardNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tb_rental" Relationship="db_vanguardproModel.FK_tb_rental_tb_tenant" FromRole="tb_tenant" ToRole="tb_rental" />
         </EntityType>
+        <EntityType Name="tb_rental">
+          <Key>
+            <PropertyRef Name="re_id" />
+          </Key>
+          <Property Name="re_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="re_indate" Type="DateTime" Precision="3" />
+          <Property Name="re_outdate" Type="DateTime" Precision="3" />
+          <Property Name="re_outsession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="re_tid" Type="Int32" Nullable="false" />
+          <Property Name="re_rid" Type="Int32" Nullable="false" />
+          <Property Name="re_deposit" Type="Double" Nullable="false" />
+          <Property Name="re_rentPrice" Type="Double" Nullable="false" />
+          <Property Name="re_paymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="re_payDate" Type="DateTime" Precision="3" />
+          <Property Name="re_outstanding" Type="Double" />
+          <NavigationProperty Name="tb_room" Relationship="db_vanguardproModel.FK_tb_rental_tb_room" FromRole="tb_rental" ToRole="tb_room" />
+          <NavigationProperty Name="tb_tenant" Relationship="db_vanguardproModel.FK_tb_rental_tb_tenant" FromRole="tb_rental" ToRole="tb_tenant" />
+        </EntityType>
+        <Association Name="FK_tb_rental_tb_room">
+          <End Type="db_vanguardproModel.tb_room" Role="tb_room" Multiplicity="1" />
+          <End Type="db_vanguardproModel.tb_rental" Role="tb_rental" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_room">
+              <PropertyRef Name="r_id" />
+            </Principal>
+            <Dependent Role="tb_rental">
+              <PropertyRef Name="re_rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_rental_tb_tenant">
           <End Type="db_vanguardproModel.tb_tenant" Role="tb_tenant" Multiplicity="1" />
           <End Type="db_vanguardproModel.tb_rental" Role="tb_rental" Multiplicity="*" />
@@ -762,19 +770,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_rental">
-            <EntityTypeMapping TypeName="db_vanguardproModel.tb_rental">
-              <MappingFragment StoreEntitySet="tb_rental">
-                <ScalarProperty Name="re_id" ColumnName="re_id" />
-                <ScalarProperty Name="re_indate" ColumnName="re_indate" />
-                <ScalarProperty Name="re_outdate" ColumnName="re_outdate" />
-                <ScalarProperty Name="re_status" ColumnName="re_status" />
-                <ScalarProperty Name="re_outsession" ColumnName="re_outsession" />
-                <ScalarProperty Name="re_tid" ColumnName="re_tid" />
-                <ScalarProperty Name="re_rid" ColumnName="re_rid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tb_room">
             <EntityTypeMapping TypeName="db_vanguardproModel.tb_room">
               <MappingFragment StoreEntitySet="tb_room">
@@ -824,7 +819,7 @@
           <EntitySetMapping Name="tb_tenant">
             <EntityTypeMapping TypeName="db_vanguardproModel.tb_tenant">
               <MappingFragment StoreEntitySet="tb_tenant">
-                <ScalarProperty Name="t_paymentStatus" ColumnName="t_paymentStatus" />
+                <ScalarProperty Name="t_accessCardNo" ColumnName="t_accessCardNo" />
                 <ScalarProperty Name="t_siriNo" ColumnName="t_siriNo" />
                 <ScalarProperty Name="t_emergcont" ColumnName="t_emergcont" />
                 <ScalarProperty Name="t_phone" ColumnName="t_phone" />
@@ -833,6 +828,23 @@
                 <ScalarProperty Name="t_ic" ColumnName="t_ic" />
                 <ScalarProperty Name="t_name" ColumnName="t_name" />
                 <ScalarProperty Name="t_id" ColumnName="t_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_rental">
+            <EntityTypeMapping TypeName="db_vanguardproModel.tb_rental">
+              <MappingFragment StoreEntitySet="tb_rental">
+                <ScalarProperty Name="re_outstanding" ColumnName="re_outstanding" />
+                <ScalarProperty Name="re_payDate" ColumnName="re_payDate" />
+                <ScalarProperty Name="re_paymentStatus" ColumnName="re_paymentStatus" />
+                <ScalarProperty Name="re_rentPrice" ColumnName="re_rentPrice" />
+                <ScalarProperty Name="re_deposit" ColumnName="re_deposit" />
+                <ScalarProperty Name="re_rid" ColumnName="re_rid" />
+                <ScalarProperty Name="re_tid" ColumnName="re_tid" />
+                <ScalarProperty Name="re_outsession" ColumnName="re_outsession" />
+                <ScalarProperty Name="re_outdate" ColumnName="re_outdate" />
+                <ScalarProperty Name="re_indate" ColumnName="re_indate" />
+                <ScalarProperty Name="re_id" ColumnName="re_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

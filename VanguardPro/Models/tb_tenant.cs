@@ -28,7 +28,7 @@ namespace VanguardPro.Models
         public string t_phone { get; set; }
         public string t_emergcont { get; set; }
         public string t_siriNo { get; set; }
-        public string t_paymentStatus { get; set; }
+        public string t_accessCardNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_rental> tb_rental { get; set; }

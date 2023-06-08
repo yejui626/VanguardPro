@@ -17,10 +17,14 @@ namespace VanguardPro.Models
         public int re_id { get; set; }
         public Nullable<System.DateTime> re_indate { get; set; }
         public Nullable<System.DateTime> re_outdate { get; set; }
-        public string re_status { get; set; }
         public string re_outsession { get; set; }
         public int re_tid { get; set; }
         public int re_rid { get; set; }
+        public double re_deposit { get; set; }
+        public double re_rentPrice { get; set; }
+        public string re_paymentStatus { get; set; }
+        public Nullable<System.DateTime> re_payDate { get; set; }
+        public Nullable<double> re_outstanding { get; set; }
     
         public virtual tb_room tb_room { get; set; }
         public virtual tb_tenant tb_tenant { get; set; }
