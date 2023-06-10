@@ -68,14 +68,6 @@
     <Property Name="p_profit" Type="float" Nullable="false" />
     <Property Name="p_investorid" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="tb_reminder">
-    <Key>
-      <PropertyRef Name="rmd_id" />
-    </Key>
-    <Property Name="rmd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="rmd_desc" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="rmd_uid" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="tb_rental">
     <Key>
       <PropertyRef Name="re_id" />
@@ -212,18 +204,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_reminder_tb_user">
-    <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
-    <End Role="tb_reminder" Type="Self.tb_reminder" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tb_user">
-        <PropertyRef Name="u_id" />
-      </Principal>
-      <Dependent Role="tb_reminder">
-        <PropertyRef Name="rmd_uid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tb_rental_tb_room">
     <End Role="tb_room" Type="Self.tb_room" Multiplicity="1" />
     <End Role="tb_rental" Type="Self.tb_rental" Multiplicity="*" />
@@ -280,7 +260,6 @@
     <EntitySet Name="tb_investors" EntityType="Self.tb_investors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_landlord" EntityType="Self.tb_landlord" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_profit" EntityType="Self.tb_profit" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tb_reminder" EntityType="Self.tb_reminder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_rental" EntityType="Self.tb_rental" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_room" EntityType="Self.tb_room" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_tenant" EntityType="Self.tb_tenant" Schema="dbo" store:Type="Tables" />
@@ -309,10 +288,6 @@
     <AssociationSet Name="FK_tb_profit_tb_investors" Association="Self.FK_tb_profit_tb_investors">
       <End Role="tb_investors" EntitySet="tb_investors" />
       <End Role="tb_profit" EntitySet="tb_profit" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tb_reminder_tb_user" Association="Self.FK_tb_reminder_tb_user">
-      <End Role="tb_user" EntitySet="tb_user" />
-      <End Role="tb_reminder" EntitySet="tb_reminder" />
     </AssociationSet>
     <AssociationSet Name="FK_tb_rental_tb_room" Association="Self.FK_tb_rental_tb_room">
       <End Role="tb_room" EntitySet="tb_room" />

@@ -11,7 +11,8 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_rental
     {
         [Display(Name = "Profit ID")]

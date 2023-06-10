@@ -20,7 +20,6 @@ namespace VanguardPro.Models
         {
             this.tb_floor = new HashSet<tb_floor>();
             this.tb_investors = new HashSet<tb_investors>();
-            this.tb_reminder = new HashSet<tb_reminder>();
         }
 
         [Display(Name ="User ID")]
@@ -38,7 +37,5 @@ namespace VanguardPro.Models
         public virtual ICollection<tb_floor> tb_floor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_investors> tb_investors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_reminder> tb_reminder { get; set; }
     }
 }
