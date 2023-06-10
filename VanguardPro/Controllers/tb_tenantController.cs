@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -41,17 +43,46 @@ namespace VanguardPro.Controllers
             return View();
         }
 
+        public ActionResult GetFile(string floorLayoutFileName)
+        {
+            string filePath = Server.MapPath("~/Content/admin/vendor/images/" + floorLayoutFileName);
+            if (System.IO.File.Exists(filePath))
+            {
+                return File(filePath, "image/png"); // Adjust the content type according to the actual file type
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
+
         // POST: tb_tenant/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "t_id,t_name,t_ic,t_uploadic,t_contract,t_phone,t_emergcont,t_siriNo,t_paymentStatus")] tb_tenant tb_tenant)
+        public ActionResult Create([Bind(Include = "t_id,t_name,t_ic,t_uploadic,t_contract,t_phone,t_emergcont,t_siriNo,t_accessCardNo")] tb_tenant tb_tenant, HttpPostedFileBase tenantIC, HttpPostedFileBase tenantContract)
         {
             if (ModelState.IsValid)
             {
+                if (tenantIC != null && tenantIC.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(tenantIC.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    tenantIC.SaveAs(filePath);
+                    tb_tenant.t_uploadic = fileName; // Save the unique file name in the database
+                }
+                if (tenantContract != null && tenantContract.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(tenantContract.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    tenantContract.SaveAs(filePath);
+                    tb_tenant.t_contract = fileName; // Save the unique file name in the database
+                }
+
                 db.tb_tenant.Add(tb_tenant);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -78,10 +109,24 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "t_id,t_name,t_ic,t_uploadic,t_contract,t_phone,t_emergcont,t_siriNo,t_paymentStatus")] tb_tenant tb_tenant)
+        public ActionResult Edit([Bind(Include = "t_id,t_name,t_ic,t_uploadic,t_contract,t_phone,t_emergcont,t_siriNo,t_accessCardNo")] tb_tenant tb_tenant, HttpPostedFileBase tenantIC, HttpPostedFileBase tenantContract)
         {
             if (ModelState.IsValid)
             {
+                if (tenantIC != null && tenantIC.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(tenantIC.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    tenantIC.SaveAs(filePath);
+                    tb_tenant.t_uploadic = fileName; // Save the unique file name in the database
+                }
+                if (tenantContract != null && tenantContract.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(tenantContract.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    tenantContract.SaveAs(filePath);
+                    tb_tenant.t_contract = fileName; // Save the unique file name in the database
+                }
                 db.Entry(tb_tenant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

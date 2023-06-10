@@ -32,6 +32,7 @@ namespace VanguardPro.Controllers
                     {
                         Session["UserID"] = obj.u_id.ToString();
                         Session["UserName"] = obj.u_username.ToString();
+                        Session["UserType"] = obj.u_usertype.ToString();
 
                         return RedirectToAction("Index", "Home");
                     }

@@ -1,0 +1,79 @@
+﻿
+@model List<VanguardPro.Models.transactionSummary>
+@{
+    var currentPartialView = ViewBag.CurrentPartialView as string;
+}
+<div class="table-responsive">
+    <table class="table" id="dataTable" width="100%" cellspacing="0" ">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Day</th>
+                <th>Inflow</th>
+                <th>Outflow</th>
+                <th>Payment Option</th>
+                <th>Description</th>
+                <th>Floor</th>
+                <th>Total In</th>
+                <th>Total Out</th>
+                <th>Difference</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int currentYear = 0;
+                int currentMonth = 0;
+                string verticalAlign = $"style=vertical-align:middle;";
+                decimal totalInSum = 0;
+                decimal totalOutSum = 0;
+                decimal differenceSum = 0;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (currentYear != item.Year)
+                    {
+                        currentYear = item.Year;
+                        string rowspanAttribute = $"rowspan={item.RowSpanYear}";
+                        <td @rowspanAttribute @verticalAlign>@Html.DisplayFor(modelItem => item.Year)</td>
+
+                    }
+                    @if (currentMonth != item.Month)
+                    {
+                        string rowspanAttribute = $"rowspan={item.RowSpanMonth}";
+                        <td @rowspanAttribute @verticalAlign>@Html.DisplayFor(modelItem => item.Month)</td>
+
+                    }
+                    <td>@Html.DisplayFor(modelItem => item.Day)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Inflow)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Outflow)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Desc)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Floor)
+                    </td>
+                    @if (currentMonth != item.Month)
+                    {
+                        currentMonth = item.Month;
+                        totalInSum += item.TotalIn;
+                        totalOutSum += item.TotalOut;
+                        differenceSum += item.Difference;
+                        string rowspanAttribute = $"rowspan={item.RowSpanMonth}";
+                        <td @rowspanAttribute @verticalAlign>@Html.DisplayFor(modelItem => item.TotalIn)</td>
+                        <td @rowspanAttribute @verticalAlign>@Html.DisplayFor(modelItem => item.TotalOut)</td>
+                        <td @rowspanAttribute @verticalAlign>@Html.DisplayFor(modelItem => item.Difference)</td>
+                    }
+                </tr>
+
+            }
+            <tr>
+                <td colspan="7"></td>
+                <th>Total:</th>
+                <td>@totalInSum</td>
+                <td>@totalOutSum</td>
+                <td>@differenceSum</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

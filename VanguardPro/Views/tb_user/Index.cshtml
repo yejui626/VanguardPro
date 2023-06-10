@@ -48,9 +48,17 @@
                                 @Html.DisplayFor(modelItem => item.u_usertype)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.u_id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.u_id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.u_id })
+                                <a href="@Url.Action("Edit", new { id = item.u_id })" title="Edit">
+                                    <i class="fas fa-edit fa-lg text-primary"></i>
+                                </a>
+
+                                <a href="@Url.Action("Details", new { id = item.u_id })" title="Details">
+                                    <i class="fas fa-info-circle fa-lg text-info"></i>
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { id = item.u_id })" title="Delete">
+                                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                </a>
                             </td>
                         </tr>
                     }

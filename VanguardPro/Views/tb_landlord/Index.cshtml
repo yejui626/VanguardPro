@@ -57,9 +57,17 @@
                                     @Html.DisplayFor(modelItem => item.l_due)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.l_id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.l_id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.l_id })
+                                    <a href="@Url.Action("Edit", new { id = item.l_id })" title="Edit">
+                                        <i class="fas fa-edit fa-lg text-primary"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Details", new { id = item.l_id })" title="Details">
+                                        <i class="fas fa-info-circle fa-lg text-info"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", new { id = item.l_id })" title="Delete">
+                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }

@@ -2161,12 +2161,13 @@
     <Content Include="Views\tb_inventory\Details.cshtml" />
     <Content Include="Views\tb_inventory\Edit.cshtml" />
     <Content Include="Views\tb_inventory\Index.cshtml" />
+    <Content Include="Views\transactionSummary\Index.cshtml" />
+    <Content Include="Views\transactionSummary\_summaryTable.cshtml" />
     <Content Include="Views\tb_tenant\Create.cshtml" />
     <Content Include="Views\tb_tenant\Delete.cshtml" />
     <Content Include="Views\tb_tenant\Details.cshtml" />
     <Content Include="Views\tb_tenant\Edit.cshtml" />
     <Content Include="Views\tb_tenant\Index.cshtml" />
-    <Content Include="Views\transactionSummary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

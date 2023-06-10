@@ -25,7 +25,7 @@ namespace VanguardPro.Models
         [Display(Name = "Name")]
         public string t_name { get; set; }
         [Display(Name = "IC")]
-        public int t_ic { get; set; }
+        public string t_ic { get; set; }
         [Display(Name = "IC Picture")]
         public string t_uploadic { get; set; }
         [Display(Name = "Contract")]
@@ -35,9 +35,9 @@ namespace VanguardPro.Models
         [Display(Name = "Emergency Contact")]
         public string t_emergcont { get; set; }
         [Display(Name = "Siri No")]
-        public int t_siriNo { get; set; }
-        [Display(Name = "Payment Status")]
-        public int t_paymentStatus { get; set; }
+        public string t_siriNo { get; set; }
+        [Display(Name = "Access Card")]
+        public string t_accessCardNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_rental> tb_rental { get; set; }

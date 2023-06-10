@@ -17,7 +17,7 @@ namespace VanguardPro.Models
     {
         [Display(Name = "Transaction ID")]
         public int tr_id { get; set; }
-        [Display(Name = "Floor ID")]
+        [Display(Name = "FloorID")]
         public Nullable<int> tr_fid { get; set; }
         [Display(Name = "Description")]
         public string tr_desc { get; set; }
@@ -29,6 +29,7 @@ namespace VanguardPro.Models
         public System.DateTime tr_date { get; set; }
         [Display(Name = "Receipt")]
         public string tr_receipt { get; set; }
+        [Display(Name = "Amount")]
         public decimal tr_amount { get; set; }
 
         public virtual tb_floor tb_floor { get; set; }
