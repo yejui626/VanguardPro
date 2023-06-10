@@ -27,54 +27,51 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
+                <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ivtry_id, htmlAttributes: new { @class = "control-label col-md-6" })
-                            <div class="col-md-6">
-                                @Html.EditorFor(model => model.ivtry_id, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ivtry_id, "", new { @class = "text-danger" })
-                            </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ivtry_fid, "Inventory Building", htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.DropDownList("ivtry_fid", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ivtry_fid, "", new { @class = "text-danger" })
                         </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ivtry_fid, "ivtry_fid", htmlAttributes: new { @class = "control-label col-md-6" })
-                            <div class="col-md-6">
-                                @Html.DropDownList("ivtry_fid", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ivtry_fid, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-
-
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <tr>
-                                <th>
-
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.ivtry_item, htmlAttributes: new { @class = "control-label col-md-6" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.ivtry_item, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.ivtry_item, "", new { @class = "text-danger" })
-                                            <br />
-                                            <input id="Addbutton" type="button" value="Add">
-                                        </div>
-                                    </div>
-
-                                </th>
-                                <th>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.ivtry_count, htmlAttributes: new { @class = "control-label col-md-10" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.ivtry_count, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.ivtry_count, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                        </table>
                     </div>
+
+
+                    <table class="table table-bordered"  width="100%" cellspacing="0">
+
+                        <tr>
+                            <th>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ivtry_item, htmlAttributes: new { @class = "control-label col-md-6" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ivtry_item, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.ivtry_item, "", new { @class = "text-danger" })
+
+
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ivtry_count, htmlAttributes: new { @class = "control-label col-md-6" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ivtry_count, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.ivtry_count, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                     
+                    </table>
+
+
+                </div>
+
 
 
 
@@ -97,8 +94,6 @@
 
 
 
-
-
             </div>
         </div>
 
@@ -108,6 +103,46 @@
 
 
 
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var counter = 0;
+
+            $("#add-item").click(function () {
+                var newItemHtml = `
+
+
+                                    <tr>
+                                            <th>
+
+                                                    <label for="intry_item${counter}"></label>
+                                                    <div class="col-md-6" >
+                                                         <input type="text" name="intry_item${counter}" class="form-control item-input" required />
+
+                                                    </div>
+                                                </div>
+
+                                            </th>
+                                            <th>
+
+                                                     <label for="intry_count${counter}"></label>
+                                                    <div class="col-md-6">
+                                                        <input type="number" name="intry_count${counter}" class="form-control count-input" required />
+                                                    </div>
+                                                </div>
+                                            </th>
+                                 </tr>
+
+
+
+                                        `;
+
+                $("#items-container").append(newItemHtml);
+                counter++;
+            });
+        });
+    </script>
+}
 
 <!-- Page level plugins -->
 <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -120,9 +155,3 @@
 
 
 
-
-
-
-
-
-    ﻿

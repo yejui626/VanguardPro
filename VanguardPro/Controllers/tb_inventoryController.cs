@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,18 +49,51 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ivtry_id,ivtry_fid,ivtry_item,ivtry_count")] tb_inventory tb_inventory)
+        public ActionResult Create([Bind(Include = "invtry_id, ivtry_fid,ivtry_item,ivtry_count")] tb_inventory tb_inventory, List<string> IvtryItems, List<int> IvtryCounts)
         {
             if (ModelState.IsValid)
             {
-                db.tb_inventory.Add(tb_inventory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var db = new db_vanguardproEntities())
+                {
+                    db.tb_inventory.Add(tb_inventory);
+                    db.SaveChanges();
+                    if (IvtryItems != null && IvtryCounts != null)
+                    {
+                        for (int i = 0; i < IvtryItems.Count; i++)
+                        {
+                            var additionalItem = new tb_inventory
+                            {
+                                ivtry_id = tb_inventory.ivtry_id, // Set the ivtry_id of the main item here
+                                ivtry_item = IvtryItems[i],
+                                ivtry_count = IvtryCounts[i]
+                            };
+                            db.tb_inventory.Add(additionalItem);
+                            db.SaveChanges();
+                        }
+                        
+                    }
+                    return RedirectToAction("Index");
+                }
             }
-
             ViewBag.ivtry_fid = new SelectList(db.tb_floor, "f_id", "f_building", tb_inventory.ivtry_fid);
             return View(tb_inventory);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: tb_inventory/Edit/5
         public ActionResult Edit(int? id)

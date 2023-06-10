@@ -23,9 +23,6 @@
 
 
 
-
-
-
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -44,51 +41,51 @@
                             @Html.DisplayFor(model => model.tb_floor.f_building)
                         </dd>
 
-                       
-                        </dl>
 
+                    </dl>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ivtry_fid, htmlAttributes: new { @class = "control-label col-md-6" })
-                            <div class="col-md-6">
-                                @Html.EditorFor(model => model.ivtry_fid, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ivtry_fid, "", new { @class = "text-danger" })
-                            </div>
+                    
+                    <div class="form-group" hidden>
+                        @Html.LabelFor(model => model.ivtry_fid, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.ivtry_fid, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ivtry_fid, "", new { @class = "text-danger" })
                         </div>
+                    </div>
 
 
 
 
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <tr>
-                                <th>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <tr>
+                            <th>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.ivtry_item, htmlAttributes: new { @class = "control-label col-md-6" })
-                                        <div class="col-md-6">
-                                            @Html.EditorFor(model => model.ivtry_item, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.ivtry_item, "", new { @class = "text-danger" })
-                                        </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ivtry_item, htmlAttributes: new { @class = "control-label col-md-6" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ivtry_item, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ivtry_item, "", new { @class = "text-danger" })
                                     </div>
-                                </th>
-                                <th>
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.ivtry_count, htmlAttributes: new { @class = "control-label col-md-6" })
-                                        <div class="col-md-6">
-                                            @Html.EditorFor(model => model.ivtry_count, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.ivtry_count, "", new { @class = "text-danger" })
-                                        </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ivtry_count, htmlAttributes: new { @class = "control-label col-md-6" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ivtry_count, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ivtry_count, "", new { @class = "text-danger" })
                                     </div>
+                                </div>
 
-                                </th>
-                            </tr>
-                        </table>
+                            </th>
+                        </tr>
+                    </table>
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-primary" />
-                            </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-primary" />
                         </div>
+                    </div>
 
                 </div>
                 }
@@ -100,6 +97,7 @@
         </div>
     </div>
 </div>
+
 
 
 

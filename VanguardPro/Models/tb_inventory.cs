@@ -10,6 +10,7 @@
 namespace VanguardPro.Models
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
      
@@ -18,13 +19,13 @@ namespace VanguardPro.Models
     {
         [Display(Name = "Inventory ID")]
         public int ivtry_id { get; set; }
-        [Display(Name = "Inventory Floor ID")]
+        [Display(Name = "Building")]
         public int ivtry_fid { get; set; }
         [Display(Name = "Inventory Items")]
         public string ivtry_item { get; set; }
         [Display(Name = "Item Count")]
         public int ivtry_count { get; set; }
-    
+        
         public virtual tb_floor tb_floor { get; set; }
     }
 }

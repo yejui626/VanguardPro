@@ -18,16 +18,20 @@
 
 
 
+
         <table class="table">
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                   
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.ivtry_item)
+                   
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.ivtry_count)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                  
                 </th>
                 <th></th>
             </tr>
@@ -36,13 +40,15 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.tb_floor.f_building)
+                  
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.ivtry_item)
+                        
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ivtry_count)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tb_floor.f_building)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ivtry_id }) |
@@ -53,6 +59,16 @@
             }
 
         </table>
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
 
