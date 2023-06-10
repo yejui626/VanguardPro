@@ -24,13 +24,25 @@ namespace VanguardPro.Controllers
             selectList.AddRange(floorList.Select(f => new SelectListItem { Value = f.f_id.ToString(), Text = f.f_desc }));
             ViewBag.trs_floor = new SelectList(selectList, "Value", "Text");
 
-            var paymentList = db.tb_transaction.ToList();
-            paymentList.Insert(0, new tb_transaction { tr_paymentMethod = "-- All --" });
-            ViewBag.trs_paymentMethod = new SelectList(paymentList, "tr_paymentMethod");
+            var paymentList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "-- All --" },
+                new SelectListItem { Value = "Bank", Text = "Bank" },
+                new SelectListItem { Value = "Cash", Text = "Cash" }
+            };
+            ViewBag.trs_paymentMethod = new SelectList(paymentList, "Value", "Text");
 
-            var typeList = db.tb_transaction.ToList();
-            typeList.Insert(0, new tb_transaction { tr_type = "-- All --" });
-            ViewBag.trs_type = new SelectList(typeList, "tr_type");
+
+
+            var typeList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "-- All --" },
+                new SelectListItem { Value = "Inflow", Text = "Inflow" },
+                new SelectListItem { Value = "Outflow", Text = "Outflow" }
+            };
+            ViewBag.trs_type = new SelectList(typeList, "Value", "Text");
+
+
 
             var query = from tr in db.tb_transaction
                         join fl in db.tb_floor on tr.tr_fid equals fl.f_id into floorGroup
@@ -96,8 +108,9 @@ namespace VanguardPro.Controllers
         }
 
 
-        public ActionResult summaryFilter(string startDate, string endDate, int? floor, int payment, int type)
+        public ActionResult summaryFilter(string startDate, string endDate, int? floor, string payment, string type)
         {
+            //select and add to model exSummary
             var query = from tr in db.tb_transaction
                         join fl in db.tb_floor on tr.tr_fid equals fl.f_id into floorGroup
                         from fl in floorGroup.DefaultIfEmpty()
@@ -109,14 +122,14 @@ namespace VanguardPro.Controllers
                 queryList = queryList.Where(item => item.tr_fid == floor).ToList();
             }
 
-            if (payment != 0)
+            if (payment != "0")
             {
-                queryList = queryList.Where(item => item.tr_paymentMethod == payment.ToString()).ToList();
+                queryList = queryList.Where(item => item.tr_paymentMethod == payment).ToList();
             }
 
-            if (type != 0)
+            if (type != "0")
             {
-                queryList = queryList.Where(item => item.tr_type == type.ToString()).ToList();
+                queryList = queryList.Where(item => item.tr_type == type).ToList();
             }
 
             if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
@@ -137,7 +150,8 @@ namespace VanguardPro.Controllers
                     Desc = tr.tr_desc,
                     Inflow = tr.tr_type == "Inflow" ? (decimal)tr.tr_amount : 0,
                     Outflow = tr.tr_type == "Outflow" ? (decimal)tr.tr_amount : 0,
-                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General"
+                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General",
+                    FloorID = tr.tr_fid
                 };
                 tempSummary.Add(sum);
             }
@@ -182,6 +196,8 @@ namespace VanguardPro.Controllers
             }
             return PartialView("_summaryTable", result);
         }
+
+
 
     }
 }

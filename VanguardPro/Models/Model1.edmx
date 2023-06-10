@@ -73,14 +73,6 @@
           <Property Name="p_profit" Type="float" Nullable="false" />
           <Property Name="p_investorid" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tb_reminder">
-          <Key>
-            <PropertyRef Name="rmd_id" />
-          </Key>
-          <Property Name="rmd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="rmd_desc" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="rmd_uid" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="tb_rental">
           <Key>
             <PropertyRef Name="re_id" />
@@ -217,18 +209,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tb_reminder_tb_user">
-          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
-          <End Role="tb_reminder" Type="Self.tb_reminder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_user">
-              <PropertyRef Name="u_id" />
-            </Principal>
-            <Dependent Role="tb_reminder">
-              <PropertyRef Name="rmd_uid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tb_rental_tb_room">
           <End Role="tb_room" Type="Self.tb_room" Multiplicity="1" />
           <End Role="tb_rental" Type="Self.tb_rental" Multiplicity="*" />
@@ -285,7 +265,6 @@
           <EntitySet Name="tb_investors" EntityType="Self.tb_investors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_landlord" EntityType="Self.tb_landlord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_profit" EntityType="Self.tb_profit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_reminder" EntityType="Self.tb_reminder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_rental" EntityType="Self.tb_rental" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_room" EntityType="Self.tb_room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_tenant" EntityType="Self.tb_tenant" Schema="dbo" store:Type="Tables" />
@@ -314,10 +293,6 @@
           <AssociationSet Name="FK_tb_profit_tb_investors" Association="Self.FK_tb_profit_tb_investors">
             <End Role="tb_investors" EntitySet="tb_investors" />
             <End Role="tb_profit" EntitySet="tb_profit" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_reminder_tb_user" Association="Self.FK_tb_reminder_tb_user">
-            <End Role="tb_user" EntitySet="tb_user" />
-            <End Role="tb_reminder" EntitySet="tb_reminder" />
           </AssociationSet>
           <AssociationSet Name="FK_tb_rental_tb_room" Association="Self.FK_tb_rental_tb_room">
             <End Role="tb_room" EntitySet="tb_room" />
@@ -410,15 +385,6 @@
           <Property Name="p_investorid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_investors" Relationship="Self.FK_tb_profit_tb_investors" FromRole="tb_profit" ToRole="tb_investors" />
         </EntityType>
-        <EntityType Name="tb_reminder">
-          <Key>
-            <PropertyRef Name="rmd_id" />
-          </Key>
-          <Property Name="rmd_id" Type="Int32" Nullable="false" />
-          <Property Name="rmd_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="rmd_uid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_reminder_tb_user" FromRole="tb_reminder" ToRole="tb_user" />
-        </EntityType>
         <EntityType Name="tb_room">
           <Key>
             <PropertyRef Name="r_id" />
@@ -455,7 +421,6 @@
           <Property Name="u_usertype" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_floor_tb_user" FromRole="tb_user" ToRole="tb_floor" />
           <NavigationProperty Name="tb_investors" Relationship="Self.FK_tb_investors_tb_user" FromRole="tb_user" ToRole="tb_investors" />
-          <NavigationProperty Name="tb_reminder" Relationship="Self.FK_tb_reminder_tb_user" FromRole="tb_user" ToRole="tb_reminder" />
         </EntityType>
         <Association Name="FK_tb_attendance_tb_floor">
           <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="1" />
@@ -553,18 +518,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tb_reminder_tb_user">
-          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
-          <End Role="tb_reminder" Type="Self.tb_reminder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_user">
-              <PropertyRef Name="u_id" />
-            </Principal>
-            <Dependent Role="tb_reminder">
-              <PropertyRef Name="rmd_uid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="db_vanguardproEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
           <EntitySet Name="tb_floor" EntityType="Self.tb_floor" />
@@ -572,7 +525,6 @@
           <EntitySet Name="tb_investors" EntityType="Self.tb_investors" />
           <EntitySet Name="tb_landlord" EntityType="Self.tb_landlord" />
           <EntitySet Name="tb_profit" EntityType="Self.tb_profit" />
-          <EntitySet Name="tb_reminder" EntityType="Self.tb_reminder" />
           <EntitySet Name="tb_room" EntityType="Self.tb_room" />
           <EntitySet Name="tb_transaction" EntityType="Self.tb_transaction" />
           <EntitySet Name="tb_user" EntityType="Self.tb_user" />
@@ -607,10 +559,6 @@
           <AssociationSet Name="FK_tb_profit_tb_investors" Association="Self.FK_tb_profit_tb_investors">
             <End Role="tb_investors" EntitySet="tb_investors" />
             <End Role="tb_profit" EntitySet="tb_profit" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_reminder_tb_user" Association="Self.FK_tb_reminder_tb_user">
-            <End Role="tb_user" EntitySet="tb_user" />
-            <End Role="tb_reminder" EntitySet="tb_reminder" />
           </AssociationSet>
           <EntitySet Name="sysdiagrams" EntityType="db_vanguardproModel.sysdiagram" />
           <EntitySet Name="tb_tenant" EntityType="db_vanguardproModel.tb_tenant" />
@@ -758,15 +706,6 @@
                 <ScalarProperty Name="p_date" ColumnName="p_date" />
                 <ScalarProperty Name="p_profit" ColumnName="p_profit" />
                 <ScalarProperty Name="p_investorid" ColumnName="p_investorid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_reminder">
-            <EntityTypeMapping TypeName="db_vanguardproModel.tb_reminder">
-              <MappingFragment StoreEntitySet="tb_reminder">
-                <ScalarProperty Name="rmd_id" ColumnName="rmd_id" />
-                <ScalarProperty Name="rmd_desc" ColumnName="rmd_desc" />
-                <ScalarProperty Name="rmd_uid" ColumnName="rmd_uid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

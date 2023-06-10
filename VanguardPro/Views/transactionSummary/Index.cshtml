@@ -71,7 +71,7 @@
                 var qurl = '@Url.Action("summaryFilter", "transactionSummary")' + '?' + $.param(data);
                 console.log('Url: '+qurl);
                 $.ajax({
-                    url: '@Url.Action("summaryFilter", "transactionSummary")',
+                    url: qurl,
                     type: 'GET',
                     data: data,
                     dataType: "html",
