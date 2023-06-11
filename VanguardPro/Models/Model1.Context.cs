@@ -12,7 +12,7 @@ namespace VanguardPro.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class db_vanguardproEntities : DbContext
     {
         public db_vanguardproEntities()
@@ -25,16 +25,17 @@ namespace VanguardPro.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tb_attendance> tb_attendance { get; set; }
         public virtual DbSet<tb_floor> tb_floor { get; set; }
         public virtual DbSet<tb_inventory> tb_inventory { get; set; }
         public virtual DbSet<tb_investors> tb_investors { get; set; }
         public virtual DbSet<tb_landlord> tb_landlord { get; set; }
         public virtual DbSet<tb_profit> tb_profit { get; set; }
+        public virtual DbSet<tb_rental> tb_rental { get; set; }
         public virtual DbSet<tb_room> tb_room { get; set; }
+        public virtual DbSet<tb_tenant> tb_tenant { get; set; }
         public virtual DbSet<tb_transaction> tb_transaction { get; set; }
         public virtual DbSet<tb_user> tb_user { get; set; }
-        public virtual DbSet<tb_tenant> tb_tenant { get; set; }
-        public virtual DbSet<tb_rental> tb_rental { get; set; }
     }
 }

@@ -180,9 +180,6 @@
     <Compile Include="Models\tb_profit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tb_reminder.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tb_rental.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
