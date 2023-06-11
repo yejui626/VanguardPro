@@ -4,77 +4,105 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>tb_floor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.f_building)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_building)
-        </dd>
+<div class="container-fluid">
+    <h2 class="h3 mb-2 text-gray-800">Delete Floor</h2>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.f_wifipwd)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_wifipwd)
-        </dd>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Are you sure you want to delete this?</h6>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.f_modemIP)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_modemIP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.f_cctvqr)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.f_cctvqr)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.f_layout)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.f_layout)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_landlord.l_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tb_landlord.l_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_user.u_username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tb_user.u_username)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
         </div>
-    }
+        <div class="card-body">
+            <div class="table">
+
+
+
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_building)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_building)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_wifipwd)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_wifipwd)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_modemIP)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_modemIP)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_cctvqr)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_cctvqr)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_layout)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_layout)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.tb_landlord.l_name)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.tb_landlord.l_name)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.tb_user.u_username)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.tb_user.u_username)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
 </div>
+
+
+
+
+
+
+<!-- Page level plugins -->
+<script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>

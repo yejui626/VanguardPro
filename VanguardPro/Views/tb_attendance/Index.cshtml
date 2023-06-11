@@ -39,9 +39,16 @@
                         @Html.DisplayFor(modelItem => item.atd_check)
                     </td>
                     <td>
+                        
 
-                        @Html.ActionLink("Details", "Details", new { id = item.atd_id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.atd_id })
+                        <a href="@Url.Action("Details", new { id = item.atd_id  })" title="Details">
+                            <i class="fas fa-info-circle fa-lg text-info"></i>
+                        </a>
+
+                        <a href="@Url.Action("Delete", new {id = item.atd_id })" title="Delete">
+                            <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                        </a>
+
                     </td>
                 </tr>
             }
