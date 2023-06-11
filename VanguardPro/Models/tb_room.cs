@@ -23,7 +23,8 @@ namespace VanguardPro.Models
         public int r_id { get; set; }
         public int r_fid { get; set; }
         public double r_price { get; set; }
-        public int r_availability { get; set; }
+        public string r_availability { get; set; }
+        public string r_roomNo { get; set; }
     
         public virtual tb_floor tb_floor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

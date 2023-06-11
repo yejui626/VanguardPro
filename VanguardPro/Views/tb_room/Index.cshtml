@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VanguardPro.Models.tb_room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.r_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_availability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.r_roomNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tb_floor.f_desc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_availability)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.r_roomNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_floor.f_desc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.r_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.r_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.r_id })
+        </td>
+    </tr>
+}
+
+</table>

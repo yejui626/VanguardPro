@@ -96,6 +96,7 @@
     <EntitySetMapping Name="tb_room">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_room">
         <MappingFragment StoreEntitySet="tb_room">
+          <ScalarProperty Name="r_roomNo" ColumnName="r_roomNo" />
           <ScalarProperty Name="r_id" ColumnName="r_id" />
           <ScalarProperty Name="r_fid" ColumnName="r_fid" />
           <ScalarProperty Name="r_price" ColumnName="r_price" />

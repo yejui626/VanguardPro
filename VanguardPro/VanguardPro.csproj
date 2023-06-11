@@ -137,6 +137,7 @@
     <Compile Include="Controllers\tb_inventoryController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
     <Compile Include="Controllers\tb_landlordController.cs" />
+    <Compile Include="Controllers\tb_roomController.cs" />
     <Compile Include="Controllers\tb_tenantController.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
     <Compile Include="Controllers\tb_userController.cs" />
@@ -2165,6 +2166,11 @@
     <Content Include="Views\tb_tenant\Details.cshtml" />
     <Content Include="Views\tb_tenant\Edit.cshtml" />
     <Content Include="Views\tb_tenant\Index.cshtml" />
+    <Content Include="Views\tb_room\Create.cshtml" />
+    <Content Include="Views\tb_room\Delete.cshtml" />
+    <Content Include="Views\tb_room\Details.cshtml" />
+    <Content Include="Views\tb_room\Edit.cshtml" />
+    <Content Include="Views\tb_room\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

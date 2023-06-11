@@ -91,7 +91,8 @@
     <Property Name="r_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="r_fid" Type="int" Nullable="false" />
     <Property Name="r_price" Type="float" Nullable="false" />
-    <Property Name="r_availability" Type="int" Nullable="false" />
+    <Property Name="r_availability" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="r_roomNo" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_tenant">
     <Key>

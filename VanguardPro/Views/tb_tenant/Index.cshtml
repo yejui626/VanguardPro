@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VanguardPro.Models.tb_tenant>
+﻿@model IEnumerable<VanguardPro.Models.tb_rental>
 
 @{
     ViewBag.Title = "Index";
@@ -31,28 +31,25 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_name)
+                                @Html.DisplayNameFor(model => model.tb_tenant.t_name)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_ic)
+                                @Html.DisplayNameFor(model => model.re_rid)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_uploadic)
+                                @Html.DisplayNameFor(model => model.tb_tenant.t_phone)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_contract)
+                                @Html.DisplayNameFor(model => model.re_indate)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_phone)
+                                @Html.DisplayNameFor(model => model.re_outdate)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_emergcont)
+                                @Html.DisplayNameFor(model => model.re_outsession)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.t_siriNo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.t_accessCardNo)
+                                @Html.DisplayNameFor(model => model.re_paymentStatus)
                             </th>
                             <th></th>
                         </tr>
@@ -62,43 +59,68 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.t_name)
+                                    @Html.DisplayFor(modelItem => item.tb_tenant.t_name)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.t_ic)
+                                    @Html.ActionLink(item.re_rid.ToString(), "Details", "tb_room", new { id = item.re_rid }, null)
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = item.t_uploadic})" target="_blank" style="color: blue; font-weight: bold;">
-                                        @item.t_uploadic (Click to see)
-                                    </a>
+                                    @Html.DisplayFor(modelItem => item.tb_tenant.t_phone)
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = item.t_contract})" target="_blank" style="color: blue; font-weight: bold;">
-                                        @item.t_contract (Click to see)
-                                    </a>
+                                    @Html.DisplayFor(modelItem => item.re_indate)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.t_phone)
+                                    @Html.DisplayFor(modelItem => item.re_outdate)
                                 </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.re_outsession)
+                                </th>
+                                @if (item.re_paymentStatus == "Paid")
+                                {
+                                    <td>
+                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
+                                            <i class="fas fa-edit fa-lg text-primary"></i>
+                                        </a>
+                                        <span class="badge bg-success">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
+                                    </td>
+                                }
+                                @if (item.re_paymentStatus == "Unpaid")
+                                {
+                                    <td>
+                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
+                                            <i class="fas fa-edit fa-lg text-primary"></i>
+                                        </a>
+                                        <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
+                                    </td>
+                                }
+                                @if (item.re_paymentStatus == "Partially Paid")
+                                {
+                                    <td>
+                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
+                                            <i class="fas fa-edit fa-lg text-primary"></i>
+                                        </a>
+                                        <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
+                                    </td>
+                                }
+                                @if (item.re_paymentStatus == null)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
+                                            <i class="fas fa-edit fa-lg text-primary"></i>
+                                        </a>
+                                    </td>
+                                }
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.t_emergcont)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.t_siriNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.t_accessCardNo)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.t_id })" title="Edit">
+                                    <a href="@Url.Action("Edit", new { id = item.re_id })" title="Edit">
                                         <i class="fas fa-edit fa-lg text-primary"></i>
                                     </a>
 
-                                    <a href="@Url.Action("Details", new { id = item.t_id })" title="Details">
+                                    <a href="@Url.Action("Details", new { id = item.re_id })" title="Details">
                                         <i class="fas fa-info-circle fa-lg text-info"></i>
                                     </a>
 
-                                    <a href="@Url.Action("Delete", new { id = item.t_id })" title="Delete">
+                                    <a href="@Url.Action("Delete", new { id = item.re_id })" title="Delete">
                                         <i class="fas fa-trash-alt fa-lg text-danger"></i>
                                     </a>
                                 </td>
