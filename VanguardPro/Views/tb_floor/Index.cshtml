@@ -4,80 +4,108 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.f_desc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.f_building)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.f_wifipwd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.f_modemIP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.f_cctvqr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.f_layout)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tb_landlord.l_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tb_user.u_username)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid">
+    <h2 class="h3 mb-2 text-gray-800">Manage Floor</h2>
+    <p>
+        @Html.ActionLink("Add Floor", "Create")
+    </p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_desc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_building)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_wifipwd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_modemIP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_cctvqr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.f_layout)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tb_landlord.l_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tb_user.u_username)
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", new { id = item.f_id })" title="Edit">
-                <i class="fas fa-edit fa-lg text-primary"></i>
-            </a>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Floor Details</h6>
 
-            <a href="@Url.Action("Details", new { id = item.f_id })" title="Details">
-                <i class="fas fa-info-circle fa-lg text-info"></i>
-            </a>
 
-            <a href="@Url.Action("Delete", new { id = item.f_id })" title="Delete">
-                <i class="fas fa-trash-alt fa-lg text-danger"></i>
-            </a>
-        </td>
-    </tr>
-}
+        </div>
+        <table class="table">
 
-</table>
+
+
+
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.f_desc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.f_building)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.f_wifipwd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.f_modemIP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.f_cctvqr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.f_layout)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tb_landlord.l_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tb_user.u_username)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.f_desc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.f_building)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.f_wifipwd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.f_modemIP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.f_cctvqr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.f_layout)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_landlord.l_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_user.u_username)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.f_id })" title="Edit">
+                            <i class="fas fa-edit fa-lg text-primary"></i>
+                        </a>
+
+                        <a href="@Url.Action("Details", new { id = item.f_id })" title="Details">
+                            <i class="fas fa-info-circle fa-lg text-info"></i>
+                        </a>
+
+                        <a href="@Url.Action("Delete", new { id = item.f_id })" title="Delete">
+                            <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+      
+    </div>
+</div>
+
+
+<!-- Page level plugins -->
+<script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+
+
+

@@ -4,71 +4,95 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>tb_floor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.f_building)
-        </dt>
+<div class="container-fluid">
+    <h2 class="h3 mb-2 text-gray-800">Manage Floor</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_building)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.f_wifipwd)
-        </dt>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Floor Details</h6>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_wifipwd)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.f_modemIP)
-        </dt>
+        </div>
+        <div class="card-body">
+            <div class="table">
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_building)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_modemIP)
-        </dd>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_building)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.f_cctvqr)
-        </dt>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_wifipwd)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_cctvqr)
-        </dd>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_wifipwd)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.f_layout)
-        </dt>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_modemIP)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.f_layout)
-        </dd>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_modemIP)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_landlord.l_name)
-        </dt>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_cctvqr)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tb_landlord.l_name)
-        </dd>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_cctvqr)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_user.u_username)
-        </dt>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.f_layout)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tb_user.u_username)
-        </dd>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.f_layout)
+                    </dd>
 
-    </dl>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.tb_landlord.l_name)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.tb_landlord.l_name)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.tb_user.u_username)
+                    </dt>
+
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.tb_user.u_username)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                
+                @Html.ActionLink("Edit", "Edit", new { id = Model.f_id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.f_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+
+
+<!-- Page level plugins -->
+<script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
