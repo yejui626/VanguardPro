@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -36,23 +37,40 @@ namespace VanguardPro.Controllers
             return View(tb_floor);
         }
 
+
+       
+
+     
+
         // GET: tb_floor/Create
-        public ActionResult Create()
+        public ActionResult Create(HttpPostedFileBase file)
         {
             ViewBag.f_lid = new SelectList(db.tb_landlord, "l_id", "l_name");
             ViewBag.f_uid = new SelectList(db.tb_user, "u_id", "u_username");
             return View();
+
         }
+
+
+
 
         // POST: tb_floor/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor)
+        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor, HttpPostedFileBase layout)
         {
             if (ModelState.IsValid)
             {
+
+                if (layout != null && layout.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(layout.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    layout.SaveAs(filePath);
+                    tb_floor.f_layout = fileName; // Save the unique file name in the database
+                }
                 db.tb_floor.Add(tb_floor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
