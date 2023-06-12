@@ -3,6 +3,7 @@
     ViewBag.Title = "Home Page";
     var currentDate = DateTime.Now;
     var currentMonthShow = currentDate.ToString("MMMM");
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
 }
 
 <main>
@@ -26,6 +27,7 @@
                                         int currentYear = currentDate.Year;
                                         int currentMonth = currentDate.Month;
                                         decimal differenceSum = 0;
+                                        decimal differenceSumYear = 0;
                                     }
                                     @foreach (var item in Model)
                                     {
@@ -35,10 +37,10 @@
                                         }
                                     }   
                                         <p>RM @differenceSum</p>
-                                    </div>
+                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -52,9 +54,15 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Earnings (Annual)
+                                    Annual Net Profit (@currentYear)
                                 </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    @foreach (var item in Model)
+                                    {
+                                        differenceSumYear += item.TransactionSummary.Difference;
+                                    }
+                                    <p>RM @differenceSumYear</p>
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

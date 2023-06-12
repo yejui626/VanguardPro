@@ -12,21 +12,23 @@ namespace VanguardPro.Controllers
         private db_vanguardproEntities db = new db_vanguardproEntities();
         public ActionResult Index()
         {
-            int totalFloors = db.tb_floor.Count();
-            int totalRooms = db.tb_room.Count();
-            int totalTenants = db.tb_tenant.Count();
-
-            ViewBag.totalTenants = totalTenants;
-            ViewBag.TotalRooms = totalRooms;
-            ViewBag.TotalFloors = totalFloors;
-
             // Retrieve the list of vacant rooms from the database
             var vacantRooms = db.tb_room.Include("tb_floor").ToList();
             ViewBag.VacantRooms = vacantRooms;
 
             DateTime today = DateTime.Today;
             var landlordsDueToday = db.tb_landlord.Where(l => l.l_due == today).ToList();
-            ViewBag.landlordsDueToday = landlordsDueToday;
+            var floorDueToday = new List<tb_floor>();
+            foreach (var landlord in landlordsDueToday)
+            {
+                var floor = new tb_floor
+                {
+                    f_lid = landlord.l_id,
+                };
+
+                floorDueToday.Add(floor);
+            }
+            ViewBag.floorDueToday = floorDueToday;
 
             var tb_tenant = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
 

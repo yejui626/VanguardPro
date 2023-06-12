@@ -2172,6 +2172,7 @@
     <Content Include="Views\tb_room\Details.cshtml" />
     <Content Include="Views\tb_room\Edit.cshtml" />
     <Content Include="Views\tb_room\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
