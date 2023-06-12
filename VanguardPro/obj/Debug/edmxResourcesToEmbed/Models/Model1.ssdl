@@ -16,7 +16,7 @@
     </Key>
     <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="atd_fid" Type="int" Nullable="false" />
-    <Property Name="atd_check" Type="datetime" Nullable="false" />
+    <Property Name="atd_check" Type="datetime" />
   </EntityType>
   <EntityType Name="tb_floor">
     <Key>
