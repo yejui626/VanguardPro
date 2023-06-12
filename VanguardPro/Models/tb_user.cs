@@ -11,8 +11,7 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tb_user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,16 +20,11 @@ namespace VanguardPro.Models
             this.tb_floor = new HashSet<tb_floor>();
             this.tb_investors = new HashSet<tb_investors>();
         }
-
-        [Display(Name ="User ID")]
+    
         public int u_id { get; set; }
-        [Display(Name = "Username")]
         public string u_username { get; set; }
-        [Display(Name = "Password")]
         public string u_pwd { get; set; }
-        [Display(Name = "Email")]
         public string u_email { get; set; }
-        [Display(Name = "User Type")]
         public int u_usertype { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

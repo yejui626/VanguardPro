@@ -12,11 +12,11 @@ namespace VanguardPro.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class db_vanguardproEntities : DbContext
+    
+    public partial class db_vanguardproEntities1 : DbContext
     {
-        public db_vanguardproEntities()
-            : base("name=db_vanguardproEntities")
+        public db_vanguardproEntities1()
+            : base("name=db_vanguardproEntities1")
         {
         }
     

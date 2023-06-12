@@ -11,27 +11,18 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tb_transaction
     {
-        [Display(Name = "Transaction ID")]
         public int tr_id { get; set; }
-        [Display(Name = "FloorID")]
         public Nullable<int> tr_fid { get; set; }
-        [Display(Name = "Description")]
         public string tr_desc { get; set; }
-        [Display(Name = "Inflow/Outflow")]
         public string tr_type { get; set; }
-        [Display(Name = "Bank/Cash")]
         public string tr_paymentMethod { get; set; }
-        [Display(Name = "Date")]
         public System.DateTime tr_date { get; set; }
-        [Display(Name = "Receipt")]
         public string tr_receipt { get; set; }
-        [Display(Name = "Amount")]
         public decimal tr_amount { get; set; }
-
+    
         public virtual tb_floor tb_floor { get; set; }
     }
 }

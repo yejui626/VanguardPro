@@ -11,8 +11,7 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tb_investors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,13 +19,10 @@ namespace VanguardPro.Models
         {
             this.tb_profit = new HashSet<tb_profit>();
         }
-        [Display(Name = "Investor ID")]
+    
         public int i_id { get; set; }
-        [Display(Name = "User ID")]
         public int i_uid { get; set; }
-        [Display(Name = "Lot Number")]
         public int i_lot { get; set; }
-        [Display(Name = "Lot Percentage")]
         public double i_lotperc { get; set; }
     
         public virtual tb_user tb_user { get; set; }

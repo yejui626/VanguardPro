@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="db_vanguardproModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="db_vanguardproModelStoreContainer" CdmEntityContainer="db_vanguardproEntities1">
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="db_vanguardproModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -96,11 +96,11 @@
     <EntitySetMapping Name="tb_room">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_room">
         <MappingFragment StoreEntitySet="tb_room">
-          <ScalarProperty Name="r_roomNo" ColumnName="r_roomNo" />
           <ScalarProperty Name="r_id" ColumnName="r_id" />
           <ScalarProperty Name="r_fid" ColumnName="r_fid" />
           <ScalarProperty Name="r_price" ColumnName="r_price" />
           <ScalarProperty Name="r_availability" ColumnName="r_availability" />
+          <ScalarProperty Name="r_roomNo" ColumnName="r_roomNo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -16,7 +16,7 @@
     </Key>
     <Property Name="atd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="atd_fid" Type="Int32" Nullable="false" />
-    <Property Name="atd_check" Type="DateTime" Precision="3" Nullable="true" />
+    <Property Name="atd_check" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_attendance_tb_floor" FromRole="tb_attendance" ToRole="tb_floor" />
   </EntityType>
   <EntityType Name="tb_floor">
@@ -105,10 +105,10 @@
     <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="r_fid" Type="Int32" Nullable="false" />
     <Property Name="r_price" Type="Double" Nullable="false" />
-    <Property Name="r_availability" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="r_availability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="r_roomNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
     <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
-    <Property Name="r_roomNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tb_tenant">
     <Key>
@@ -273,7 +273,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="db_vanguardproEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
     <EntitySet Name="tb_floor" EntityType="Self.tb_floor" />
