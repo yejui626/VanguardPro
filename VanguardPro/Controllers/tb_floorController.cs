@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,18 +51,39 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor)
+        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor, HttpPostedFileBase layout)
         {
             if (ModelState.IsValid)
             {
+                if (layout != null && layout.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(layout.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    layout.SaveAs(filePath);
+                    tb_floor.f_layout = fileName; // Save the unique file name in the database
+                }
                 db.tb_floor.Add(tb_floor);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             ViewBag.f_lid = new SelectList(db.tb_landlord, "l_id", "l_name", tb_floor.f_lid);
             ViewBag.f_uid = new SelectList(db.tb_user, "u_id", "u_username", tb_floor.f_uid);
             return View(tb_floor);
+        }
+
+        public ActionResult GetFile(string floorLayoutFileName)
+        {
+            string filePath = Server.MapPath("~/Content/admin/vendor/images/" + floorLayoutFileName);
+            if (System.IO.File.Exists(filePath))
+            {
+                return File(filePath, "image/png"); // Adjust the content type according to the actual file type
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         // GET: tb_floor/Edit/5

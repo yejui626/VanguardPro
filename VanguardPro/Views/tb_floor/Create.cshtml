@@ -4,135 +4,119 @@
     ViewBag.Title = "Create";
 }
 
+<div class="container-fluid">
+    <h2 class="h3 mb-2 text-gray-800">Manage Floor</h2>
 
 
-
-
-
-
-
-    <div class="container-fluid">
-        <h2 class="h3 mb-2 text-gray-800">Manage Floor</h2>
-
-
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Create Floor Details</h6>
-
-            </div>
-            <div class="card-body">
-                <div class="table">
-
-
-
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_uid, "Investor", htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("f_uid", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.f_uid, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_lid, "Landlord", htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.DropDownList("f_lid", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.f_lid, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_id, htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.f_id, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.f_id, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_building, htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.f_building, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.f_building, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_desc, "Floor Decsription", htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.f_desc, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.f_desc, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_wifipwd, htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.f_wifipwd, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.f_wifipwd, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_modemIP, htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.f_modemIP, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.f_modemIP, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_cctvqr, htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.f_cctvqr, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.f_cctvqr, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.f_layout, htmlAttributes: new { @class = "control-label col-md-6" })
-                                <div class="col-md-6">
-                                    <input type="file" name="layout" id="layout" />
-
-                                    @Html.ValidationMessageFor(model => model.f_layout, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-
-
-
-
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    <div>
-                        @Html.ActionLink("Back to List", "Index")
-                    </div>
-
-                </div>
-            </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Create Floor Details</h6>
 
         </div>
-    </div>
-    <!-- Page level plugins -->
-    <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <div class="card-body">
+            <div class="table">
 
-    <!-- Page level custom scripts -->
-    <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+
+
+                @using (Html.BeginForm("Create",
+                        "tb_floor",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group" style="display: none;">
+                            @Html.LabelFor(model => model.f_uid, "Admin", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("f_uid", null, new { @class = "form-control", id = "f_uid" })
+                                @Html.ValidationMessageFor(model => model.f_uid, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_lid, "Landlord", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.DropDownList("f_lid", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.f_lid, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_building, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.f_building, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.f_building, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_desc, "Floor Decsription", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.f_desc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.f_desc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_wifipwd, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.f_wifipwd, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.f_wifipwd, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_modemIP, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.f_modemIP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.f_modemIP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_cctvqr, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.f_cctvqr, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.f_cctvqr, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.f_layout, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-6">
+                                <input type="file" name="layout" id="layout" />
+
+                                @Html.ValidationMessageFor(model => model.f_layout, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+    $(function () {
+        // Set the value of the hidden dropdown list to the session['UserID']
+        $('#f_uid').val('@Session["UserID"]');
+    });
+    </script>
+}

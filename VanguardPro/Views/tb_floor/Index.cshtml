@@ -19,18 +19,7 @@
 
         </div>
         <table class="table">
-
-
-
-
-
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.tb_landlord.l_name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.tb_user.u_username)
-                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.f_desc)
                 </th>
@@ -56,12 +45,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tb_landlord.l_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tb_user.u_username)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.f_desc)
                     </td>

@@ -46,7 +46,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "l_id,l_name,l_phone,l_due")] tb_landlord tb_landlord)
+        public ActionResult Create([Bind(Include = "l_id,l_name,l_phone,l_due,l_price")] tb_landlord tb_landlord)
         {
             if (ModelState.IsValid)
             {

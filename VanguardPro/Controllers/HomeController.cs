@@ -14,21 +14,15 @@ namespace VanguardPro.Controllers
         {
             // Retrieve the list of vacant rooms from the database
             var vacantRooms = db.tb_room.Include("tb_floor").ToList();
-            ViewBag.VacantRooms = vacantRooms;
+            var totalRooms = vacantRooms.Count;
+            var vacantRoomCount = vacantRooms.Count(r => r.r_availability == "Available");
+            var vacantRoomPercentage = (vacantRoomCount / (double)totalRooms) * 100;
+
+            ViewBag.VacantRoomPercentage = vacantRoomPercentage;
 
             DateTime today = DateTime.Today;
             var landlordsDueToday = db.tb_landlord.Where(l => l.l_due == today).ToList();
-            var floorDueToday = new List<tb_floor>();
-            foreach (var landlord in landlordsDueToday)
-            {
-                var floor = new tb_floor
-                {
-                    f_lid = landlord.l_id,
-                };
-
-                floorDueToday.Add(floor);
-            }
-            ViewBag.floorDueToday = floorDueToday;
+            ViewBag.landlordsDueToday = landlordsDueToday;
 
             var tb_tenant = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
 
