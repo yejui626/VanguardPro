@@ -1,83 +1,74 @@
-﻿@model VanguardPro.Models.tb_rental
+﻿@model VanguardPro.Models.tb_tenant
 
 @{
     ViewBag.Title = "Details";
 }
 
-<div class="container-fluid">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Details</h6>
-        </div>
+<h2>Details</h2>
 
-        <div class="card-body">
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_name)
-                </dt>
+<div>
+    <h4>tb_tenant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.t_name)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tb_tenant.t_name)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_name)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_ic)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.t_ic)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tb_tenant.t_ic)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_ic)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_uploadic)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.t_uploadic)
+        </dt>
 
-                <dd>
-                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = Model.tb_tenant.t_uploadic})" target="_blank" style="color: blue; font-weight: bold;">
-                        @Model.tb_tenant.t_uploadic (Click to see)
-                    </a>
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_uploadic)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_contract)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.t_contract)
+        </dt>
 
-                <dd>
-                    <a href="@Url.Action("GetFile", "tb_tenant", new { floorLayoutFileName = Model.tb_tenant.t_contract})" target="_blank" style="color: blue; font-weight: bold;">
-                        @Model.tb_tenant.t_contract (Click to see)
-                    </a>
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_contract)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_phone)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.t_phone)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tb_tenant.t_phone)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_phone)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_emergcont)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.t_emergcont)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tb_tenant.t_emergcont)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_emergcont)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.tb_tenant.t_siriNo)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.t_siriNo)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.tb_tenant.t_siriNo)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.t_siriNo)
+        </dd>
 
-            </dl>
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.re_id }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>
-        </div>
-    </div>
+    </dl>
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.t_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
