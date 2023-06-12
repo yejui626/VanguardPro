@@ -1,4 +1,4 @@
-﻿@model VanguardPro.Models.tb_room
+@model VanguardPro.Models.tb_room
 
 @{
     ViewBag.Title = "Edit";
@@ -12,16 +12,16 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>tb_room</h4>
+        <h4>Room</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "Room ID", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.r_id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.r_fid, "r_fid", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.r_fid, "Floor ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("r_fid", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.r_fid, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.r_fid, "Floor ID", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             @Html.LabelFor(model => model.r_price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.r_price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.r_price, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.r_price, "Room Price", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.r_availability, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.r_availability, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.r_availability, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.r_availability, "Availability", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -45,7 +45,7 @@
             @Html.LabelFor(model => model.r_roomNo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.r_roomNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.r_roomNo, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.r_roomNo, "Room ID", new { @class = "text-danger" })
             </div>
         </div>
 
