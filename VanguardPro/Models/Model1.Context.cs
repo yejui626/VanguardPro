@@ -12,11 +12,19 @@ namespace VanguardPro.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+<<<<<<< HEAD
     
     public partial class db_vanguardproEntities1 : DbContext
     {
         public db_vanguardproEntities1()
             : base("name=db_vanguardproEntities1")
+=======
+
+    public partial class db_vanguardproEntities : DbContext
+    {
+        public db_vanguardproEntities()
+            : base("name=db_vanguardproEntities")
+>>>>>>> parent of 789c15a (Update atd_check to nullable)
         {
         }
     

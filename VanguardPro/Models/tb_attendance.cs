@@ -16,8 +16,16 @@ namespace VanguardPro.Models
     {
         public int atd_id { get; set; }
         public int atd_fid { get; set; }
+<<<<<<< HEAD
         public Nullable<System.DateTime> atd_check { get; set; }
     
+=======
+        [Display(Name = "Attendance Date")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime atd_check { get; set; }
+        
+>>>>>>> parent of 789c15a (Update atd_check to nullable)
         public virtual tb_floor tb_floor { get; set; }
     }
 }
