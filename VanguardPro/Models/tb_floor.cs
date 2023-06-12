@@ -12,6 +12,7 @@ namespace VanguardPro.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class tb_floor
     {
@@ -37,7 +38,8 @@ namespace VanguardPro.Models
         [Display(Name = "CCTV QR")]
         public string f_cctvqr { get; set; }
         [Display(Name = "Layout")]
-        public string f_layout { get; set; }
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase f_layout { get; set; }
 
         public int f_uid { get; set; }
         [Display(Name = "Floor")]
