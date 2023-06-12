@@ -21,7 +21,7 @@
           </Key>
           <Property Name="atd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="atd_fid" Type="int" Nullable="false" />
-          <Property Name="atd_check" Type="datetime" Nullable="false" />
+          <Property Name="atd_check" Type="datetime" />
         </EntityType>
         <EntityType Name="tb_floor">
           <Key>
@@ -332,7 +332,7 @@
           </Key>
           <Property Name="atd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="atd_fid" Type="Int32" Nullable="false" />
-          <Property Name="atd_check" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="atd_check" Type="DateTime" Precision="3" Nullable="true" />
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_attendance_tb_floor" FromRole="tb_attendance" ToRole="tb_floor" />
         </EntityType>
         <EntityType Name="tb_floor">
@@ -421,7 +421,7 @@
           <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="r_fid" Type="Int32" Nullable="false" />
           <Property Name="r_price" Type="Double" Nullable="false" />
-          <Property Name="r_availability" Type="String" Nullable="false" />
+          <Property Name="r_availability" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
           <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
           <Property Name="r_roomNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
