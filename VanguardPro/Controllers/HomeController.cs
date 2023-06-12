@@ -37,26 +37,12 @@ namespace VanguardPro.Controllers
             int currentMonth = DateTime.Now.Month;
             int currentYear = DateTime.Now.Year;
 
-            foreach (var floor in db.tb_floor)
-            {
-                // Count the attendance for the current month and floor
-                int attendanceCount = db.tb_attendance.Count(c => c.atd_check.HasValue
-                    && c.atd_check.Value.Month == currentMonth
-                    && c.atd_check.Value.Year == currentYear
-                    && c.tb_floor.f_id == floor.f_id);
-                attendanceCounts[floor.f_desc] = attendanceCount;
-            }
-
-            ViewBag.AttendanceCounts = attendanceCounts;
-
-            //select and add to model exSummary
             var query = from tr in db.tb_transaction
                         join fl in db.tb_floor on tr.tr_fid equals fl.f_id into floorGroup
                         from fl in floorGroup.DefaultIfEmpty()
                         select tr;
             var queryList = query.ToList();
-
-            var tempSummary = new List<transactionSummary>();
+            var tempSummary = new List<HomeDashboard>();
             foreach (var tr in queryList)
             {
                 var sum = new transactionSummary
@@ -68,27 +54,56 @@ namespace VanguardPro.Controllers
                     Desc = tr.tr_desc,
                     Inflow = tr.tr_type == "Inflow" ? (decimal)tr.tr_amount : 0,
                     Outflow = tr.tr_type == "Outflow" ? (decimal)tr.tr_amount : 0,
-                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General",
-                    FloorID = tr.tr_fid
+                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General"
                 };
-                tempSummary.Add(sum);
+
+                var homeDashboard = new HomeDashboard
+                {
+                    TransactionSummary = sum
+                };
+
+                tempSummary.Add(homeDashboard);
             }
-            List<transactionSummary> groupedQuery = tempSummary.OrderBy(x => x.Year)
-                  .ThenBy(x => x.Month)
-                  .ThenBy(x => x.Day)
+
+            var groupedQuery = tempSummary.OrderBy(x => x.TransactionSummary.Year)
+                  .ThenBy(x => x.TransactionSummary.Month)
+                  .ThenBy(x => x.TransactionSummary.Day)
                   .ToList();
 
             foreach (var item in groupedQuery)
             {
-                var monthRecords = groupedQuery.Where(x => x.Year == item.Year && x.Month == item.Month).ToList();
-                item.TotalIn = monthRecords.Sum(x => x.Inflow);
-                item.TotalOut = monthRecords.Sum(x => x.Outflow);
-                item.Difference = item.TotalIn - item.TotalOut;
+                var monthRecords = groupedQuery.Where(x => x.TransactionSummary.Year == item.TransactionSummary.Year && x.TransactionSummary.Month == item.TransactionSummary.Month).ToList();
+                item.TransactionSummary.TotalIn = monthRecords.Sum(x => x.TransactionSummary.Inflow);
+                item.TransactionSummary.TotalOut = monthRecords.Sum(x => x.TransactionSummary.Outflow);
+                item.TransactionSummary.Difference = item.TransactionSummary.TotalIn - item.TransactionSummary.TotalOut;
             }
 
+            var result = new List<HomeDashboard>();
+            int rowSpanYear = 0;
+            int rowSpanMonth = 0;
 
+            foreach (var item in groupedQuery)
+            {
+                if (item.TransactionSummary.Year != currentYear)
+                {
+                    currentYear = item.TransactionSummary.Year;
+                    rowSpanYear = groupedQuery.Count(x => x.TransactionSummary.Year == currentYear);
+                }
+
+                if (item.TransactionSummary.Month != currentMonth)
+                {
+                    currentMonth = item.TransactionSummary.Month;
+                    rowSpanMonth = groupedQuery.Count(x => x.TransactionSummary.Year == currentYear && x.TransactionSummary.Month == currentMonth);
+                }
+
+                item.TransactionSummary.RowSpanYear = rowSpanYear;
+                item.TransactionSummary.RowSpanMonth = rowSpanMonth;
+
+                result.Add(item);
+            }
             UpdateRoomStatus();
-            return View(tb_tenant);
+            return View(result);
+
         }
 
         public ActionResult About()

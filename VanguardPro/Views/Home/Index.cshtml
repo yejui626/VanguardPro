@@ -1,8 +1,8 @@
-﻿@model IEnumerable<VanguardPro.Models.tb_rental>
-
+﻿@model List<VanguardPro.Models.HomeDashboard>
 @{
     ViewBag.Title = "Home Page";
     var currentDate = DateTime.Now;
+    var currentMonthShow = currentDate.ToString("MMMM");
 }
 
 <main>
@@ -19,7 +19,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Earnings (Monthly)
+                                    Net Profit (@currentMonthShow)
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     @{
@@ -29,12 +29,13 @@
                                     }
                                     @foreach (var item in Model)
                                     {
-                                        currentMonth = item.Month;
-                                        currentYear = item.Year;
-                                        differenceSum += item.Difference;
-                                        @Html.DisplayFor(modelItem => item.Difference)
-                                    }
-                                </div>
+                                        if(item.TransactionSummary.Month == currentMonth)
+                                        {
+                                            differenceSum += item.TransactionSummary.Difference;
+                                        }
+                                    }   
+                                        <p>RM @differenceSum</p>
+                                    </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
