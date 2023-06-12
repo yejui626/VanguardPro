@@ -149,18 +149,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tb_floor_tb_floor">
-          <End Role="tb_floor" Type="Self.tb_floor" Multiplicity="1" />
-          <End Role="tb_floor1" Type="Self.tb_floor" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="tb_floor">
-              <PropertyRef Name="f_id" />
-            </Principal>
-            <Dependent Role="tb_floor1">
-              <PropertyRef Name="f_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tb_floor_tb_landlord">
           <End Role="tb_landlord" Type="Self.tb_landlord" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -289,10 +277,6 @@
           <AssociationSet Name="FK_tb_attendance_tb_floor" Association="Self.FK_tb_attendance_tb_floor">
             <End Role="tb_floor" EntitySet="tb_floor" />
             <End Role="tb_attendance" EntitySet="tb_attendance" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_floor_tb_floor" Association="Self.FK_tb_floor_tb_floor">
-            <End Role="tb_floor" EntitySet="tb_floor" />
-            <End Role="tb_floor1" EntitySet="tb_floor" />
           </AssociationSet>
           <AssociationSet Name="FK_tb_floor_tb_landlord" Association="Self.FK_tb_floor_tb_landlord">
             <End Role="tb_landlord" EntitySet="tb_landlord" />

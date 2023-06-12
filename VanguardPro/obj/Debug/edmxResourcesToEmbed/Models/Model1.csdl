@@ -29,6 +29,8 @@
     <NavigationProperty Name="tb_room" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_floor" ToRole="tb_room" />
     <NavigationProperty Name="tb_transaction" Relationship="Self.FK_tb_transaction_tb_floor" FromRole="tb_floor" ToRole="tb_transaction" />
     <NavigationProperty Name="tb_attendance" Relationship="db_vanguardproModel.FK_tb_attendance_tb_floor" FromRole="tb_floor" ToRole="tb_attendance" />
+    <NavigationProperty Name="tb_floor1" Relationship="db_vanguardproModel.FK_tb_floor_tb_floor" FromRole="tb_floor" ToRole="tb_floor1" />
+    <NavigationProperty Name="tb_floor2" Relationship="db_vanguardproModel.FK_tb_floor_tb_floor" FromRole="tb_floor1" ToRole="tb_floor" />
   </EntityType>
   <EntityType Name="tb_inventory">
     <Key>
@@ -60,6 +62,7 @@
     <Property Name="l_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="l_due" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_floor_tb_landlord" FromRole="tb_landlord" ToRole="tb_floor" />
+    <Property Name="l_price" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="tb_profit">
     <Key>
@@ -305,6 +308,10 @@
       <End Role="tb_floor" EntitySet="tb_floor" />
       <End Role="tb_attendance" EntitySet="tb_attendance" />
     </AssociationSet>
+    <AssociationSet Name="FK_tb_floor_tb_floor" Association="db_vanguardproModel.FK_tb_floor_tb_floor">
+      <End Role="tb_floor" EntitySet="tb_floor" />
+      <End Role="tb_floor1" EntitySet="tb_floor" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tb_attendance">
     <Key>
@@ -324,6 +331,18 @@
       </Principal>
       <Dependent Role="tb_attendance">
         <PropertyRef Name="atd_fid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_floor_tb_floor">
+    <End Type="db_vanguardproModel.tb_floor" Role="tb_floor" Multiplicity="1" />
+    <End Type="db_vanguardproModel.tb_floor" Role="tb_floor1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tb_floor">
+        <PropertyRef Name="f_id" />
+      </Principal>
+      <Dependent Role="tb_floor1">
+        <PropertyRef Name="f_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

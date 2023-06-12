@@ -50,6 +50,7 @@
     <EntitySetMapping Name="tb_landlord">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_landlord">
         <MappingFragment StoreEntitySet="tb_landlord">
+          <ScalarProperty Name="l_price" ColumnName="l_price" />
           <ScalarProperty Name="l_id" ColumnName="l_id" />
           <ScalarProperty Name="l_name" ColumnName="l_name" />
           <ScalarProperty Name="l_phone" ColumnName="l_phone" />
