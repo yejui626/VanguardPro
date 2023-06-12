@@ -22,8 +22,8 @@ namespace VanguardPro.Models
         [Display(Name = "Attendance Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> atd_check { get; set; }
-
+        public System.DateTime atd_check { get; set; }
+        
         public virtual tb_floor tb_floor { get; set; }
     }
 }
