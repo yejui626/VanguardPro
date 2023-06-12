@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_vanguardproModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db_vanguardproModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -312,8 +312,7 @@
             <End Role="tb_transaction" EntitySet="tb_transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_vanguardproModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -333,11 +332,7 @@
           </Key>
           <Property Name="atd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="atd_fid" Type="Int32" Nullable="false" />
-<<<<<<< HEAD
-          <Property Name="atd_check" Type="DateTime" Precision="3" />
-=======
-          <Property Name="atd_check" Type="DateTime" Nullable="false" Precision="3" />
->>>>>>> parent of 789c15a (Update atd_check to nullable)
+          <Property Name="atd_check" Type="DateTime" Nullable="true" Precision="3" />
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_attendance_tb_floor" FromRole="tb_attendance" ToRole="tb_floor" />
         </EntityType>
         <EntityType Name="tb_floor">
@@ -426,14 +421,10 @@
           <Property Name="r_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="r_fid" Type="Int32" Nullable="false" />
           <Property Name="r_price" Type="Double" Nullable="false" />
-<<<<<<< HEAD
-          <Property Name="r_availability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="r_roomNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-=======
           <Property Name="r_availability" Type="String" Nullable="false" />
->>>>>>> parent of 789c15a (Update atd_check to nullable)
           <NavigationProperty Name="tb_floor" Relationship="Self.FK_tb_room_tb_floor" FromRole="tb_room" ToRole="tb_floor" />
           <NavigationProperty Name="tb_rental" Relationship="Self.FK_tb_rental_tb_room" FromRole="tb_room" ToRole="tb_rental" />
+          <Property Name="r_roomNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tb_tenant">
           <Key>
@@ -598,7 +589,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="db_vanguardproEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="tb_attendance" EntityType="Self.tb_attendance" />
           <EntitySet Name="tb_floor" EntityType="Self.tb_floor" />
@@ -657,7 +648,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db_vanguardproModelStoreContainer" CdmEntityContainer="db_vanguardproEntities1">
+        <EntityContainerMapping StorageEntityContainer="db_vanguardproModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="db_vanguardproModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -753,11 +744,11 @@
           <EntitySetMapping Name="tb_room">
             <EntityTypeMapping TypeName="db_vanguardproModel.tb_room">
               <MappingFragment StoreEntitySet="tb_room">
+                <ScalarProperty Name="r_roomNo" ColumnName="r_roomNo" />
                 <ScalarProperty Name="r_id" ColumnName="r_id" />
                 <ScalarProperty Name="r_fid" ColumnName="r_fid" />
                 <ScalarProperty Name="r_price" ColumnName="r_price" />
                 <ScalarProperty Name="r_availability" ColumnName="r_availability" />
-                <ScalarProperty Name="r_roomNo" ColumnName="r_roomNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

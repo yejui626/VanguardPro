@@ -11,21 +11,19 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_attendance
     {
+        [Display(Name = "Attendance ID")]
         public int atd_id { get; set; }
+        [Display(Name = "Attendance Floor ID")]
         public int atd_fid { get; set; }
-<<<<<<< HEAD
-        public Nullable<System.DateTime> atd_check { get; set; }
-    
-=======
         [Display(Name = "Attendance Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public System.DateTime atd_check { get; set; }
-        
->>>>>>> parent of 789c15a (Update atd_check to nullable)
+        public Nullable<System.DateTime> atd_check { get; set; }
+
         public virtual tb_floor tb_floor { get; set; }
     }
 }
