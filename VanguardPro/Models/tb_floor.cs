@@ -53,5 +53,7 @@ namespace VanguardPro.Models
         public virtual ICollection<tb_room> tb_room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_transaction> tb_transaction { get; set; }
+        public virtual tb_floor tb_floor1 { get; set; }
+        public virtual tb_floor tb_floor2 { get; set; }
     }
 }
