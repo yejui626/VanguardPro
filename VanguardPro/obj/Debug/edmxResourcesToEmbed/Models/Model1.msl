@@ -12,15 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tb_attendance">
-      <EntityTypeMapping TypeName="db_vanguardproModel.tb_attendance">
-        <MappingFragment StoreEntitySet="tb_attendance">
-          <ScalarProperty Name="atd_id" ColumnName="atd_id" />
-          <ScalarProperty Name="atd_fid" ColumnName="atd_fid" />
-          <ScalarProperty Name="atd_check" ColumnName="atd_check" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tb_floor">
       <EntityTypeMapping TypeName="db_vanguardproModel.tb_floor">
         <MappingFragment StoreEntitySet="tb_floor">
@@ -141,6 +132,15 @@
           <ScalarProperty Name="u_pwd" ColumnName="u_pwd" />
           <ScalarProperty Name="u_email" ColumnName="u_email" />
           <ScalarProperty Name="u_usertype" ColumnName="u_usertype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_attendance">
+      <EntityTypeMapping TypeName="db_vanguardproModel.tb_attendance">
+        <MappingFragment StoreEntitySet="tb_attendance">
+          <ScalarProperty Name="atd_check" ColumnName="atd_check" />
+          <ScalarProperty Name="atd_fid" ColumnName="atd_fid" />
+          <ScalarProperty Name="atd_id" ColumnName="atd_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

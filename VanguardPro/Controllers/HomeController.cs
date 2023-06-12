@@ -28,7 +28,7 @@ namespace VanguardPro.Controllers
             var landlordsDueToday = db.tb_landlord.Where(l => l.l_due == today).ToList();
             ViewBag.landlordsDueToday = landlordsDueToday;
 
-            var tb_tenants = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
+            var tb_tenant = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
 
             // Calculate cleaner attendance per floor for the current month
             var attendanceCounts = new Dictionary<string, int>();
@@ -49,9 +49,46 @@ namespace VanguardPro.Controllers
 
             ViewBag.AttendanceCounts = attendanceCounts;
 
+            //select and add to model exSummary
+            var query = from tr in db.tb_transaction
+                        join fl in db.tb_floor on tr.tr_fid equals fl.f_id into floorGroup
+                        from fl in floorGroup.DefaultIfEmpty()
+                        select tr;
+            var queryList = query.ToList();
+
+            var tempSummary = new List<transactionSummary>();
+            foreach (var tr in queryList)
+            {
+                var sum = new transactionSummary
+                {
+                    Year = tr.tr_date.Year,
+                    Month = tr.tr_date.Month,
+                    Day = tr.tr_date.Day,
+                    PaymentMethod = tr.tr_paymentMethod,
+                    Desc = tr.tr_desc,
+                    Inflow = tr.tr_type == "Inflow" ? (decimal)tr.tr_amount : 0,
+                    Outflow = tr.tr_type == "Outflow" ? (decimal)tr.tr_amount : 0,
+                    Floor = tr.tr_fid != null ? tr.tb_floor.f_desc : "General",
+                    FloorID = tr.tr_fid
+                };
+                tempSummary.Add(sum);
+            }
+            List<transactionSummary> groupedQuery = tempSummary.OrderBy(x => x.Year)
+                  .ThenBy(x => x.Month)
+                  .ThenBy(x => x.Day)
+                  .ToList();
+
+            foreach (var item in groupedQuery)
+            {
+                var monthRecords = groupedQuery.Where(x => x.Year == item.Year && x.Month == item.Month).ToList();
+                item.TotalIn = monthRecords.Sum(x => x.Inflow);
+                item.TotalOut = monthRecords.Sum(x => x.Outflow);
+                item.Difference = item.TotalIn - item.TotalOut;
+            }
+
 
             UpdateRoomStatus();
-            return View();
+            return View(tb_tenant);
         }
 
         public ActionResult About()
@@ -70,7 +107,7 @@ namespace VanguardPro.Controllers
 
         public void UpdateRoomStatus()
         {
-            var tenantsToUpdate = db.tb_rental.Include("tb_room").Include("tb_tenants").ToList();
+            var tenantsToUpdate = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
             var currentDate = DateTime.Now;
 
             foreach (var tenant in tenantsToUpdate)
