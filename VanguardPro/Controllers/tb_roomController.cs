@@ -17,6 +17,10 @@ namespace VanguardPro.Controllers
 
         public ActionResult GetRoomsByFloor(int? id)
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (id == null)
             {
                 return Json(new List<object>(), JsonRequestBehavior.AllowGet);

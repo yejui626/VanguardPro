@@ -17,6 +17,10 @@ namespace VanguardPro.Controllers
         // GET: tb_attendance
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var tb_attendance = db.tb_attendance.Include(t => t.tb_floor);
             return View(tb_attendance.ToList());
         }

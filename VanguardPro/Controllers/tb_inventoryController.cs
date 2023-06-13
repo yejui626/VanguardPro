@@ -18,6 +18,10 @@ namespace VanguardPro.Controllers
         // GET: tb_inventory
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var tb_inventory = db.tb_inventory.Include(t => t.tb_floor);
             return View(tb_inventory.ToList());
         }

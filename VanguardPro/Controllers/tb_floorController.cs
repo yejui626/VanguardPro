@@ -19,6 +19,10 @@ namespace VanguardPro.Controllers
         // GET: tb_floor
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var tb_floor = db.tb_floor.Include(t => t.tb_landlord).Include(t => t.tb_user);
             return View(tb_floor.ToList());
         }

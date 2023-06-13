@@ -14,6 +14,10 @@ namespace VanguardPro.Controllers
 
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var floorList = db.tb_floor.ToList();
             var selectList = new List<SelectListItem>
             {
