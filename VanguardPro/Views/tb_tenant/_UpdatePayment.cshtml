@@ -61,6 +61,26 @@
                         </div>
                     </div>
 
+                    <div class="form-group" id="paymentMethod">
+                        <label class="control-label col-md-2">Payment Method</label>
+                        <div class="col-md-12">
+                            <select class="form-control" name="paymentMethod" required>
+                                <option value=null>---- Select Method ----</option>
+                                <option value="Bank">Bank</option>
+                                <option value="Cash">Cash</option>
+                            </select>
+                            <span id="paymentMethodWarning" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Receipt</label>
+                        <div class="col-md-12">
+                            <input type="file" name="receipt" id="receipt" />
+                            <span id="receiptWarning" class="text-danger"></span>
+                        </div>
+                    </div>
+
                     <div class="form-group" id="paymentDateField">
                         @Html.LabelFor(model => model.re_payDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">

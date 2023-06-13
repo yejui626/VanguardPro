@@ -103,6 +103,7 @@ namespace VanguardPro.Controllers
 
                 db.tb_transaction.Add(tb_transaction);
                 db.SaveChanges();
+                CalculateCurrentMonthProfit();
                 return RedirectToAction("Index");
             }
 
@@ -191,5 +192,68 @@ namespace VanguardPro.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public void CalculateCurrentMonthProfit()
+        {
+            var currentMonth = DateTime.Now.Month;
+            var currentYear = DateTime.Now.Year;
+
+            // Retrieve the investors from the tb_investor table
+            var investors = db.tb_investors.ToList();
+
+            var financeData = db.tb_transaction
+                .Where(tr => tr.tr_date.Month == currentMonth && tr.tr_date.Year == currentYear && tr.tr_fid != null)
+                .GroupBy(tr => new { tr.tr_fid})
+                .Select(g => new
+                {
+                    Profit = g.Sum(tr => tr.tr_amount * (tr.tr_type == "Inflow" ? 1 : -1))
+                })
+                .ToList();
+
+            // Calculate the total profit for the current month
+            var profit = financeData.Sum(t => t.Profit);
+            var partner = 3;
+            var lot = db.tb_investors.Select(x => x.i_lot).Distinct().Count();
+            profit = (profit * 6 / 10) / (partner + lot);
+            var p_date = DateTime.Now;
+            int i = 0;
+
+            foreach (var investor in investors)
+            {
+                var sharing = profit * (decimal)(investor.i_lotperc / 100);
+
+                // Check if a profit entry already exists for the current month and investor
+                var existingProfit = db.tb_profit.FirstOrDefault(p => p.p_investorid == investor.i_id && p.p_date.Month == currentMonth && p.p_date.Year == currentYear);
+
+                if (existingProfit != null)
+                {
+                    // Update the existing profit entry
+                    existingProfit.p_profit = (double)sharing;
+                    db.Entry(existingProfit).State = EntityState.Modified;
+
+                    var user = db.tb_user.Find(investor.i_uid);
+                }
+                else
+                {
+                    // Create a new profit entry
+                    var profitEntry = new tb_profit
+                    {
+                        p_investorid = investor.i_id,
+                        p_date = DateTime.Now,
+                        p_profit = (double)sharing
+                    };
+
+                    // Add the profit entry to the table
+                    db.tb_profit.Add(profitEntry);
+                }
+            }
+
+            // Save the changes to the database
+            db.SaveChanges();
+        }
+        //END OF CalculateCurrentMonthProfit
+
+
+
     }
 }

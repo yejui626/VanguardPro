@@ -137,6 +137,7 @@
     <Compile Include="Controllers\tb_inventoryController.cs" />
     <Compile Include="Controllers\tb_investorsController.cs" />
     <Compile Include="Controllers\tb_landlordController.cs" />
+    <Compile Include="Controllers\tb_profitController.cs" />
     <Compile Include="Controllers\tb_roomController.cs" />
     <Compile Include="Controllers\tb_tenantController.cs" />
     <Compile Include="Controllers\tb_transactionController.cs" />
@@ -2174,6 +2175,11 @@
     <Content Include="Views\tb_room\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
     <Content Include="Views\tb_tenant\_UpdatePayment.cshtml" />
+    <Content Include="Views\tb_profit\Create.cshtml" />
+    <Content Include="Views\tb_profit\Delete.cshtml" />
+    <Content Include="Views\tb_profit\Details.cshtml" />
+    <Content Include="Views\tb_profit\Edit.cshtml" />
+    <Content Include="Views\tb_profit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

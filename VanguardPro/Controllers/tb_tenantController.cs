@@ -79,7 +79,7 @@ namespace VanguardPro.Controllers
             }
         }
 
-        public ActionResult UpdatePayment(int? id)
+        public ActionResult UpdatePayment(int? id, HttpPostedFileBase file)
         {
             if (Session["UserID"] == null)
             {
@@ -100,10 +100,27 @@ namespace VanguardPro.Controllers
             }
             ViewBag.outstanding = tb_rental.re_outstanding;
 
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Images"),
+                                               Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    ViewBag.Message = "File uploaded successfully";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            else
+            {
+                ViewBag.Message = "You have not specified a file.";
+            }
+
             return PartialView("_UpdatePayment", tb_rental);
         }
         [HttpPost]
-        public ActionResult UpdatePayment(tb_rental tb_rental, double paymentAmount)
+        public ActionResult UpdatePayment(tb_rental tb_rental, double paymentAmount, HttpPostedFileBase receipt)
         {
             if (ModelState.IsValid)
             {
@@ -130,6 +147,28 @@ namespace VanguardPro.Controllers
                     tb_rental.re_paymentStatus = existingPayment.re_paymentStatus;
                     existingPayment.re_payDate = tb_rental.re_payDate;
 
+                    var receiptfilename = "";
+                    if (receipt != null && receipt.ContentLength > 0)
+                    {
+                        string fileName = Path.GetFileName(receipt.FileName);
+                        string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                        receipt.SaveAs(filePath);
+                        receiptfilename = fileName;
+                    }
+
+                    // Create a new transaction
+                    var newTransaction = new tb_transaction
+                    {
+                        tr_desc = "Rental Payment by" + existingPayment.tb_tenant.t_name,
+                        tr_fid = existingPayment.tb_room.r_fid,
+                        tr_type = "Inflow",
+                        tr_paymentMethod = "Cash",
+                        tr_date = existingPayment.re_payDate ?? DateTime.MinValue,
+                        tr_receipt = receiptfilename,
+                        tr_amount = (decimal)paymentAmount
+                    };
+
+                    db.tb_transaction.Add(newTransaction);
                     db.SaveChanges();
 
                     return RedirectToAction("Index", "tb_tenant", new { id = tb_rental.re_id });
