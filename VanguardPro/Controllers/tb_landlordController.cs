@@ -17,6 +17,10 @@ namespace VanguardPro.Controllers
         // GET: tb_landlord
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(db.tb_landlord.ToList());
         }
 

@@ -2,35 +2,30 @@
 
 @{
     ViewBag.Title = "Index";
+    var isAdmin = false;
+}
+@if (Session["UserID"] != null && Session["UserType"].ToString() == "1")
+{
+    isAdmin = true;
 }
 <style>
-    .button {
-        background-color: #33e82b;
-        border-radius: 8px;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: left;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        width: 200px;
-        cursor: pointer;
+    .row {
+        margin-right: 0px;
     }
 </style>
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h1 class="m-0 font-weight-bold text-primary">Landlord List</h1>
+            <h6 class="m-0 font-weight-bold text-primary">Landlord List</h6>
         </div>
-        <button class="button" width="20">
-            @Html.ActionLink("Create New", "Create")
-        </button>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
+        <div class="card-body">
+            <div class="table-responsive">
+                <button class="button" width="20" style="background-color: lightskyblue;">
+                    @Html.ActionLink("Create New", "Create")
+                </button>
+                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.l_name)
@@ -41,46 +36,49 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.l_due)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.l_price)
+                            </th>
                             <th></th>
                         </tr>
+                    </thead>
 
+                    <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.l_name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.l_phone)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.l_due)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.l_id })" title="Edit">
-                                        <i class="fas fa-edit fa-lg text-primary"></i>
-                                    </a>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.l_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.l_phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.l_due)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.l_price)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = item.l_id })" title="Edit">
+                                    <i class="fas fa-edit fa-lg text-primary"></i>
+                                </a>
 
-                                    <a href="@Url.Action("Details", new { id = item.l_id })" title="Details">
-                                        <i class="fas fa-info-circle fa-lg text-info"></i>
-                                    </a>
+                                <a href="@Url.Action("Details", new { id = item.l_id })" title="Details">
+                                    <i class="fas fa-info-circle fa-lg text-info"></i>
+                                </a>
 
-                                    <a href="@Url.Action("Delete", new { id = item.l_id })" title="Delete">
-                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <a href="@Url.Action("Delete", new { id = item.l_id })" title="Delete">
+                                    <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
                         }
-
-                    </table>
-
-                </div>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
 </div>
-</div>
-        <!-- Page level plugins -->
-        <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
