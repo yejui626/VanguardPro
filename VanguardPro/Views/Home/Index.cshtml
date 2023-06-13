@@ -140,7 +140,7 @@
                                     <th>Room</th>
                                     <th>Due Date</th>
                                     <th>Payment Status</th>
-                                    <th>Action</th>
+                                    <th>Send Reminder</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,9 +178,8 @@
                                             </td>
                                         }
                                         <td>
-                                            <button class="btn btn-primary btn-sm" onclick="sendWhatsAppMessage('@item.tb_tenant.t_phone', 'Dear [@item.tb_tenant.t_name], please make payment of [@item.re_rentPrice] to our bank account: [Bank Account Number]. Thank you.')">
-                                                <i class="bi bi-whatsapp"></i>
-                                                Send Whatsapp
+                                            <button class="btn btn-primary btn-sm" onclick="sendWhatsAppMessage('@item.tb_tenant.t_phone', 'Dear [@item.tb_tenant.t_name], please make payment of RM @item.re_rentPrice to our bank account: [Bank Account Number]. Thank you.')">
+                                                <i class="fab fa-whatsapp "></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -441,7 +440,7 @@
 <script>
     function sendWhatsAppMessage(phoneNumber, message) {
         // Replace [Bank Account Number] with the actual bank account number
-        message = message.replace('[Bank Account Number]', '1234567890');
+        message = message.replace('[Bank Account Number]', '107358116153');
 
         // Encode the message for use in the WhatsApp URL
         var encodedMessage = encodeURIComponent(message);
