@@ -131,7 +131,6 @@
             <!-- Card Body -->
             <div class="card-body">
                 <div class="chart-area">
-
                     <div class="table-responsive">
                         <table class="table" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -146,47 +145,46 @@
                             </thead>
                             <tbody>
                                 @{ 
-                                        var filteredData = ((List<tb_rental>)ViewBag.reminder).Where(tb_rental => tb_rental.re_outdate != null && tb_rental.tb_room.r_availability == "Occupied").GroupBy(tb_rental => tb_rental.tb_room.r_id);
-                                    }
-                                    @foreach (var group in filteredData)
+                                    var reminderList = ViewBag.reminder;
+                                 }
+                                    @foreach (var item in reminderList)
                                     {
-                                        var latestTenant = group.OrderByDescending(t => t.tb_rental.re_outdate).FirstOrDefault();
                                     <tr>
-                                        <td>@Html.DisplayFor(modelItem => latestTenant.tb_rental.tb_tenant.t_name)</td>
-                                        <td>@Html.DisplayFor(modelItem => latestTenant.tb_rental.tb_room.tb_floor.f_desc)</td>
-                                        <td>@Html.DisplayFor(modelItem => latestTenant.tb_rental.tb_room.r_roomNo)</td>
-                                        <td>@Html.DisplayFor(modelItem => latestTenant.tb_rental.re_outdate)</td>
-                                        @if (latestTenant.tb_rental.re_paymentStatus == "Paid")
+                                        <td>@item.tb_tenant.t_name</td>
+                                        <td>@item.tb_room.tb_floor.f_desc</td>
+                                        <td>@item.tb_room.r_roomNo</td>
+                                        <td>@item.re_outdate</td>
+                                        @if (item.re_paymentStatus == "Paid")
                                         {
                                             <td>
                                                 <span class="badge bg-success">Paid</span>
                                             </td>
                                         }
-                                        @if (latestTenant.tb_rental.re_paymentStatus == "Unpaid")
+                                        @if (item.re_paymentStatus == "Unpaid")
                                         {
                                             <td>
                                                 <span class="badge bg-danger">Unpaid</span>
                                             </td>
                                         }
-                                        @if (latestTenant.tb_rental.re_paymentStatus == "Partially Paid")
+                                        @if (item.re_paymentStatus == "Partially Paid")
                                         {
                                             <td>
                                                 <span class="badge bg-warning">Partially Paid</span>
                                             </td>
                                         }
-                                        @if (latestTenant.tb_rental.re_paymentStatus == null)
+                                        @if (item.re_paymentStatus == null)
                                         {
                                             <td>
                                             </td>
                                         }
                                         <td>
-                                            <button class="btn btn-primary btn-sm" onclick="sendWhatsAppMessage('@latestTenant.tb_rental.tb_tenant.t_phone', 'Dear [@latestTenant.tb_rental.tb_tenant.t_name], please make payment of [@latestTenant.tb_rental.re_rentPrice] to our bank account: [Bank Account Number]. Thank you.')">
+                                            <button class="btn btn-primary btn-sm" onclick="sendWhatsAppMessage('@item.tb_tenant.t_phone', 'Dear [@item.tb_tenant.t_name], please make payment of [@item.re_rentPrice] to our bank account: [Bank Account Number]. Thank you.')">
                                                 <i class="bi bi-whatsapp"></i>
                                                 Send Whatsapp
                                             </button>
                                         </td>
                                     </tr>
-                                }
+                                    }
                             </tbody>
                         </table>
                     </div>
@@ -440,24 +438,28 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 
+<script>
+    function sendWhatsAppMessage(phoneNumber, message) {
+        // Replace [Bank Account Number] with the actual bank account number
+        message = message.replace('[Bank Account Number]', '1234567890');
+
+        // Encode the message for use in the WhatsApp URL
+        var encodedMessage = encodeURIComponent(message);
+
+        // Construct the WhatsApp URL with the phone number and encoded message
+        var whatsappUrl = 'https://wa.me/+6' + phoneNumber + '?text=' + encodedMessage;
+
+        // Open the WhatsApp URL in a new window or tab
+        window.open(whatsappUrl);
+    }
+</script>
+
 @section Scripts {
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable();
 
-            function sendWhatsAppMessage(phoneNumber, message) {
-                // Replace [Bank Account Number] with the actual bank account number
-                message = message.replace('[Bank Account Number]', '1234567890');
 
-                // Encode the message for use in the WhatsApp URL
-                var encodedMessage = encodeURIComponent(message);
-
-                // Construct the WhatsApp URL with the phone number and encoded message
-                var whatsappUrl = 'https://wa.me/+6' + phoneNumber + '?text=' + encodedMessage;
-
-                // Open the WhatsApp URL in a new window or tab
-                window.open(whatsappUrl);
-            }
         });
     </script>
 }

@@ -10,8 +10,5 @@ namespace VanguardPro.Models
     {
         public virtual tb_rental tb_rental { get; set; }
         public virtual transactionSummary TransactionSummary { get; set; }
-
-        public List<HomeDashboard> HomeDashboards { get; set; }
-        public List<HomeDashboard> Result { get; set; }
     }
 }
