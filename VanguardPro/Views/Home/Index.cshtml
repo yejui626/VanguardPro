@@ -144,11 +144,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @{ 
+                                @{
                                     var reminderList = ViewBag.reminder;
-                                 }
-                                    @foreach (var item in reminderList)
-                                    {
+                                }
+                                @foreach (var item in reminderList)
+                                {
                                     <tr>
                                         <td>@item.tb_tenant.t_name</td>
                                         <td>@item.tb_room.tb_floor.f_desc</td>
@@ -183,7 +183,54 @@
                                             </button>
                                         </td>
                                     </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Vacant Rooms</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-area">
+                    <div class="table-responsive">
+                        <table class="table" id="dataTable1" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Floor</th>
+                                    <th>Room Number</th>
+                                    <th>Price</th>
+                                    <th>Availability</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.VacantRooms != null && ViewBag.VacantRooms.Count > 0)
+                                {
+                                    foreach (var room in ViewBag.VacantRooms)
+                                    {
+                                        string availabilityDate = string.Empty;
+                                        string availabilityTime = string.Empty;
+
+                                        if (room.r_availability == "Available")
+                                        {
+                                            <tr>
+                                                <td>@room.tb_floor.f_desc</td>
+                                                <td><a href="@Url.Action("Details", "tb_room", new { id = room.r_id })" class="text-primary">@room.r_roomNo</a></td>
+                                                <td>@room.r_price</td>
+                                                <td>
+                                                    <span class="badge bg-success">Available</span>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -457,6 +504,7 @@
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable();
+            $('#dataTable1').DataTable();
 
 
         });

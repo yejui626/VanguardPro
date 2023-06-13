@@ -4,42 +4,55 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Profit Sharing List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table" id="dataTable" width="100%" cellspacing="0" ">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tb_investors.i_id)
+                            </th>
+                            <th>
+                                Month
+                            </th>
+                            <th>
+                                Profit Sharing
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.p_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.p_date.Month)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.p_profit)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.p_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.p_profit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tb_investors.i_id)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.p_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.p_profit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.p_id)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.p_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.p_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.p_id })
-        </td>
-    </tr>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
 }
-
-</table>

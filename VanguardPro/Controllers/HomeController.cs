@@ -17,6 +17,7 @@ namespace VanguardPro.Controllers
             var totalRooms = vacantRooms.Count;
             var vacantRoomCount = vacantRooms.Count(r => r.r_availability == "Available");
             var vacantRoomPercentage = (vacantRoomCount / (double)totalRooms) * 100;
+            ViewBag.VacantRooms = vacantRooms;
             ViewBag.VacantRoomCount = vacantRoomCount;
             ViewBag.VacantRoomPercentage = vacantRoomPercentage;
 
