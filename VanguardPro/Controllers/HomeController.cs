@@ -17,14 +17,18 @@ namespace VanguardPro.Controllers
             var totalRooms = vacantRooms.Count;
             var vacantRoomCount = vacantRooms.Count(r => r.r_availability == "Available");
             var vacantRoomPercentage = (vacantRoomCount / (double)totalRooms) * 100;
-
+            ViewBag.VacantRoomCount = vacantRoomCount;
             ViewBag.VacantRoomPercentage = vacantRoomPercentage;
+
+            var pendingRental = db.tb_rental.Where(r => r.re_paymentStatus == "Unpaid" || r.re_paymentStatus == "Partially Paid").ToList();
+            ViewBag.pendingRental = pendingRental;
 
             DateTime today = DateTime.Today;
             var landlordsDueToday = db.tb_landlord.Where(l => l.l_due == today).ToList();
             ViewBag.landlordsDueToday = landlordsDueToday;
 
-            var tb_tenant = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
+            var reminder = db.tb_rental.Include("tb_room").Include("tb_tenant").ToList();
+            ViewBag.reminder = reminder;
 
             // Calculate cleaner attendance per floor for the current month
             var attendanceCounts = new Dictionary<string, int>();
