@@ -11,7 +11,8 @@ namespace VanguardPro.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_room
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,16 @@ namespace VanguardPro.Models
         {
             this.tb_rental = new HashSet<tb_rental>();
         }
-    
+
+        [Display(Name = "Room ID")]
         public int r_id { get; set; }
+        [Display(Name = "Floor ID")]
         public int r_fid { get; set; }
+        [Display(Name = "Room Price")]
         public double r_price { get; set; }
+        [Display(Name = " Availability")]
         public string r_availability { get; set; }
+        [Display(Name ="Room Number")]
         public string r_roomNo { get; set; }
     
         public virtual tb_floor tb_floor { get; set; }

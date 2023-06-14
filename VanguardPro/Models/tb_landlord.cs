@@ -24,7 +24,7 @@ namespace VanguardPro.Models
 
         [Display(Name = "ID")]
         public int l_id { get; set; }
-        [Display(Name = "Name")]
+        [Display(Name = " Landlord Name")]
         public string l_name { get; set; }
         [Display(Name = "Phone")]
         public string l_phone { get; set; }

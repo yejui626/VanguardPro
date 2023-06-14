@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Room</h4>
         <hr />
@@ -64,3 +64,10 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<!-- Page level plugins -->
+<script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>

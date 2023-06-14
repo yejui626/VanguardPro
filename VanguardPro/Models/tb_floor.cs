@@ -25,7 +25,7 @@ namespace VanguardPro.Models
         }
         [Display(Name = "Floor ID")]
         public int f_id { get; set; }
-        [Display(Name = "Landlord ID")]
+        [Display(Name = "Landlord Name")]
         public int f_lid { get; set; }
 
         [Display(Name = "Building")]
@@ -38,9 +38,9 @@ namespace VanguardPro.Models
         public string f_cctvqr { get; set; }
         [Display(Name = "Layout")]
         public string f_layout { get; set; }
-
+      
         public int f_uid { get; set; }
-        [Display(Name = "Floor")]
+        [Display(Name = "Floor Description")]
         public string f_desc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
