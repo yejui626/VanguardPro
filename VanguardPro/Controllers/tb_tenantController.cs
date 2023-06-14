@@ -134,9 +134,10 @@ namespace VanguardPro.Controllers
                         existingPayment.re_outstanding = 0;
                         existingPayment.re_paymentStatus = "Paid";
                     }
-                    else if (paymentAmount == 0)
+                    else if (existingPayment.re_outstanding > paymentAmount )
                     {
-                        existingPayment.re_paymentStatus = "Unpaid";
+                        existingPayment.re_outstanding = existingPayment.re_outstanding - paymentAmount;
+                        existingPayment.re_paymentStatus = "Overpaid";
                     }
                     else
                     {

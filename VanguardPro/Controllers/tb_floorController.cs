@@ -55,7 +55,7 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor, HttpPostedFileBase layout)
+        public ActionResult Create([Bind(Include = "f_id,f_lid,f_desc,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor, HttpPostedFileBase layout, HttpPostedFileBase qr)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +65,13 @@ namespace VanguardPro.Controllers
                     string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
                     layout.SaveAs(filePath);
                     tb_floor.f_layout = fileName; // Save the unique file name in the database
+                }
+                if (qr != null && qr.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(qr.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    qr.SaveAs(filePath);
+                    tb_floor.f_cctvqr = fileName; // Save the unique file name in the database
                 }
                 db.tb_floor.Add(tb_floor);
                 db.SaveChanges();

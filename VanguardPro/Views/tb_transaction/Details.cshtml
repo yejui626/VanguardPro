@@ -4,71 +4,76 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Details</h6>
+        </div>
 
-<div>
-    <h4>tb_transaction</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_desc)
-        </dt>
+        <div class="card-body">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_desc)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_desc)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_desc)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_amount)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_amount)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_amount)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_amount)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_type)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_type)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_type)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_type)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_paymentMethod)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_paymentMethod)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_paymentMethod)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_paymentMethod)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_date)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_date)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_date)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_date)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tr_receipt)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tr_receipt)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tr_receipt)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tr_receipt)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tb_floor.f_building)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_floor.f_building)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tb_floor.f_building)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tb_floor.f_building)
+                </dd>
 
-    </dl>
+            </dl>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.tr_id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.tr_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

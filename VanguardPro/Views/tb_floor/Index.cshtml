@@ -58,7 +58,9 @@
                         @Html.DisplayFor(modelItem => item.f_modemIP)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.f_cctvqr)
+                        <a href="@Url.Action("GetFile", "tb_floor", new { floorLayoutFileName = item.f_cctvqr})" target="_blank" style="color: blue; font-weight: bold;">
+                            @item.f_cctvqr (Click to see)
+                        </a>
                     </td>
                     <td>
                         <a href="@Url.Action("GetFile", "tb_floor", new { floorLayoutFileName = item.f_layout})" target="_blank" style="color: blue; font-weight: bold;">

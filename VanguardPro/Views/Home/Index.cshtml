@@ -28,12 +28,13 @@
                                         int currentMonth = currentDate.Month;
                                         decimal differenceSum = 0;
                                         decimal differenceSumYear = 0;
+                                        int tempMonth = 0;
                                     }
                                     @foreach (var item in Model)
                                     {
                                         if (item.TransactionSummary.Month == currentMonth)
                                         {
-                                            differenceSum += item.TransactionSummary.Difference;
+                                            differenceSum = item.TransactionSummary.Difference;
                                         }
                                     }
                                     <p>RM @differenceSum</p>
@@ -59,7 +60,14 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     @foreach (var item in Model)
                                     {
-                                        differenceSumYear += item.TransactionSummary.Difference;
+                                        if (item.TransactionSummary.Year == currentYear)
+                                        {
+                                            if (tempMonth!= item.TransactionSummary.Month)
+                                            {
+                                                tempMonth = item.TransactionSummary.Month;
+                                                differenceSumYear += item.TransactionSummary.Difference;
+                                            }
+                                        }
                                     }
                                     <p>RM @differenceSumYear</p>
                                 </div>
