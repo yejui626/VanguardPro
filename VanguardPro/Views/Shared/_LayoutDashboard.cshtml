@@ -30,113 +30,148 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-        @if (Session["UserID"] != null)
+        @if (Session["UserID"] != null && Session["UserType"].ToString() == "1")
         {
             <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Index">
-                <img src="~/Content/admin/img/logo.png" alt="logo" style="height: 600%;">
-            </a>
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Index">
+                    <img src="~/Content/admin/img/logo.png" alt="logo" style="height: 600%;">
+                </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/Home/Index">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home/Index">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Manage
-            </div>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Manage
+                </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_user/Index">
-                    <i class="fas fa-solid fa-users"></i>
-                    <span>Users</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_investors/Index">
-                    <i class="fas fa-solid fa-user-tie"></i>
-                    <span>Investors</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_profit/Index">
-                    <i class="fas fa-solid fa-money-bill-alt"></i>
-                    <span>Profit Sharing</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_inventory/Index">
-                    <i class="fas fa-solid fa-user-tie"></i>
-                    <span>Inventory</span>
-                </a>
-            </li>
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_landlord/Index">
-                    <i class="fas fa-sharp fa-regular fa-house-user"></i>
-                    <span>Landlords</span>
-                </a>
-            </li>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_user/Index">
+                        <i class="fas fa-solid fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_investors/Index">
+                        <i class="fas fa-solid fa-user-tie"></i>
+                        <span>Investors</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_profit/Index">
+                        <i class="fas fa-solid fa-money-bill-alt"></i>
+                        <span>Profit Sharing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_inventory/Index">
+                        <i class="fas fa-solid fa-user-tie"></i>
+                        <span>Inventory</span>
+                    </a>
+                </li>
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_landlord/Index">
+                        <i class="fas fa-sharp fa-regular fa-house-user"></i>
+                        <span>Landlords</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_tenant/Index">
-                    <i class="fas fa-solid fa-person-booth"></i>
-                    <span>Tenants</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_tenant/Index">
+                        <i class="fas fa-solid fa-person-booth"></i>
+                        <span>Tenants</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_floor/Index">
-                    <i class="fas fa-solid fa-city"></i>
-                    <span>Floors</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_floor/Index">
+                        <i class="fas fa-solid fa-city"></i>
+                        <span>Floors</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_room/Index">
-                    <i class="fas fa-solid fa-home"></i>
-                    <span>Rooms</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_attendance/Index">
-                    <i class="fas fa-solid fa-broom"></i>
-                    <span>Cleaner Attendance</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_room/Index">
+                        <i class="fas fa-solid fa-home"></i>
+                        <span>Rooms</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_attendance/Index">
+                        <i class="fas fa-solid fa-broom"></i>
+                        <span>Cleaner Attendance</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_transaction/Index">
-                    <i class="fas fa-solid fa-money-bill-wave"></i>
-                    <span>Transactions</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/tb_attendance/Index">
-                    <i class="fa fa-address-book"></i>
-                    <span>Cleaner Attendance</span>
-                </a>
-            </li>
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_transaction/Index">
+                        <i class="fas fa-solid fa-money-bill-wave"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_attendance/Index">
+                        <i class="fa fa-address-book"></i>
+                        <span>Cleaner Attendance</span>
+                    </a>
+                </li>
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
 
-        </ul>
+            </ul>
 
+        }
+
+        @if (Session["UserID"] != null && Session["UserType"].ToString() == "2")
+        {
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Index">
+                    <img src="~/Content/admin/img/logo.png" alt="logo" style="height: 600%;">
+                </a>
+
+              
+                
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_profit/Index">
+                        <i class="fas fa-solid fa-money-bill-alt"></i>
+                        <span>Profit Sharing</span>
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/tb_transaction/Index">
+                        <i class="fas fa-solid fa-money-bill-wave"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+               
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+
+            </ul>
         }
 
         <!-- End of Sidebar -->
@@ -189,7 +224,8 @@
                                     <!-- Counter - Alerts -->
                                     @if (ViewBag.landlordsDueToday.Count > 0)
                                     {<span class="badge badge-danger badge-counter">@ViewBag.landlordsDueToday.Count</span> }
-                                    else {<span class="badge badge-danger badge-counter" hidden>@ViewBag.landlordsDueToday.Count</span> }
+                                else
+                                {<span class="badge badge-danger badge-counter" hidden>@ViewBag.landlordsDueToday.Count</span>}
                                 </a>
                                 <!-- Dropdown - Alerts -->
                                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -201,23 +237,24 @@
                                     {
                                         foreach (var landlord in ViewBag.landlordsDueToday)
                                         {
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="mr-3">
-                                                <div class="icon-circle bg-primary">
-                                                    <i class="fas fa-file-alt text-white"></i>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <div class="mr-3">
+                                                    <div class="icon-circle bg-primary">
+                                                        <i class="fas fa-file-alt text-white"></i>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <div class="small text-gray-500">@currentDate.ToLongDateString()</div>
-                                                <span class="font-weight-bold">
-                                                    <p class="text-warning">Payment to @landlord.l_name due by today!</p><p>Due Payment: @landlord.l_price</p>
-                                                </span>
-                                            </div>
-                                        </a>
+                                                <div>
+                                                    <div class="small text-gray-500">@currentDate.ToLongDateString()</div>
+                                                    <span class="font-weight-bold">
+                                                        <p class="text-warning">Payment to @landlord.l_name due by today!</p><p>Due Payment: @landlord.l_price</p>
+                                                    </span>
+                                                </div>
+                                            </a>
                                         }
                                     }
-                                    else { <a class="dropdown-item text-center small text-gray-500" href="#">No landlord due today</a> }
-                                    
+                                    else
+                                    { <a class="dropdown-item text-center small text-gray-500" href="#">No landlord due today</a>}
+
                                 </div>
                             </li>
 

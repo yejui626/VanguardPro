@@ -134,15 +134,11 @@ namespace VanguardPro.Controllers
                         existingPayment.re_outstanding = 0;
                         existingPayment.re_paymentStatus = "Paid";
                     }
-                    else if (existingPayment.re_outstanding > paymentAmount )
+                    else if (existingPayment.re_outstanding != paymentAmount )
                     {
                         existingPayment.re_outstanding = existingPayment.re_outstanding - paymentAmount;
-                        existingPayment.re_paymentStatus = "Overpaid";
-                    }
-                    else
-                    {
-                        existingPayment.re_outstanding = existingPayment.re_outstanding - paymentAmount;
-                        existingPayment.re_paymentStatus = "Partially Paid";
+                        if (existingPayment.re_outstanding < existingPayment.re_rentPrice && existingPayment.re_outstanding < 0) { existingPayment.re_paymentStatus = "Overpaid"; }
+                        else if (existingPayment.re_outstanding < existingPayment.re_rentPrice && existingPayment.re_outstanding > 0) { existingPayment.re_paymentStatus = "Partially Paid"; }
                     }
 
                     tb_rental.re_paymentStatus = existingPayment.re_paymentStatus;

@@ -12,6 +12,10 @@ namespace VanguardPro.Controllers
         private db_vanguardproEntities db = new db_vanguardproEntities();
         public ActionResult Index()
         {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             // Retrieve the list of vacant rooms from the database
             var vacantRooms = db.tb_room.Include("tb_floor").ToList();
             var totalRooms = vacantRooms.Count;
