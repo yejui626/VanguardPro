@@ -34,12 +34,15 @@ namespace VanguardPro.Models
         public string f_wifipwd { get; set; }
         [Display(Name = "Modem IP")]
         public string f_modemIP { get; set; }
+        
         [Display(Name = "CCTV QR")]
         public string f_cctvqr { get; set; }
+      
         [Display(Name = "Layout")]
         public string f_layout { get; set; }
       
         public int f_uid { get; set; }
+     
         [Display(Name = "Floor Description")]
         public string f_desc { get; set; }
     

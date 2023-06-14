@@ -119,18 +119,43 @@ namespace VanguardPro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "f_id,f_lid,f_building,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor)
+        public ActionResult Edit([Bind(Include = "f_id,f_lid,f_building,f_desc,f_wifipwd,f_modemIP,f_cctvqr,f_layout,f_uid")] tb_floor tb_floor, HttpPostedFileBase layout,  HttpPostedFileBase qr)
         {
             if (ModelState.IsValid)
             {
+                if (layout != null && layout.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(layout.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    layout.SaveAs(filePath);
+                    tb_floor.f_layout = fileName; // Save the unique file name in the database
+                }
+                if (qr != null && qr.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(qr.FileName);
+                    string filePath = Path.Combine(Server.MapPath("~/Content/admin/vendor/images"), fileName);
+                    qr.SaveAs(filePath);
+                    tb_floor.f_cctvqr = fileName; // Save the unique file name in the database
+                }
                 db.Entry(tb_floor).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
+
+
                 return RedirectToAction("Index");
             }
             ViewBag.f_lid = new SelectList(db.tb_landlord, "l_id", "l_name", tb_floor.f_lid);
             ViewBag.f_uid = new SelectList(db.tb_user, "u_id", "u_username", tb_floor.f_uid);
             return View(tb_floor);
         }
+       
 
         // GET: tb_floor/Delete/5
         public ActionResult Delete(int? id)
