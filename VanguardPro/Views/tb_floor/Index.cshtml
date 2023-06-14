@@ -22,9 +22,12 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <button class="button" width="20" style="background-color: lightskyblue;">
-                    @Html.ActionLink("Create New", "Create")
-                </button>
+                @if (isAdmin)
+                {
+                    <a href="@Url.Action("Create")" title="Create" class="btn btn-primary" style="float:right;">
+                        Create
+                    </a>
+                }
                 <table class="table" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -82,7 +85,7 @@
                                     <a href="@Url.Action("GetFile", "tb_floor", new { floorLayoutFileName = item.f_layout})" target="_blank" style="color: blue; font-weight: bold;">
                                         @item.f_layout (Click to see)
                                     </a>
-                                    
+
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Edit", new { id = item.f_id })" title="Edit">

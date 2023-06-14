@@ -1,4 +1,4 @@
-﻿@model VanguardPro.Models.tb_tenant
+﻿@model VanguardPro.Models.tb_rental
 
 @{
     ViewBag.Title = "Edit";
@@ -21,69 +21,140 @@
                 <div class="form-horizontal">
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.t_id)
+                    @Html.HiddenFor(model => model.re_id)
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_name, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.t_name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.t_name, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tb_tenant.t_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_name, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_ic, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_ic, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.t_ic, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.t_ic, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tb_tenant.t_ic, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_ic, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_uploadic, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_uploadic, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <input type="file" name="tenantIC" id="tenantIC" />
-                            @Html.ValidationMessageFor(model => model.t_uploadic, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_uploadic, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_contract, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_contract, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <input type="file" name="tenantContract" id="tenantContract" />
-                            @Html.ValidationMessageFor(model => model.t_contract, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_contract, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_phone, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.t_phone, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.t_phone, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tb_tenant.t_phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_phone, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_emergcont, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_emergcont, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.t_emergcont, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.t_emergcont, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tb_tenant.t_emergcont, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_emergcont, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_siriNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_siriNo, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.t_siriNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.t_siriNo, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tb_tenant.t_siriNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_siriNo, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.t_accessCardNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.tb_tenant.t_accessCardNo, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.t_accessCardNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.t_accessCardNo, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tb_tenant.t_accessCardNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_accessCardNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.re_indate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.re_indate, new { htmlAttributes = new { @class = "form-control datepicker", autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.re_indate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.re_outdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.re_outdate, new { htmlAttributes = new { @class = "form-control datepicker", autocomplete = "off" } })
+                            @Html.ValidationMessageFor(model => model.re_outdate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.re_outsession, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("re_outsession", new List<SelectListItem>
+                            {
+                                new SelectListItem { Value = "", Text = "-- Select --" }, // Initial null value
+                                new SelectListItem { Value = "Morning", Text = "Morning" },
+                                new SelectListItem { Value = "Afternoon", Text = "Afternoon" },
+                                new SelectListItem { Value = "Night", Text = "Night" }
+                            }, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.re_outsession, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.re_deposit, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.re_deposit, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.re_deposit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tb_room.tb_floor.f_id, "Floor", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("floor", null, htmlAttributes: new { @class = "form-control", id = "floorDropdown" })
+                            @Html.ValidationMessageFor(model => model.tb_room.tb_floor.f_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.re_rid, "Room Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("re_rid", null, htmlAttributes: new { @class = "form-control", id = "roomDropdown" })
+                            <span id="noRoomsMessage" class="text-danger" style="display: none;">No available rooms for the selected floor.</span>
+                            @Html.ValidationMessageFor(model => model.re_rid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tb_tenant.t_accessCardNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tb_tenant.t_accessCardNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tb_tenant.t_accessCardNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.re_rentPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.re_rentPrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.re_rentPrice, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -101,4 +172,90 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+                $("#roomDropdown, #floorDropdown").on('change', function () {
+                    $.ajax({
+                        url: '/tb_room/GetPrice?id=' + $("#roomDropdown option:selected").val(),
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (data) {
+                            $("#re_rentPrice").val(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                });
+                // Get the floor dropdown element
+                var floorDropdown = $("#floorDropdown");
+                // Get the room dropdown element
+                var roomDropdown = $("#roomDropdown");
+                // Add an event listener to the floor dropdown to update the room dropdown when the floor selection changes
+                floorDropdown.on("change", function () {
+                    var selectedFloorId = $(this).val();
+                    // Make an AJAX request to fetch the rooms associated with the selected floor
+                    $.ajax({
+                        url: "/tb_room/GetRoomsByFloor?id=" + selectedFloorId,
+                        type: "GET",
+                        datatype: "json",
+                        success: function (response) {
+                            // Clear the current options in the room dropdown
+                            roomDropdown.empty();
+                            var currentFloorId = @Html.Raw(Json.Encode(ViewBag.currentFloor));
+                            if (selectedFloorId == currentFloorId) {
+                                if (@Html.Raw(Json.Encode(ViewBag.roomList)) != null) {
+                                    $.each(@Html.Raw(Json.Encode(ViewBag.roomList)), function (index, room) {
+                                        roomDropdown.append($('<option></option>').val(room.value).text(room.text));
+                                        if (response.length > 0) {
+                                            $.each(response, function (index, room) {
+                                                roomDropdown.append($('<option></option>').val(room.value).text(room.text));
+                                            });
+                                            // Hide the noRoomsMessage if there are available rooms
+                                        }
+                                        $("#noRoomsMessage").hide();
+                                        $("input[type='submit']").prop("disabled", false);
+                                    });
+                                }
+                                else {
+                                    if (response.length > 0) {
+                                        $.each(response, function (index, room) {
+                                            roomDropdown.append($('<option></option>').val(room.value).text(room.text));
+                                        });
+                                        // Hide the noRoomsMessage if there are available rooms
+                                        $("#noRoomsMessage").hide();
+                                        $("input[type='submit']").prop("disabled", false);
+                                    } else {
+                                        // Show the noRoomsMessage if no rooms are available
+                                        $("#noRoomsMessage").show();
+                                        $("input[type='submit']").prop("disabled", true);
+                                    }
+                                }
+                            } else {
+                                // Add the new options fetched from the server
+                                if (response.length > 0) {
+                                    $.each(response, function (index, room) {
+                                        roomDropdown.append($('<option></option>').val(room.value).text(room.text));
+                                    });
+                                    // Hide the noRoomsMessage if there are available rooms
+                                    $("#noRoomsMessage").hide();
+                                    $("input[type='submit']").prop("disabled", false);
+                                } else {
+                                    // Show the noRoomsMessage if no rooms are available
+                                    $("#noRoomsMessage").show();
+                                    $("input[type='submit']").prop("disabled", true);
+                                }
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle the error if the AJAX request fails
+                            console.log(error);
+                        }
+                    });
+                });
+                floorDropdown.trigger("change");
+            });
+    </script>
+}
 }

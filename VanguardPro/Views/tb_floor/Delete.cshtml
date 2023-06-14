@@ -20,78 +20,80 @@
             <div class="table">
 
 
+                    <dl class="row">
 
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.tb_landlord.l_name)
-                    </dt>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.tb_landlord.l_name)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.tb_landlord.l_name)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.tb_user.u_username)
-                    </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.tb_landlord.l_name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.tb_user.u_username)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.tb_user.u_username)
-                    </dd>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.tb_user.u_username)
+                        </dd>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.f_building)
-                    </dt>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.f_building)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.f_building)
-                    </dd>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.f_building)
+                        </dd>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.f_wifipwd)
-                    </dt>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.f_wifipwd)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.f_wifipwd)
-                    </dd>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.f_wifipwd)
+                        </dd>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.f_modemIP)
-                    </dt>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.f_modemIP)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.f_modemIP)
-                    </dd>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.f_modemIP)
+                        </dd>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.f_cctvqr)
-                    </dt>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.f_cctvqr)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.f_cctvqr)
-                    </dd>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.f_cctvqr)
+                        </dd>
 
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.f_layout)
-                    </dt>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.f_layout)
+                        </dt>
 
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.f_layout)
-                    </dd>
+                        <dd class="col-sm-10">
+
+                            @Html.DisplayFor(model => model.f_layout)
+
+                        </dd>
 
 
+                      
 
+                    </dl>
+                
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-                </dl>
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Delete" class="btn btn-danger" /> |
-                        @Html.ActionLink("Back to List", "Index")
-                    </div>
-                }
-            </div>
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    }
+                </div>
 
         </div>
     </div>

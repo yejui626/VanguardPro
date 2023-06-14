@@ -76,59 +76,77 @@
                                 <th>
                                     @Html.DisplayFor(modelItem => item.re_outsession)
                                 </th>
-                                @if (item.re_paymentStatus == "Paid")
-                                {
+                                <div class="modal fade" id="updatePaymentModal" tabindex="-1" role="dialog" aria-labelledby="updatePaymentModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="updatePaymentModalLabel">Update Payment</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="updatePaymentPartialContainer"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="updatePaymentModal_@item.re_id">
+                                    @if (item.re_paymentStatus == "Paid")
+                                    {
                                     <td>
-                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
-                                            <i class="fas fa-edit fa-lg text-primary"></i>
-                                        </a>
-                                        <span class="badge bg-success">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
-                                    </td>
+                                        <a href="#" title="Update Payment" data-toggle="modal" data-target="#updatePaymentModal" data-url="@Url.Action("UpdatePayment", new { id = item.re_id })">
+                                            <a href="#" title="Update Payment" data-toggle="modal" data-target="#updatePaymentModal" data-url="@Url.Action("UpdatePayment", new { id = item.re_id })">
+                                                <i class="fas fa-edit fa-lg text-primary"></i>
+                                            </a>
+                                            <span class="badge bg-success">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
+</td>
                                 }
-                                @if (item.re_paymentStatus == "Unpaid")
-                                {
-                                    <td>
-                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
-                                            <i class="fas fa-edit fa-lg text-primary"></i>
-                                        </a>
-                                        <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
-                                    </td>
-                                }
-                                @if (item.re_paymentStatus == "Partially Paid")
-                                {
-                                    <td>
-                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
-                                            <i class="fas fa-edit fa-lg text-primary"></i>
-                                        </a>
-                                        <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
-                                    </td>
-                                }
-                                @if (item.re_paymentStatus == null)
-                                {
-                                    <td>
-                                        <a href="@Url.Action("UpdatePayment", new { id = item.re_id })" title="Update Payment">
-                                            <i class="fas fa-edit fa-lg text-primary"></i>
-                                        </a>
-                                    </td>
-                                }
-                                <td>
-                                    <a href="@Url.Action("Edit", new { id = item.re_id })" title="Edit">
-                                        <i class="fas fa-edit fa-lg text-primary"></i>
-                                    </a>
+                                    @if (item.re_paymentStatus == "Unpaid")
+                                    {
+                                        <td>
+                                            <a href="#" title="Update Payment" data-toggle="modal" data-target="#updatePaymentModal" data-url="@Url.Action("UpdatePayment", new { id = item.re_id })">
+                                                <i class="fas fa-edit fa-lg text-primary"></i>
+                                            </a>
+                                            <span class="badge bg-danger">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
+                                        </td>
+                                    }
+                                    @if (item.re_paymentStatus == "Partially Paid")
+                                    {
+                                        <td>
+                                            <a href="#" title="Update Payment" data-toggle="modal" data-target="#updatePaymentModal" data-url="@Url.Action("UpdatePayment", new { id = item.re_id })">
+                                                <i class="fas fa-edit fa-lg text-primary"></i>
+                                            </a>
+                                            <span class="badge bg-warning">@Html.DisplayFor(modelItem => item.re_paymentStatus)</span>
+                                        </td>
+                                    }
+                                    @if (item.re_paymentStatus == null)
+                                    {
+                                        <td>
+                                            <a href="#" title="Update Payment" data-toggle="modal" data-target="#updatePaymentModal" data-url="@Url.Action("UpdatePayment", new { id = item.re_id })">
+                                                <i class="fas fa-edit fa-lg text-primary"></i>
+                                            </a>
+                                        </td>
+                                    }
+</div>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.re_id })" title="Edit">
+                        <i class="fas fa-edit fa-lg text-primary"></i>
+                    </a>
 
-                                    <a href="@Url.Action("Details", new { id = item.re_id })" title="Details">
-                                        <i class="fas fa-info-circle fa-lg text-info"></i>
-                                    </a>
+                    <a href="@Url.Action("Details", new { id = item.re_id })" title="Details">
+                        <i class="fas fa-info-circle fa-lg text-info"></i>
+                    </a>
 
-                                    <a href="@Url.Action("Delete", new { id = item.re_id })" title="Delete">
-                                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    <a href="@Url.Action("Delete", new { id = item.re_id })" title="Delete">
+                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                    </a>
+                </td>
+                </tr>
+            }
+                        </tbody>
+                        </table>
+                    </div>
         </div>
     </div>
 </div>
@@ -139,6 +157,12 @@
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable();
+
+            $('a[data-toggle="modal"][data-target="#updatePaymentModal"]').on('click', function () {
+                var url = $(this).data('url');
+                // Load the content of the partial view into the modal container
+                $('#updatePaymentPartialContainer').load(url);
+            });
         });
     </script>
 }

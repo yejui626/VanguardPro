@@ -17,9 +17,9 @@ namespace VanguardPro.Models
     {
         [Display(Name = "Profit ID")]
         public int re_id { get; set; }
-        [Display(Name = "Check In")]
+        [Display(Name = "Indate")]
         public Nullable<System.DateTime> re_indate { get; set; }
-        [Display(Name = "Check Out")]
+        [Display(Name = "Outdate")]
         public Nullable<System.DateTime> re_outdate { get; set; }
         [Display(Name = "Check Out Session")]
         public string re_outsession { get; set; }

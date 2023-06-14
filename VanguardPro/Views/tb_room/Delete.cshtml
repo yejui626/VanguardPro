@@ -5,7 +5,7 @@
 }
 
 <div class="container-fluid">
-    <h2 class="h3 mb-2 text-gray-800">Delete Floor</h2>
+    <h2 class="h3 mb-2 text-gray-800">Delete Room</h2>
 
 
     <div class="card shadow mb-4">
@@ -57,11 +57,21 @@
 
                     @using (Html.BeginForm())
                     {
-        @Html.AntiForgeryToken()
+                        @Html.AntiForgeryToken()
 
                         <div class="form-actions no-color">
                             <input type="submit" value="Delete" class="btn btn-default" /> |
                             @Html.ActionLink("Back to List", "Index")
+
                         </div>}
-    </div>          </div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page level plugins -->
+    <script src="~/Content/admin/js/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/admin/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Content/admin/js/js/demo/datatables-demo.js"></script>

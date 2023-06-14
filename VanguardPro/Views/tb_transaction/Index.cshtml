@@ -55,7 +55,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.tr_receipt)
                             </th>
-                            <th></th>
+                            @if (Session["UserID"] != null && Session["UserType"].ToString() == "1")
+                            { <th></th>}
+
                         </tr>
                     </thead>
                     <tbody>
@@ -85,6 +87,8 @@
                                         @item.tr_receipt (Click to see)
                                     </a>
                                 </td>
+                                @if (Session["UserID"] != null && Session["UserType"].ToString() == "1")
+                                {
                                 <td>
                                     <a href="@Url.Action("Edit", new { id = item.tr_id })" title="Edit">
                                         <i class="fas fa-edit fa-lg text-primary"></i>
@@ -98,6 +102,7 @@
                                         <i class="fas fa-trash-alt fa-lg text-danger"></i>
                                     </a>
                                 </td>
+                                }
                             </tr>
                         }
                     </tbody>

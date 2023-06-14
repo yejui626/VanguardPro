@@ -1,80 +1,85 @@
-﻿@model VanguardPro.Models.tb_tenant
+﻿﻿@model VanguardPro.Models.tb_rental
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>tb_tenant</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.t_name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.t_ic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_ic)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.t_uploadic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_uploadic)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.t_contract)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_contract)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.t_phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.t_emergcont)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_emergcont)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.t_siriNo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.t_siriNo)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Details</h6>
         </div>
-    }
+
+        <div class="card-body">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_ic)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_ic)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_uploadic)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_uploadic)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_contract)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_contract)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_phone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_emergcont)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_emergcont)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.tb_tenant.t_siriNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tb_tenant.t_siriNo)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+    </div>
 </div>
+
