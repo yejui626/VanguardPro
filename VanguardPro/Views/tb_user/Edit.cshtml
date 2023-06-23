@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>tb_user</h4>
         <hr />
@@ -56,8 +56,10 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+@if (Session["UserType"].ToString() == "1")
+{
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
 

@@ -98,7 +98,15 @@ namespace VanguardPro.Controllers
             {
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Session["UserType"].ToString() == "1")
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index","Home");
+                }
+                    
             }
             return View(tb_user);
         }
