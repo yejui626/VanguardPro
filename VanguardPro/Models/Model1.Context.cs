@@ -12,14 +12,14 @@ namespace VanguardPro.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class db_vanguardproEntities : DbContext
+    
+    public partial class Entities : DbContext
     {
-        public db_vanguardproEntities()
-            : base("name=db_vanguardproEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
